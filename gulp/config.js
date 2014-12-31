@@ -17,6 +17,7 @@ module.exports = {
     sass: {
         src: src + "/sass/*.{sass,scss}",
         dest: dest,
+        watch: src + "/sass/**/*.{sass,scss}",
         settings: {
             // Required if you want to use SASS syntax
             // See https://github.com/dlmanning/gulp-sass/issues/81
