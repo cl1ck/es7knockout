@@ -1,0 +1,10 @@
+.article {
+    p {
+        margin-bottom: 10px;
+    }
+
+    p::first-letter {
+        font-size: 150%;
+        color: darken($color-1, 20);
+    }
+}
