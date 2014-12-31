@@ -64,4 +64,13 @@ This will run the `default` gulp task defined in `gulp/tasks/default.js`, which 
 - `build` includes the following tasks: `['browserify', 'sass', 'images', 'markup']`
 
 ### Configuration
+
 All paths and plugin settings have been abstracted into a centralized config object in `gulp/config.js`. Adapt the paths and settings to the structure and needs of your project.
+
+## Disable `gulp-notify`
+
+If you are running on a system that does not support notifications by `gulp-notify`, you can disable it by using enviroment variable `DISABLE_NOTIFIER`:
+
+```
+export DISABLE_NOTIFIER=true;
+```
