@@ -1,4 +1,4 @@
-var dest = "./build";
+var dest = './build';
 var src = './src';
 
 module.exports = {
@@ -9,15 +9,15 @@ module.exports = {
             baseDir: [dest, src]
         },
         files: [
-            dest + "/**",
+            dest + '/**',
             // Exclude Map files
-            "!" + dest + "/**.map"
+            '!' + dest + '/**.map'
         ]
     },
     sass: {
-        src: src + "/sass/*.{sass,scss}",
-        dest: dest,
-        watch: src + "/sass/**/*.{sass,scss}",
+        src: src + '/sass/*.{sass,scss}',
+        dest: dest + '/css/',
+        watch: src + '/sass/**/*.{sass,scss}',
         settings: {
             // Required if you want to use SASS syntax
             // See https://github.com/dlmanning/gulp-sass/issues/81
@@ -26,11 +26,11 @@ module.exports = {
         }
     },
     images: {
-        src: src + "/images/**",
-        dest: dest + "/images"
+        src: src + '/images/**',
+        dest: dest + '/images'
     },
     jade: {
-        src: src + "/htdocs/**",
+        src: src + '/htdocs/**',
         dest: dest
     },
     browserify: {
