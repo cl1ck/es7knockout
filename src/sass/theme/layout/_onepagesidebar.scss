@@ -21,6 +21,7 @@ $content-padding: 8px;
 
 #l-header {
     height: $header-height;
+    background-color: $color-1;
 }
 
 #l-header-content {
@@ -53,6 +54,7 @@ $content-padding: 8px;
     top: $header-height;
     left: 0;
     bottom: $footer-height;
+    background-color: $color-3;
 }
 
 #l-content {

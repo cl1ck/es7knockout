@@ -9,7 +9,7 @@ module.exports = {
             baseDir: [dest, src]
         },
         files: [
-            dest + '/**',
+            dest + '/**/*.*',
             // Exclude Map files
             '!' + dest + '/**.map'
         ]
@@ -17,7 +17,7 @@ module.exports = {
     sass: {
         src: src + '/sass/*.{sass,scss}',
         dest: dest + '/css/',
-        watch: src + '/sass/**/*.{sass,scss}',
+        watch: src + '/sass/**/*.*',
         settings: {
             // Required if you want to use SASS syntax
             // See https://github.com/dlmanning/gulp-sass/issues/81
