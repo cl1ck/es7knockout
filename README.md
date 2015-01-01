@@ -52,6 +52,29 @@ npm install
 This runs through all dependencies listed in `package.json` and downloads them
 to a `node_modules` folder in your project directory.
 
+### Install bower dependencies
+
+```
+bower install
+```
+
+This runs through all dependencies listed in `bower.json` and downloads them
+to a `bower_components` folder in your project directory.
+
+### Install required ruby gems
+
+```
+gem install bundler
+```
+
+You'll need to install [bundler](http://bundler.io) first. This will enable you to install the required ruby gems.
+
+```
+bundle install
+```
+
+This will install all gems listed in `Gemfile`.
+
 ### Run gulp and be amazed.
 
 ```
