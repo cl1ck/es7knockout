@@ -30,7 +30,7 @@ module.exports = {
         dest: dest + '/images'
     },
     jade: {
-        src: src + '/htdocs/**',
+        src: src + '/jade/**',
         dest: dest
     },
     browserify: {
@@ -49,5 +49,9 @@ module.exports = {
             dest: dest + '/js/',
             outputName: 'head.js'
         }]
+    },
+    html: {
+        src: src + '/html/**',
+        dest: dest
     }
 };
