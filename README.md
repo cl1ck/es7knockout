@@ -13,7 +13,9 @@ Includes the following tools, tasks, and workflows:
 - [Jade](http://jade-lang.com) for templates
 - [jQuery](http://jquery.com/) (from npm)
 - [BrowserSync](http://browsersync.io) for live reloading and a static server
-- [Bootstrap](http://getbootstrap.com)
+- [Bower](http://bower.io/) for installing 3rd party dependencies
+- [Bootstrap](http://getbootstrap.com) (from bower)
+- Linting for all source files
 - Image optimization
 - Error Notifications in Notification Center
 - Non common-js vendor code (like a jQuery plugin)
@@ -91,7 +93,7 @@ This will run the `default` gulp task defined in `gulp/tasks/default.js`, which 
 
 All paths and plugin settings have been abstracted into a centralized config object in `gulp/config.js`. Adapt the paths and settings to the structure and needs of your project.
 
-## Disable `gulp-notify`
+## Disable 'gulp-notify'
 
 If you are running on a system that does not support notifications by `gulp-notify`, you can disable it by using enviroment variable `DISABLE_NOTIFIER`:
 
