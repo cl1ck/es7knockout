@@ -16,10 +16,16 @@ var handleErrors = require('../util/handleErrors');
 var source = require('vinyl-source-stream');
 var config = require('../config').browserify;
 var gutil = require('gulp-util');
+var bundleConfigs;
+if (config.coffeescript) {
+    bundleConfigs = config.coffeeBundleConfigs;
+} else {
+    bundleConfigs = config.jsBundleConfigs;
+}
 
 gulp.task('browserify', function(callback) {
 
-    var bundleQueue = config.bundleConfigs.length;
+    var bundleQueue = bundleConfigs.length;
 
     var browserifyThis = function(bundleConfig) {
 
@@ -78,5 +84,5 @@ gulp.task('browserify', function(callback) {
     };
 
     // Start bundling with Browserify for each bundleConfig specified
-    config.bundleConfigs.forEach(browserifyThis);
+    bundleConfigs.forEach(browserifyThis);
 });

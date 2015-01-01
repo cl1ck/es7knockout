@@ -36,11 +36,21 @@ module.exports = {
     browserify: {
         // Enable source maps
         debug: true,
+        coffeescript: true,
         // Additional file extentions to make optional
         extensions: ['.coffee'],
         // A separate bundle will be generated for each
         // bundle config in the list below
-        bundleConfigs: [{
+        coffeeBundleConfigs: [{
+            entries: src + '/coffeescript/app.coffee',
+            dest: dest + '/js/',
+            outputName: 'app.js'
+        }, {
+            entries: src + '/coffeescript/head.coffee',
+            dest: dest + '/js/',
+            outputName: 'head.js'
+        }],
+        jsBundleConfigs: [{
             entries: src + '/javascript/app.coffee',
             dest: dest + '/js/',
             outputName: 'app.js'

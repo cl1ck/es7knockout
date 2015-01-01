@@ -4,7 +4,6 @@ var gulp            = require('gulp'),
     gutil           = require('gulp-util'),
     jshint          = require('gulp-jshint'),
     stylish         = require('jshint-stylish'),
-    notify          = require('gulp-notify'),
     plumber         = require('gulp-plumber'),
     fixmyjs         = require('gulp-fixmyjs'),
     path            = require('path'),
@@ -44,8 +43,6 @@ gulp.task('jslint', function() {
             .pipe(jshint())
             .pipe(jshint.reporter(stylish))
             .pipe(jshintErrorReporter)
-            .on('error', notify.onError(function(error) {
-                return error.message;
-            }));
+            .on('error', handleErrors);
     }
 });
