@@ -1,0 +1,13 @@
+{
+  "name": "buildit",
+  "version": "0.0.1",
+  "main": "src/",
+  "ignore": [
+    ".jshintrc",
+    "**/*.txt"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "bootstrap-sass-official": "~3.3.1"
+  }
+}

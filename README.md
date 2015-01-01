@@ -13,6 +13,7 @@ Includes the following tools, tasks, and workflows:
 - [Jade](http://jade-lang.com) for templates
 - [jQuery](http://jquery.com/) (from npm)
 - [BrowserSync](http://browsersync.io) for live reloading and a static server
+- [Bootstrap](http://getbootstrap.com)
 - Image optimization
 - Error Notifications in Notification Center
 - Non common-js vendor code (like a jQuery plugin)

@@ -53,5 +53,10 @@ module.exports = {
     html: {
         src: src + '/html/**',
         dest: dest
+    },
+    jslint: {
+        src: src + '/javascript/**/*.js',
+        dest: src + '/javascript/',
+        fixmyjs: false
     }
 };
