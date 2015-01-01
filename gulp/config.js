@@ -68,5 +68,8 @@ module.exports = {
         src: src + '/javascript/**/*.js',
         dest: src + '/javascript/',
         fixmyjs: false
+    },
+    coffeelint: {
+        src: src + '/coffeescript/**/*.coffee'
     }
 };
