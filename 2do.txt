@@ -1,1 +1,3 @@
-- add uglify
+- add uglify / beautify
+- add jsdoc
+- add gulp-styleguide or similar style guide generator: http://vinspee.me/style-guide-guide/
