@@ -29,7 +29,7 @@ brew install node
 
 Otherwise, you can download and install from [here](http://nodejs.org/download/).
 
-### Install Gulp Globally
+### Install Gulp globally
 
 Gulp must be installed globally in order to use the command line tools. *You may need to use `sudo`*
 
@@ -43,6 +43,14 @@ Alternatively, you can run the version of gulp installed local to the project in
 
 ```
 ./node_modules/.bin/gulp
+```
+
+### Install styledocco globally
+
+Styledocco must be installed globally to be able to generate dynamic style guides from SCSS. *You may need to use `sudo`*
+
+```
+npm install -g styledocco
 ```
 
 ### Install npm dependencies
