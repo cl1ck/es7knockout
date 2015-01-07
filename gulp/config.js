@@ -67,9 +67,14 @@ module.exports = {
     jslint: {
         src: src + '/javascript/**/*.js',
         dest: src + '/javascript/',
-        fixmyjs: false
+        fixmyjs: true
     },
     coffeelint: {
         src: src + '/coffeescript/**/*.coffee'
+    },
+    styleguide: {
+        src: src + '/styleguide/',
+        srcfile: 'styleguide.css',
+        dest: dest + '/docs/'
     }
 };

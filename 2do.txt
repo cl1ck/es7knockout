@@ -1,3 +1,4 @@
 - add uglify / beautify
+- add dist task (include minify, etc., no sourcemaps, ...): https://github.com/OverZealous/lazypipe
 - add jsdoc
-- add gulp-styleguide or similar style guide generator: http://vinspee.me/style-guide-guide/
+- add Karma or other testrunners
