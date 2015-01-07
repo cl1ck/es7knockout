@@ -5,3 +5,5 @@ dist
 Desktop.ini
 node_modules
 bower_components
+buildit.sublime-project
+buildit.sublime-workspace
