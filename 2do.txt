@@ -2,3 +2,7 @@
 - add dist task (include minify, etc., no sourcemaps, ...): https://github.com/OverZealous/lazypipe
 - add jsdoc
 - add Karma or other testrunners
+- swith from browserify to jspm:
+    gulp.task('default', ['jsx'], shell.task([
+      'jspm bundle build/router'
+    ]));
