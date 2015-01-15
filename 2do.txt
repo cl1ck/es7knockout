@@ -1,1 +1,9 @@
-- add uglify
+- switch to https://github.com/OverZealous/lazypipe
+- swith from browserify to jspm:
+    gulp.task('default', ['jsx'], shell.task([
+      'jspm bundle build/router'
+    ]));
+- add uglify / beautify
+- add dist task (include minify, etc., no sourcemaps, ...)
+- add jsdoc
+- add Karma or other testrunners

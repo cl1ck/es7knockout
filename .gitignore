@@ -5,5 +5,9 @@ dist
 Desktop.ini
 node_modules
 bower_components
+<<<<<<< HEAD
 buildit.sublime-project
 buildit.sublime-workspace
+=======
+npm-debug.log
+>>>>>>> 851c43acf2c8895882d44daf9681ee5fd2f5fdac

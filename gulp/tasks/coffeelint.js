@@ -30,8 +30,8 @@ var coffeelintErrorReporter = map(function (file, cb) {
 
 gulp.task('coffeelint', function() {
     return gulp.src(config.src)
-        .pipe(plumber())
         .pipe(coffeelint('./.coffeelint.json'))
+        .on('error', handleErrors)
         .pipe(coffeelint.reporter())
         .pipe(coffeelintErrorReporter)
         .on('error', handleErrors);

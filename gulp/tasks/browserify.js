@@ -48,14 +48,14 @@ gulp.task('browserify', function(callback) {
 
             return bundler
                 .bundle()
-            // Report compile errors
-            .on('error', handleErrors)
-            // Use vinyl-source-stream to make the
-            // stream gulp compatible. Specifiy the
-            // desired output filename here.
-            .pipe(source(bundleConfig.outputName))
-            // Specify the output destination
-            .pipe(gulp.dest(bundleConfig.dest))
+                // Report compile errors
+                .on('error', handleErrors)
+                // Use vinyl-source-stream to make the
+                // stream gulp compatible. Specifiy the
+                // desired output filename here.
+                .pipe(source(bundleConfig.outputName))
+                // Specify the output destination
+                .pipe(gulp.dest(bundleConfig.dest))
                 .on('end', reportFinished);
         };
 
