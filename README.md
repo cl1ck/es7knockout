@@ -7,7 +7,7 @@ Based on [gulp-starter](https://github.com/greypants/gulp-starter/wiki) by [grey
 Includes the following tools, tasks, and workflows:
 
 - [JSPM](https://jspm.io) (modern package manager for the frontend)
-- [ES6] Support for ES6 Harmony using traceur
+- ES6 Harmony support using 6to5 transpiler
 - [SASS](http://sass-lang.com/) (super fast libsass with [source maps](https://github.com/sindresorhus/gulp-ruby-sass#sourcemap), and [autoprefixer](https://github.com/sindresorhus/gulp-autoprefixer))
 - [Jade](http://jade-lang.com) for templates
 - [jQuery](http://jquery.com/) (from npm)
@@ -32,7 +32,7 @@ Otherwise, you can download and install from [here](http://nodejs.org/download/)
 JSPM, Gulp and Styledoccy must be installed globally in order to use the command line tools. *You may need to use `sudo`*
 
 ```
-sudo npm install gulp jspm styledocco -g
+npm install gulp jspm styledocco -g
 ```
 
 ### Install npm dependencies
@@ -56,13 +56,13 @@ jspm init
 gem install bundler
 ```
 
-You'll need to install [bundler](http://bundler.io) first. This will enable you to install the required ruby gems.
+You'll need to install [bundler](http://bundler.io) first. This will enable you to install the required ruby gems. *You may need to use `sudo`*
 
 ```
 bundle install
 ```
 
-This will install all gems listed in `Gemfile`.
+This will install all gems listed in `Gemfile`. *You may need to use `sudo`*
 
 ### Run gulp and be amazed.
 
