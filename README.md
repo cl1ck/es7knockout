@@ -6,12 +6,9 @@ Based on [gulp-starter](https://github.com/greypants/gulp-starter/wiki) by [grey
 
 Includes the following tools, tasks, and workflows:
 
-- [Browserify](http://browserify.org/) (with [browserify-shim](https://github.com/thlorenz/browserify-shim)) __deprecated__
-- [Watchify](https://github.com/substack/watchify) (caching version of browserify for super fast rebuilds) __deprecated__
 - [JSPM](https://jspm.io) (modern package manager for the frontend)
 - [ES6] Support for ES6 Harmony using traceur
 - [SASS](http://sass-lang.com/) (super fast libsass with [source maps](https://github.com/sindresorhus/gulp-ruby-sass#sourcemap), and [autoprefixer](https://github.com/sindresorhus/gulp-autoprefixer))
-- [CoffeeScript](http://coffeescript.org/) (with source maps!)
 - [Jade](http://jade-lang.com) for templates
 - [jQuery](http://jquery.com/) (from npm)
 - [BrowserSync](http://browsersync.io) for live reloading and a static server
@@ -20,7 +17,6 @@ Includes the following tools, tasks, and workflows:
 - Linting for all source files
 - Image optimization
 - Error Notifications in Notification Center
-- Non common-js vendor code (like a jQuery plugin)
 
 If you've never used Node or npm before, you'll need to install Node.
 If you use homebrew, do:
