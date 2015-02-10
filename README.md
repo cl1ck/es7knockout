@@ -27,34 +27,12 @@ brew install node
 
 Otherwise, you can download and install from [here](http://nodejs.org/download/).
 
-### Install jspm globally
+### Install jspm, gulp & styledoccoe globally
 
-JSPM must be installed globally in order to use the command line tools. *You may need to use `sudo`*
-
-```
-npm install -g jspm
-```
-
-### Install Gulp globally
-
-Gulp must be installed globally, too.
+JSPM, Gulp and Styledoccy must be installed globally in order to use the command line tools. *You may need to use `sudo`*
 
 ```
-npm install -g gulp
-```
-
-Alternatively, you can run the version of gulp installed local to the project instead with
-
-```
-./node_modules/.bin/gulp
-```
-
-### Install styledocco globally
-
-Styledocco is the third package that must be installed globally (to be able to generate dynamic style guides from your SCSS).
-
-```
-npm install -g styledocco
+sudo npm install gulp jspm styledocco -g
 ```
 
 ### Install npm dependencies
@@ -66,16 +44,11 @@ npm install
 This runs through all dependencies listed in `package.json` and downloads them
 to a `node_modules` folder in your project directory.
 
-### Install bower dependencies
+### Initialize JSPM
 
 ```
-bower install __deprecated__
+jspm init
 ```
-
-This runs through all dependencies listed in `bower.json` and downloads them
-to a `bower_components` folder in your project directory.
-
-__Should be replaced by jspm__
 
 ### Install required ruby gems
 
@@ -97,11 +70,7 @@ This will install all gems listed in `Gemfile`.
 gulp
 ```
 
-This will run the `default` gulp task defined in `gulp/tasks/default.js`, which does the following:
-- Run 'watch', which has 2 task dependencies, `['setWatch', 'browserSync']`
-- `setWatch` sets a variable that tells the browserify task whether or not to use watchify.
-- `browserSync` has `build` as a task dependecy, so that all your assets will be processed before browserSync tries to serve them to you in the browser.
-- `build` includes the following tasks: `['browserify', 'sass', 'images', 'jade', 'html']`
+__todo__
 
 ### Configuration
 

@@ -1,27 +1,10 @@
 {
   "name": "buildit",
   "version": "0.0.1",
-  "description": "frontend build environment",
+  "description": "ES6 frontend build environment",
   "repository": {
     "type": "git",
-    "url": "git://github.com/rootdigga/buildit.git"
-  },
-  "browser": {
-    "plugin": "./src/javascript/vendor/jquery-plugin.js"
-  },
-  "browserify": {
-    "transform": [
-      "browserify-shim",
-      "coffeeify"
-    ]
-  },
-  "browserify-shim": {
-    "plugin": {
-      "exports": "plugin",
-      "depends": [
-        "jquery:$"
-      ]
-    }
+    "url": "git://github.com/cl1ck/buildit.git"
   },
   "devDependencies": {
     "browser-sync": "^1.8.2",
@@ -56,8 +39,9 @@
     "require-dir": "^0.1.0",
     "vinyl-source-stream": "^1.0.0"
   },
-  "dependencies": {
-    "jquery": "^2.1.0"
-  },
-  "jspm": {}
+  "jspm": {
+    "directories": {
+      "lib": "lib"
+    }
+  }
 }
