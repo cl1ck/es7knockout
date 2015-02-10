@@ -1,7 +1,6 @@
 var gulp            = require('gulp'),
     config          = require('../config').javascript,
     jshint          = require('../pipes/jshint'),
-    fixmyjs         = require('../pipes/fixmyjs'),
     jspmbundler     = require('../pipes/jspmbundler'),
     reload          = require('../pipes/reload'),
     handleErrors    = require('../handleErrors');
