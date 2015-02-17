@@ -1,22 +1,24 @@
-var gulp         = require('gulp'),
-    sass         = require('gulp-sass'),
-    sourcemaps   = require('gulp-sourcemaps'),
-    gulpif       = require('gulp-if'),
-    autoprefixer = require('../pipes/autoprefixer'),
-    reload       = require('../pipes/reload'),
-    scsslint     = require('../pipes/scsslint'),
-    handleErrors = require('../handleErrors'),
-    config       = require('../config').sass;
+var gulp            = require('gulp'),
+    sass            = require('gulp-sass'),
+    sourcemaps      = require('gulp-sourcemaps'),
+    autoprefixer    = require('gulp-autoprefixer'),
+    prefixerconfig  = require('../config').autoprefixer;
+    handleErrors    = require('../handleErrors'),
+    config          = require('../config').sass;
 
-gulp.task('sass', ['images'], function() {
+gulp.task('sass', ['scsslint', 'images'], function() {
     return gulp.src(config.src)
-        .pipe(gulpif(config.scsslint, scsslint()))
-        .on('error', handleErrors)
         .pipe(sourcemaps.init())
         .pipe(sass(config.settings))
+        .on('error', function() {
+            // ignore error (usually already thrown by scsslint)
+            this.emit('end');
+        })
+        .pipe(sourcemaps.write({includeContent: false}))
+        .pipe(sourcemaps.init({loadMaps: true}))
+        .pipe(autoprefixer(prefixerconfig))
         .on('error', handleErrors)
-        .pipe(sourcemaps.write())
-        .pipe(autoprefixer())
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(config.dest))
-        .pipe(reload());
+        .on('error', handleErrors);
 });

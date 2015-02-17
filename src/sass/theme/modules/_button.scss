@@ -1,13 +1,18 @@
-/* Buttons
-
-    <a class="button">button</a>
-    <a class="button button--small">small</a>
-    <a class="button button--hero">hero</a>
-    <a class="button button--outline">outline</a>
-*/
-.button{
+// A simple button.
+//
+// default          - simple default button
+// :disabled        - disabled button
+// .small           - small button
+// .hero            - big hero button
+// .outline         - button with outlines only
+//
+// markup:
+// <button class="buildit {$modifiers}">Button</button>
+//
+// Styleguide 1.1
+button.buildit {
     padding: 7px 10px;
-    background: $color-1;
+    background: $color-one;
     color: #fff;
     text-transform: uppercase;
     border-radius: 3px;
@@ -15,27 +20,31 @@
     cursor: pointer;
 
     &:hover {
-        background-color: $color-2;
+        background-color: $color-two;
     }
 
-    &--small {
+    &.small {
         padding: 3px 3px;
         text-transform: none;
     }
 
-    &--hero {
+    &.hero {
         font-size: 1.5em;
         border: 1px solid #000;
-        padding: 140px 30px;
+        padding: 30px 140px;
     }
 
-    &--outline {
+    &.outline {
         background: transparent;
-        border: 1px solid $color-1;
+        border: 1px solid $color-one;
     }
 
-    &--outline:hover {
+    &.outline:hover {
         background-color: transparent;
-        border-color: $color-2;
+        border-color: $color-two;
+    }
+
+    &:disabled {
+        text-decoration: line-through;
     }
 }

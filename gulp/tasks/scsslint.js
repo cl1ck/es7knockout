@@ -1,8 +1,7 @@
-var lazypipe        = require('lazypipe'),
+var gulp            = require('gulp'),
     handleErrors    = require('../handleErrors'),
     config          = require('../config').sass,
     gutil           = require('gulp-util'),
-    plumber         = require('gulp-plumber'),
     scsslint        = require('gulp-scss-lint'),
     cache           = require('gulp-cached'),
     path            = require('path'),
@@ -33,12 +32,12 @@ errorReporter = map(function(file, cb) {
     cb(null, file);
 });
 
-module.exports = lazypipe()
-                .pipe(plumber)
-                .pipe(cache, 'scsslint')
-                .pipe(scsslint, {
-                    config: './.scsslint.yml'
-                })
-                .pipe(function() {
-                    return errorReporter
-                });
+gulp.task('scsslint', function() {
+    gulp.src(config.src)
+    .pipe(cache('scsslint'))
+    .pipe(scsslint({
+        config: './.scsslint.yml'
+    }))
+    .pipe(errorReporter)
+    .on('error', handleErrors);
+});

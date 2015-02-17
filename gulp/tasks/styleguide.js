@@ -1,26 +1,28 @@
 var gulp         = require('gulp'),
-    sass         = require('gulp-sass'),
-    handleErrors = require('../handleErrors'),
+    styleguide   = require('sc5-styleguide'),
+    config       = require('../config').styleguide,
     sassconfig   = require('../config').sass,
-    styleconfig  = require('../config').styleguide,
-    styledocco   = require('gulp-styledocco'),
-    del          = require('del');
+    sass         = require('gulp-sass');
 
-gulp.task('styleguide-clean', function() {
-    return del(styleconfig.dest + '/**/*.*');
+gulp.task('styleguide:generate', function() {
+  return gulp.src(sassconfig.watch)
+    .pipe(styleguide.generate({
+        title: config.title,
+        server: false,
+        rootPath: config.dest,
+        overviewPath: './README.md',
+        appRoot: '/docs'
+      }))
+    .pipe(gulp.dest(config.dest));
 });
 
-gulp.task('styleguide-copy-includes', function() {
-    return gulp.src(styleconfig.src + styleconfig.srcfile)
-        .pipe(gulp.dest(styleconfig.dest));
+gulp.task('styleguide:applystyles', function() {
+  return gulp.src(sassconfig.src)
+    .pipe(sass({
+      errLogToConsole: true
+    }))
+    .pipe(styleguide.applyStyles())
+    .pipe(gulp.dest(config.dest));
 });
 
-gulp.task('styleguide-create', function() {
-    gulp.src(sassconfig.src)
-    .pipe(styledocco({
-        out: styleconfig.dest,
-        include: [styleconfig.dest  + styleconfig.srcfile]
-    }));
-});
-
-gulp.task('styleguide', ['styleguide-clean', 'styleguide-copy-includes', 'styleguide-create']);
+gulp.task('styleguide', ['styleguide:generate', 'styleguide:applystyles']);

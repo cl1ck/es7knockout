@@ -2,7 +2,7 @@ buildit
 ============
 
 Starter project for my personal frontend development projects.
-Based on [gulp-starter](https://github.com/greypants/gulp-starter/wiki) by [greypants](https://github.com/greypants/).
+Based on [gulp-starter](https://github.com/greypants/gulp-starter/) by [greypants](https://github.com/greypants/).
 
 Includes the following tools, tasks, and workflows:
 
@@ -11,6 +11,7 @@ Includes the following tools, tasks, and workflows:
 - [SASS](http://sass-lang.com/) (super fast libsass with [source maps](https://github.com/sindresorhus/gulp-ruby-sass#sourcemap), and [autoprefixer](https://github.com/sindresorhus/gulp-autoprefixer))
 - [Jade](http://jade-lang.com) for templates
 - [BrowserSync](http://browsersync.io) for live reloading and a static server
+- [SC5 Styleguide](http://styleguide.sc5.io/) for generating nice styleguides using KSS notation
 - Linting for all source files
 - Image optimization
 - Error Notifications in Notification Center
@@ -24,12 +25,12 @@ brew install node
 
 Otherwise, you can download and install from [here](http://nodejs.org/download/).
 
-### Install jspm, gulp & styledoccoe globally
+### Install jspm & gulp globally
 
-JSPM, Gulp and Styledoccy must be installed globally in order to use the command line tools. *You may need to use `sudo`*
+JSPM and Gulp must be installed globally in order to use the command line tools. *You may need to use `sudo`*
 
 ```
-npm install gulp jspm styledocco -g
+npm install gulp jspm -g
 ```
 
 ### Install npm dependencies

@@ -1,8 +1,8 @@
 var gulp    = require('gulp'),
     config  = require('../config');
 
-gulp.task('watch', ['build'], function() {
-    gulp.watch(config.sass.watch, ['sass', 'styleguide']);
+gulp.task('watch', ['build', 'browsersync'], function(cb) {
+    gulp.watch(config.styleguide.watch, ['styleguide']);
     gulp.watch(config.images.src, ['images']);
     gulp.watch(config.jade.src, ['jade']);
     gulp.watch(config.html.src, ['html']);

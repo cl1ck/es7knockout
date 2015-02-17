@@ -2,14 +2,20 @@ var src = './src',
     dest = './build';
 
 module.exports = {
-    browserSync: {
+    // use gulp-notify to display system notifications (does not work on some DE-less systems)
+    usenotifier: true,
+    browsersync: {
         server: {
+            // server src too (for sourcemaps)
             baseDir: [dest, src]
         },
         files: [
             dest + '/**/*.*',
             '!' + dest + '/**.map'
-        ]
+        ],
+        port: 3500,
+        browser: [],
+        tunnel: false
     },
     sass: {
         src: src + '/sass/*.{sass,scss}',
@@ -18,8 +24,7 @@ module.exports = {
         settings: {
             sourceComments: 'map',
             imagePath: '/images'
-        },
-        scsslint: true
+        }
     },
     autoprefixer: {
         browsers: ['last 2 version']
@@ -43,8 +48,7 @@ module.exports = {
         fixmyjs: false
     },
     styleguide: {
-        src: src + '/styleguide/',
-        srcfile: 'styleguide.css',
-        dest: dest + '/docs/'
+        dest: dest + '/docs',
+        title: 'Build It'
     }
 };

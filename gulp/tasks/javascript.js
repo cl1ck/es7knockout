@@ -1,15 +1,12 @@
-var gulp            = require('gulp'),
-    config          = require('../config').javascript,
-    jshint          = require('../pipes/jshint'),
-    jspmbundler     = require('../pipes/jspmbundler'),
-    reload          = require('../pipes/reload'),
-    handleErrors    = require('../handleErrors');
+var gulp        = require('gulp'),
+    config      = require('../config').javascript,
+    shell       = require('gulp-shell');
 
-gulp.task('javascript', function() {
-    return gulp.src(config.src)
-        .pipe(jshint())
-        .on('error', handleErrors)
-        .pipe(jspmbundler())
-        .pipe(gulp.dest(config.dest))
-        .pipe(reload());
+gulp.task('javascript', ['jshint'], function() {
+    gulp.src(config.src, {read: false})
+    .pipe(shell(['jspm bundle-sfx ' + config.appsrc + ' ' + config.dest + '  &>/dev/null']))
+    .on('error', function() {
+        // ignore error (usually already thrown by jshint)
+        this.emit('end');
+    });
 });
