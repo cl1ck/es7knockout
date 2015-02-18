@@ -7,7 +7,7 @@ Based on [gulp-starter](https://github.com/greypants/gulp-starter/) by [greypant
 Includes the following tools, tasks, and workflows:
 
 - [JSPM](https://jspm.io) (modern package manager for the frontend)
-- ES6 Harmony support using 6to5 transpiler
+- [ES6](http://kangax.github.io/compat-table/es6/) Harmony support using 6to5 transpiler
 - [SASS](http://sass-lang.com/) (super fast libsass with [source maps](https://github.com/sindresorhus/gulp-ruby-sass#sourcemap), and [autoprefixer](https://github.com/sindresorhus/gulp-autoprefixer))
 - [Jade](http://jade-lang.com) for templates
 - [BrowserSync](http://browsersync.io) for live reloading and a static server
@@ -68,7 +68,12 @@ This will install all gems listed in `Gemfile`. *You may need to use `sudo`*
 gulp
 ```
 
-__todo__
+This will run the default build task which compiles all source files and start BrowserSync on port 3500.
+
+Open [http://localhost:3500](http://localhost:3500) to open your index.html.
+The generated styleguide will be located at [http://localhost:3500/docs](http://localhost:3500/docs).
+
+This also will start watching your source folders and automatically compiling any changes you make to them. Then using the magic of BrowserSync it'll inject the changes or (in case of changes to your ES6 scripts) reload the pages for all connected clients.
 
 ### Configuration
 
