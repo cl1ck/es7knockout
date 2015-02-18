@@ -68,18 +68,39 @@ This will install all gems listed in `Gemfile`. *You may need to use `sudo`*
 gulp
 ```
 
-This will run the default build task which compiles all source files and start BrowserSync on port 3500.
+This will run the default build task which compiles all source files and start BrowserSync on port 3000.
 
-Open [http://localhost:3500](http://localhost:3500) to open your index.html.
-The generated styleguide will be located at [http://localhost:3500/docs](http://localhost:3500/docs).
+Open [http://localhost:3000](http://localhost:3000) to open your index.html.
+The generated styleguide will be located at [http://localhost:3500](http://localhost:3500).
 
 This also will start watching your source folders and automatically compiling any changes you make to them. Then using the magic of BrowserSync it'll inject the changes or (in case of changes to your ES6 scripts) reload the pages for all connected clients.
+
+### additional Gulp tasks
+
+```
+gulp TASKNAME
+```
+
+Run gulp with a TASKNAME appended to run the given additional task.
+
+Here is a list of the included tasks:
+- watch: the default task
+- build: build your project by compiling all source files (`/src/`) to the build directory (`/build/`)
+- javascript: lint, transpile and bundle your ES6 source files from `/src/js/`
+- jade: compile your jade templates from `/src/jade/`
+- sass: lint and compile your sass files from `/src/sass/`
+- styleguide: generate styleguide from SASS source files (`/src/sass/`)
+- images: minimize your source images (with no quality loss) from `/src/images/`
+
+There are some more subtasks which are used by these tasks, but it makes little sense to be called themselves. You can use them to build your own tasks though.
+
+
 
 ### Configuration
 
 All paths and plugin settings have been abstracted into a centralized config object in `gulp/config.js`. Adapt the paths and settings to the structure and needs of your project.
 
-## Disable 'gulp-notify'
+### Disable 'gulp-notify'
 
 If you are running on a system that does not support notifications by `gulp-notify`, you can disable it by using enviroment variable `DISABLE_NOTIFIER`:
 

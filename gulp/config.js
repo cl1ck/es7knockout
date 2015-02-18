@@ -1,5 +1,7 @@
-var src = './src',
-    dest = './build';
+var src         = './src',
+    builddir    = './build',
+    distdir     = './dist',
+    docdir      = './docs';
 
 module.exports = {
     // use gulp-notify to display system notifications (does not work on some DE-less systems)
@@ -7,19 +9,19 @@ module.exports = {
     browsersync: {
         server: {
             // server src too (for sourcemaps)
-            baseDir: [dest, src]
+            baseDir: [builddir, src]
         },
         files: [
-            dest + '/**/*.*',
-            '!' + dest + '/**.map'
+            builddir + '/**/*.*',
+            '!' + builddir + '/**.map'
         ],
-        port: 3500,
+        port: 3000,
         browser: [],
         tunnel: false
     },
     sass: {
         src: src + '/sass/*.{sass,scss}',
-        dest: dest + '/css/',
+        dest: builddir + '/css/',
         watch: src + '/sass/**/*.*',
         settings: {
             sourceComments: 'map',
@@ -31,24 +33,24 @@ module.exports = {
     },
     images: {
         src: src + '/images/**',
-        dest: dest + '/images'
+        dest: builddir + '/images'
     },
     jade: {
         src: src + '/jade/**',
-        dest: dest
+        dest: builddir
     },
     html: {
         src: src + '/html/*.html',
-        dest: dest
+        dest: builddir
     },
     javascript: {
         src: src + '/js/main',
         watch: src + '/js/**/*.js',
-        dest: dest + '/js/app.js',
+        dest: builddir + '/js/app.js',
         fixmyjs: false
     },
     styleguide: {
-        dest: dest + '/docs',
+        dest: docdir,
         title: 'Build It'
     }
 };

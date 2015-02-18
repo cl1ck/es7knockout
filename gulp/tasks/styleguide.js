@@ -8,10 +8,10 @@ gulp.task('styleguide:generate', function() {
   return gulp.src(sassconfig.watch)
     .pipe(styleguide.generate({
         title: config.title,
-        server: false,
         rootPath: config.dest,
         overviewPath: './README.md',
-        appRoot: '/docs'
+        server: true,
+        port: 3500
       }))
     .pipe(gulp.dest(config.dest));
 });

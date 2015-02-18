@@ -6,7 +6,7 @@ var gulp            = require('gulp'),
     handleErrors    = require('../handleErrors'),
     config          = require('../config').sass;
 
-gulp.task('sass', ['scsslint', 'images'], function() {
+gulp.task('sass', ['scsslint'], function() {
     return gulp.src(config.src)
         .pipe(sourcemaps.init())
         .pipe(sass(config.settings))
