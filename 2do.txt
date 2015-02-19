@@ -1,8 +1,5 @@
-- swith from browserify to jspm:
-    gulp.task('default', ['jsx'], shell.task([
-      'jspm bundle build/router'
-    ]));
+- fix gulp-jscs
 - add uglify / beautify
-- add dist task (include minify, etc., no sourcemaps, ...)
+- add dist (production) task (include minify, etc., no sourcemaps, ...)
 - add jsdoc
 - add Karma or other testrunners
