@@ -6,10 +6,7 @@ var gulp            = require('gulp'),
     scsslint        = require('gulp-scss-lint'),
     cache           = require('gulp-cached'),
     path            = require('path'),
-    map             = require('map-stream'),
-    events          = require('events'),
     gulpif          = require('gulp-if'),
-    emmitter        = new events.EventEmitter(),
     notify          = require('gulp-notify'),
     errorReporter;
 
