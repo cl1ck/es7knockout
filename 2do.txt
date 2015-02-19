@@ -1,4 +1,5 @@
 - fix gulp-jscs
+- enforce jscs rules to gulp scripts, too
 - add uglify / beautify
 - add dist (production) task (include minify, etc., no sourcemaps, ...)
 - add jsdoc
