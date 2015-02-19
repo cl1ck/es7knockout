@@ -12,10 +12,9 @@ module.exports = function() {
             title: 'Compile Error',
             message: '<%= error %>'
         }).apply(this, args);
-    } else {
-        // log error
-        gutil.log.apply(this, args);
     }
+    // log error
+    gutil.log.apply(this, args);
 
     // Keep gulp from hanging on this task
     this.emit('end');
