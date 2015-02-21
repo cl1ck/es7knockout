@@ -1,6 +1,6 @@
-var gulp = require('gulp'),
-    config = require('../config').jade,
-    jade = require('gulp-jade');
+var gulp = require('gulp');
+var config = require('../config').jade;
+var jade = require('gulp-jade');
 
 gulp.task('jade', function() {
     return gulp.src(config.src)

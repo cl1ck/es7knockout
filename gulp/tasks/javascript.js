@@ -1,6 +1,6 @@
-var gulp        = require('gulp'),
-    config      = require('../config').javascript,
-    shell       = require('gulp-shell');
+var gulp        = require('gulp');
+var config      = require('../config').javascript;
+var shell       = require('gulp-shell');
 
 gulp.task('javascript', ['jshint'], function() {
     gulp.src(config.src, {read: false})

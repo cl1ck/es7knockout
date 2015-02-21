@@ -1,15 +1,15 @@
-var gulp            = require('gulp'),
-    handleErrors    = require('../handleErrors'),
-    config          = require('../config').javascript,
-    usenotifier     = require('../config').usenotifier,
-    jshint          = require('gulp-jshint'),
-    stylish         = require('jshint-stylish'),
-    cache           = require('gulp-cached'),
-    notify          = require('gulp-notify'),
-    gulpif          = require('gulp-if');
+var gulp = require('gulp');
+var handleErrors    = require('../handleErrors');
+var config          = require('../config').javascript;
+var usenotifier     = require('../config').usenotifier;
+var jshint          = require('gulp-jshint');
+var stylish         = require('jshint-stylish');
+var cache           = require('gulp-cached');
+var notify          = require('gulp-notify');
+var gulpif          = require('gulp-if');
 
 gulp.task('jshint', function() {
-    gulp.src(config.watch)
+    gulp.src([config.watch, config.gulp])
     .pipe(cache('jshint'))
     .pipe(jshint())
     .pipe(
@@ -22,7 +22,8 @@ gulp.task('jshint', function() {
 
                 var errors = file.jshint.results.map(function(data) {
                     if (data.error) {
-                        return '(' + data.error.line + ':' + data.error.character + ') ' + data.error.reason;
+                        return '(' + data.error.line + ':' + data.error.character + ') ' +
+                            data.error.reason;
                     }
                 }).join('\n');
                 return file.relative + ' (' + file.jshint.results.length + ' errors)\n' + errors;

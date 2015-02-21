@@ -1,5 +1,3 @@
-'use strict';
-
 var gulp = require('gulp');
 var handleErrors = require('../handleErrors');
 var config = require('../config').javascript;
@@ -11,9 +9,29 @@ var notify = require('gulp-notify');
 var gulpif = require('gulp-if');
 
 gulp.task('jscs', function() {
-    gulp.src(config.watch)
+    gulp.src([config.watch, config.gulp])
     .pipe(cache('jscs'))
     .pipe(jscs({
-        configPath: './jscsrc'
+        configPath: './.jscsrc'
     }))
+    .on('error', function() {})
+    .pipe(
+        gulpif(usenotifier,
+            notify(function(file) {
+                if (file.jscs.success) {
+                    // Don't show something if success
+                    return false;
+                }
+
+                var errors = file.jscs.errors.map(function(error) {
+                    if (error) {
+                        return '(' + error.line + ':' + error.column + ') ' +
+                            error.message;
+                    }
+                }).join('\n');
+                return file.relative + ' (' + file.jscs.errorCount + ' errors)\n' + errors;
+            }),
+            stylish
+        )
+    );
 });

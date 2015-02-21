@@ -1,3 +1,3 @@
 var gulp = require('gulp');
 
-gulp.task('build', ['styleguide', 'images', 'jade', 'html', 'javascript']);
+gulp.task('build', ['jade', 'html', 'images', 'sass', 'javascript', 'styleguide']);

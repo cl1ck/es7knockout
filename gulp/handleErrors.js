@@ -1,6 +1,6 @@
-var notify          = require('gulp-notify'),
-    gutil           = require('gulp-util'),
-    usenotifier    = require('./config').usenotifier;
+var notify      = require('gulp-notify');
+var gutil       = require('gulp-util');
+var usenotifier = require('./config').usenotifier;
 
 module.exports = function() {
     var args = Array.prototype.slice.call(arguments);

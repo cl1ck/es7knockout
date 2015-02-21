@@ -1,17 +1,16 @@
-var gulp            = require('gulp'),
-    handleErrors    = require('../handleErrors'),
-    config          = require('../config').sass,
-    usenotifier     = require('../config').usenotifier,
-    gutil           = require('gulp-util'),
-    scsslint        = require('gulp-scss-lint'),
-    cache           = require('gulp-cached'),
-    path            = require('path'),
-    gulpif          = require('gulp-if'),
-    notify          = require('gulp-notify'),
-    errorReporter;
+var gulp            = require('gulp');
+var handleErrors    = require('../handleErrors');
+var config          = require('../config').sass;
+var usenotifier     = require('../config').usenotifier;
+var gutil           = require('gulp-util');
+var scsslint        = require('gulp-scss-lint');
+var cache           = require('gulp-cached');
+var path            = require('path');
+var gulpif          = require('gulp-if');
+var notify          = require('gulp-notify');
 
 // Custom linting reporter
-errorReporter = function(file, stream) {
+var errorReporter = function(file, stream) {
     if (!file.scsslint.success) {
         file.scsslint.issues.forEach(function(err) {
             if (err) {

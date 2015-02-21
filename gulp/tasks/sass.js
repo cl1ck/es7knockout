@@ -1,10 +1,9 @@
-var gulp            = require('gulp'),
-    sass            = require('gulp-sass'),
-    sourcemaps      = require('gulp-sourcemaps'),
-    autoprefixer    = require('gulp-autoprefixer'),
-    prefixerconfig  = require('../config').autoprefixer;
-    handleErrors    = require('../handleErrors'),
-    config          = require('../config').sass;
+var gulp            = require('gulp');
+var sass            = require('gulp-sass');
+var sourcemaps      = require('gulp-sourcemaps');
+var autoprefixer    = require('gulp-autoprefixer');
+var handleErrors    = require('../handleErrors');
+var config          = require('../config').sass;
 
 gulp.task('sass', ['scsslint'], function() {
     return gulp.src(config.src)
@@ -16,7 +15,7 @@ gulp.task('sass', ['scsslint'], function() {
         })
         .pipe(sourcemaps.write({includeContent: false}))
         .pipe(sourcemaps.init({loadMaps: true}))
-        .pipe(autoprefixer(prefixerconfig))
+        .pipe(autoprefixer(config.autoprefixer))
         .on('error', handleErrors)
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(config.dest))
