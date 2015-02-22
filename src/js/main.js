@@ -1,2 +1,2 @@
-var test, test2, test3;
-        console.log('test');
+import {Person} from './person';
+console.log(new Person('test').name);

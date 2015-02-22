@@ -5,6 +5,7 @@ var builddir    = './build';
 //var distdir     = './dist';
 var docdir      = './docs';
 var gulpdir     = './gulp';
+var jspmdir     = './jspm_packages';
 
 module.exports = {
     // use gulp-notify to display system notifications (does not work on some DE-less systems)
@@ -13,7 +14,7 @@ module.exports = {
     browsersync: {
         server: {
             // server src too (for sourcemaps)
-            baseDir: [builddir, src]
+            baseDir: [builddir, src, jspmdir]
         },
         files: [
             builddir + '/**/*.*',

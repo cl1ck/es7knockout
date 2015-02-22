@@ -1,5 +1,5 @@
 System.config({
-  "transpiler": "6to5",
+  "transpiler": "traceur",
   "paths": {
     "*": "*.js",
     "buildit/*": "src/js/*.js",
