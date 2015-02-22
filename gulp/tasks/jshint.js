@@ -1,3 +1,5 @@
+'use strict';
+
 var gulp = require('gulp');
 var handleErrors    = require('../handleErrors');
 var config          = require('../config').javascript;

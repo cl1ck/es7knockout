@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
     height: 100%;
     min-height: 100%;
 }
@@ -12,11 +13,11 @@ $sidebar-padding: 8px;
 $content-padding: 8px;
 
 #l-wrapper {
-    min-height: 100%;
+    position: relative;
     height: auto !important;
     height: 100%;
+    min-height: 100%;
     margin: 0 auto (-$footer-height);
-    position: relative;
 }
 
 #l-header {
@@ -48,12 +49,12 @@ $content-padding: 8px;
 }
 
 #l-sidebar {
-    width: $sidebar-width;
-    padding: $sidebar-padding;
     position: absolute;
     top: $header-height;
-    left: 0;
     bottom: $footer-height;
+    left: 0;
+    width: $sidebar-width;
+    padding: $sidebar-padding;
     background-color: $color-three;
 }
 

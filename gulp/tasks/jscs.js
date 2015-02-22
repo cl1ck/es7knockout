@@ -1,3 +1,5 @@
+'use strict';
+
 var gulp = require('gulp');
 var handleErrors = require('../handleErrors');
 var config = require('../config').javascript;
@@ -31,7 +33,8 @@ gulp.task('jscs', function() {
                 }).join('\n');
                 return file.relative + ' (' + file.jscs.errorCount + ' errors)\n' + errors;
             }),
-            stylish
+            stylish()
         )
-    );
+    )
+    .on('error', handleErrors);
 });

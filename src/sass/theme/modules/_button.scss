@@ -10,38 +10,38 @@
 // <button class="buildit {$modifiers}">Button</button>
 //
 // Styleguide 1.1
-button.buildit {
+.buildit {
     padding: 7px 10px;
-    background: $color-one;
-    color: #fff;
-    text-transform: uppercase;
     border-radius: 3px;
-    text-align: center;
+    background: $color-one;
     cursor: pointer;
+    color: #FFF;
+    text-align: center;
+    text-transform: uppercase;
 
     &:hover {
         background-color: $color-two;
     }
 
     &.small {
-        padding: 3px 3px;
+        padding: 3px;
         text-transform: none;
     }
 
     &.hero {
-        font-size: 1.5em;
-        border: 1px solid #000;
         padding: 30px 140px;
+        border: 1px solid #000;
+        font-size: 1.5em;
     }
 
     &.outline {
-        background: transparent;
         border: 1px solid $color-one;
+        background: transparent;
     }
 
     &.outline:hover {
-        background-color: transparent;
         border-color: $color-two;
+        background-color: transparent;
     }
 
     &:disabled {

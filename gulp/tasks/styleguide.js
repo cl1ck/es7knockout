@@ -1,3 +1,5 @@
+'use strict';
+
 var gulp         = require('gulp');
 var styleguide   = require('sc5-styleguide');
 var config       = require('../config').styleguide;

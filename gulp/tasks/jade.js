@@ -1,3 +1,5 @@
+'use strict';
+
 var gulp = require('gulp');
 var config = require('../config').jade;
 var jade = require('gulp-jade');

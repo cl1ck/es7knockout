@@ -25,12 +25,12 @@ brew install node
 
 Otherwise, you can download and install from [here](http://nodejs.org/download/).
 
-### Install jspm & gulp globally
+### Install jspm, gulp and the karma-cli globally
 
 JSPM and Gulp must be installed globally in order to use the command line tools. *You may need to use `sudo`*
 
 ```
-npm install gulp jspm -g
+npm install gulp jspm karma-cli -g
 ```
 
 ### Install npm dependencies

@@ -2,13 +2,14 @@
 
 var src         = './src';
 var builddir    = './build';
-var distdir     = './dist';
+//var distdir     = './dist';
 var docdir      = './docs';
 var gulpdir     = './gulp';
 
 module.exports = {
     // use gulp-notify to display system notifications (does not work on some DE-less systems)
-    usenotifier: true,
+    useNotifier: false,
+    logErrors: false,
     browsersync: {
         server: {
             // server src too (for sourcemaps)
