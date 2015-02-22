@@ -1,2 +1,9 @@
 import {Person} from './person';
-console.log(new Person('test').name);
+
+let person = new Person('test');
+let greeter = document.getElementById('greeter');
+let message = 'Hello ' + person.name;
+
+document.addEventListener('DOMContentLoaded', function() {
+    greeter.innerHTML = message;
+});

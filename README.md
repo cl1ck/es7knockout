@@ -12,6 +12,7 @@ Includes the following tools, tasks, and workflows:
 - [Jade](http://jade-lang.com) for templates
 - [BrowserSync](http://browsersync.io) for live reloading and a static server
 - [SC5 Styleguide](http://styleguide.sc5.io/) for generating nice styleguides using KSS notation
+- Testing with Karma, Mocha, Sinon & Chai
 - Linting for all source files
 - Image optimization
 - Error Notifications in Notification Center
@@ -27,7 +28,7 @@ Otherwise, you can download and install from [here](http://nodejs.org/download/)
 
 ### Install jspm, gulp and the karma-cli globally
 
-JSPM and Gulp must be installed globally in order to use the command line tools. *You may need to use `sudo`*
+jspm, gulp and karma-cli must be installed globally in order to use the command line tools. *You may need to use `sudo`*
 
 ```
 npm install gulp jspm karma-cli -g

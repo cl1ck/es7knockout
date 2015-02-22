@@ -1,4 +1,4 @@
-import Person from 'src/js/person';
+import {Person} from 'src/js/person';
 var assert = chai.assert;
 
 describe('Person', function() {

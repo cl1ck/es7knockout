@@ -21,13 +21,12 @@ module.exports = function(config) {
 
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-        preprocessors: {
-
-        },
+        preprocessors: {},
 
         jspm: {
             // Edit this to your needs
-            loadFiles: ['src/js/**/*.js', 'src/js/**/*.spec.js']
+            loadFiles: ['src/test/**/*.spec.js'],
+            serveFiles: ['src/js/**/*.js']
         },
 
         // test results reporter to use
@@ -43,10 +42,10 @@ module.exports = function(config) {
 
         // level of logging
         // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-        logLevel: config.LOG_DEBUG,
+        logLevel: config.LOG_INFO,
 
         // enable / disable watching file and executing tests whenever any file changes
-        autoWatch: false,
+        autoWatch: true,
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
@@ -54,6 +53,6 @@ module.exports = function(config) {
 
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits
-        singleRun: true
+        singleRun: false
     });
 };

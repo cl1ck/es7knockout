@@ -13,12 +13,14 @@ module.exports = {
     logErrors: false,
     browsersync: {
         server: {
-            // server src too (for sourcemaps)
-            baseDir: [builddir, src, jspmdir]
+            // serve src too (for sourcemaps)
+            baseDir: builddir,
+            routes: {
+                '/src': src
+            }
         },
         files: [
-            builddir + '/**/*.*',
-            '!' + builddir + '/**.map'
+            builddir + '/**/*.*'
         ],
         port: 3000,
         browser: [],
@@ -49,11 +51,12 @@ module.exports = {
         dest: builddir
     },
     javascript: {
-        src: src + '/js/main',
         watch: src + '/js/**/*.js',
         gulp: gulpdir + '/**/*.js',
-        dest: builddir + '/js/app.js',
-        fixmyjs: false
+        dest: builddir + '/js',
+        bundleMain: src + '/js/main',
+        bundleFile: builddir + '/js/app.js',
+        es6runtime: jspmdir + '/babel-polyfill.js'
     },
     styleguide: {
         dest: docdir,

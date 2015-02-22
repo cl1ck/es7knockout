@@ -1,12 +1,9 @@
-var gulp        = require('gulp');
-var config      = require('../config').javascript;
-var shell       = require('gulp-shell');
+var gulp    = require('gulp');
+var config  = require('../config').javascript;
 
-gulp.task('javascript', ['jshint', 'jscs'], function() {
-    gulp.src(config.src, {read: false})
-    .pipe(shell(['jspm bundle-sfx ' + config.appsrc + ' ' + config.dest])) // + '  &>/dev/null'
-    .on('error', function() {
-        // ignore error (usually already thrown by jshint)
-        this.emit('end');
-    });
+gulp.task('javascript-prepare', function() {
+    gulp.src(config.es6runtime)
+    .pipe(gulp.dest(config.dest));
 });
+
+gulp.task('javascript', ['jshint', 'jscs', 'jspm']);

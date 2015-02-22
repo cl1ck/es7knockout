@@ -5,6 +5,7 @@ var styleguide   = require('sc5-styleguide');
 var config       = require('../config').styleguide;
 var sassconfig   = require('../config').sass;
 var sass         = require('gulp-sass');
+var open         = require('open');
 
 gulp.task('styleguide:generate', function() {
     return gulp.src(sassconfig.watch)
@@ -27,4 +28,8 @@ gulp.task('styleguide:applystyles', function() {
     .pipe(gulp.dest(config.dest));
 });
 
-gulp.task('styleguide', ['styleguide:generate', 'styleguide:applystyles']);
+gulp.task('styleguide:open', function() {
+    open('http://localhost:3500');
+});
+
+gulp.task('styleguide', ['styleguide:generate', 'styleguide:applystyles', 'styleguide:open']);
