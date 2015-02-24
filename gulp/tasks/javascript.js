@@ -1,9 +1,8 @@
-var gulp    = require('gulp');
-var config  = require('../config').javascript;
+'use strict';
 
-gulp.task('javascript-prepare', function() {
-    gulp.src(config.es6runtime)
-    .pipe(gulp.dest(config.dest));
+var gulp        = require('gulp');
+var runSequence = require('run-sequence');
+
+gulp.task('javascript', function(cb) {
+    runSequence(['jshint', 'jscs', 'karma'], 'jspm', cb);
 });
-
-gulp.task('javascript', ['jshint', 'jscs', 'jspm']);

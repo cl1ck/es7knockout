@@ -11,7 +11,7 @@ var notify = require('gulp-notify');
 var gulpif = require('gulp-if');
 
 gulp.task('jscs', function() {
-    gulp.src([config.watch, config.gulp])
+    return gulp.src([config.src, config.gulp])
     .pipe(cache('jscs'))
     .pipe(jscs({
         configPath: './.jscsrc'

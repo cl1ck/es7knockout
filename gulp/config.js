@@ -1,16 +1,18 @@
 'use strict';
 
-var src         = './src';
-var builddir    = './build';
-//var distdir     = './dist';
-var docdir      = './docs';
-var gulpdir     = './gulp';
-var jspmdir     = './jspm_packages';
+var gulpdir     = __dirname;
+var basedir     = gulpdir + '/..';
+var src         = basedir + '/src';
+var builddir    = basedir + '/build';
+var distdir     = basedir + '/dist';
+var docdir      = basedir + '/docs';
+var jspmdir     = basedir + '/jspm_packages';
 
 module.exports = {
     // use gulp-notify to display system notifications (does not work on some DE-less systems)
     useNotifier: false,
     logErrors: false,
+    openBrowser: false,
     browsersync: {
         server: {
             // serve src too (for sourcemaps)
@@ -51,7 +53,7 @@ module.exports = {
         dest: builddir
     },
     javascript: {
-        watch: src + '/js/**/*.js',
+        src: src + '/js/**/*.js',
         gulp: gulpdir + '/**/*.js',
         dest: builddir + '/js',
         bundleMain: src + '/js/main',
@@ -60,6 +62,11 @@ module.exports = {
     },
     styleguide: {
         dest: docdir,
-        title: 'Build It'
-    }
+        title: 'Build It',
+        post: 3500
+    },
+    tests: {
+        src: src + '/test/**/*.spec.js',
+        karmaConfig: __dirname + '/../karma.conf.js'
+    },
 };

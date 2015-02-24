@@ -1,4 +1,5 @@
+'use strict';
+
 var gulp = require('gulp');
 
-gulp.task('build', ['jade', 'html', 'images', 'sass', 'javascript-prepare',
-    'javascript', 'styleguide']);
+gulp.task('build', ['jade', 'html', 'images', 'sass', 'javascript', 'styleguide']);
