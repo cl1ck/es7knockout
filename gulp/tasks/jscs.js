@@ -6,13 +6,11 @@ var config = require('../config').javascript;
 var usenotifier = require('../config').usenotifier;
 var jscs = require('gulp-jscs');
 var stylish = require('gulp-jscs-stylish');
-var cache = require('gulp-cached');
 var notify = require('gulp-notify');
 var gulpif = require('gulp-if');
 
 gulp.task('jscs', function() {
-    return gulp.src([config.src, config.gulp])
-    .pipe(cache('jscs'))
+    return gulp.src(config.src)
     .pipe(jscs({
         configPath: './.jscsrc'
     }))

@@ -12,7 +12,7 @@ gulp.task('styleguide:generate', function() {
         title: config.title,
         rootPath: config.dest,
         overviewPath: './README.md',
-        server: true,
+        server: false,
         port: config.port
     }))
     .pipe(gulp.dest(config.dest));

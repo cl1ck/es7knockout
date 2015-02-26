@@ -8,8 +8,7 @@ gulp.task('jspm:copyRuntime', function() {
     .pipe(gulp.dest(config.dest));
 });
 
-gulp.task('jspm', ['jspm:copyRuntime'], function() {
+gulp.task('jspm', function() {
     return gulp.src(config.bundleMain + '.js', {read: false})
-    .pipe(shell(['jspm bundle-sfx ' + config.bundleMain + ' ' + config.bundleFile])) // + '  &>/dev/null'
-    .on('error', handleErrors);
+    .pipe(shell(['jspm bundle-sfx ' + config.bundleMain + ' ' + config.bundleFile]));
 });

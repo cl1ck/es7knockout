@@ -1,11 +1,10 @@
 'use strict';
 
-var gulpdir     = __dirname;
-var basedir     = gulpdir + '/..';
+var basedir     = __dirname.substring(0, __dirname.lastIndexOf('/'));
 var src         = basedir + '/src';
 var builddir    = basedir + '/build';
 var distdir     = basedir + '/dist';
-var docdir      = basedir + '/docs';
+var docdir      = builddir + '/docs';
 var jspmdir     = basedir + '/jspm_packages';
 
 module.exports = {
@@ -13,6 +12,8 @@ module.exports = {
     useNotifier: false,
     logErrors: false,
     openBrowser: false,
+    builddir: builddir,
+    distdir: distdir,
     browsersync: {
         server: {
             // serve src too (for sourcemaps)
@@ -30,7 +31,10 @@ module.exports = {
     },
     sass: {
         src: src + '/sass/*.{sass,scss}',
-        dest: builddir + '/css/',
+        dest: builddir + '/css',
+        dist: distdir + '/css',
+        distSrc: builddir + '/css/*.css',
+        distDest: distdir + '/css',
         watch: src + '/sass/**/*.*',
         settings: {
             sourceComments: 'map',
@@ -41,24 +45,33 @@ module.exports = {
         }
     },
     images: {
-        src: src + '/images/**',
-        dest: builddir + '/images'
+        src: src + '/images/**/*.*',
+        dest: builddir + '/images',
+        distSrc: builddir + '/images/**/*.*',
+        distDest: distdir + '/images/'
     },
     jade: {
         src: src + '/jade/**',
-        dest: builddir
+        dest: builddir,
+        dist: distdir
     },
     html: {
         src: src + '/html/*.html',
-        dest: builddir
+        dest: builddir,
+        distSrc: builddir + '/*.html',
+        distDest: distdir
     },
     javascript: {
         src: src + '/js/**/*.js',
-        gulp: gulpdir + '/**/*.js',
         dest: builddir + '/js',
-        bundleMain: src + '/js/main',
+        distSrc: builddir + '/js/*.js',
+        distDest: distdir + '/js',
+        bundleMain: 'src/js/main',
         bundleFile: builddir + '/js/app.js',
-        es6runtime: jspmdir + '/babel-polyfill.js'
+        es6runtime: jspmdir + '/babel-polyfill.js',
+        uglifyOptions: {
+
+        }
     },
     styleguide: {
         dest: docdir,

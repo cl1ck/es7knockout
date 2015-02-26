@@ -1,18 +1,16 @@
 'use strict';
 
-var gulp = require('gulp');
+var gulp            = require('gulp');
 var handleErrors    = require('../handleErrors');
 var config          = require('../config').javascript;
 var usenotifier     = require('../config').usenotifier;
 var jshint          = require('gulp-jshint');
 var stylish         = require('jshint-stylish');
-var cache           = require('gulp-cached');
 var notify          = require('gulp-notify');
 var gulpif          = require('gulp-if');
 
 gulp.task('jshint', function() {
-    return gulp.src([config.src, config.gulp])
-    .pipe(cache('jshint'))
+    return gulp.src(config.src)
     .pipe(jshint())
     .pipe(
         gulpif(usenotifier,
