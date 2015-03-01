@@ -5,9 +5,9 @@ var runSequence = require('run-sequence');
 
 gulp.task('dist', function(cb) {
     runSequence(
-        ['build', 'test'],
+        'test',
         'clean-dist',
-        ['javascript-dist', 'css-dist', 'images-dist', 'html-dist'],
+        ['javascript-dist', 'sass-dist', 'images-dist', 'html-dist'],
         cb
     );
 });

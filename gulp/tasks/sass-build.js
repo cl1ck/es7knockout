@@ -12,7 +12,7 @@ gulp.task('sass-build', ['scsslint'], function() {
         .pipe(sourcemaps.init())
         .pipe(sass(config.settings))
         .on('error', function() {
-            // ignore error (usually already thrown by scsslint)
+            // ignore error (errors already thrown by scsslint)
             this.emit('end');
         })
         .pipe(sourcemaps.write({includeContent: false}))
@@ -20,6 +20,5 @@ gulp.task('sass-build', ['scsslint'], function() {
         .pipe(autoprefixer(config.autoprefixer))
         .on('error', handleErrors)
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(config.dest))
-        .on('error', handleErrors);
+        .pipe(gulp.dest(config.dest));
 });

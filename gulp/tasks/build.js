@@ -6,8 +6,7 @@ var runSequence = require('run-sequence');
 gulp.task('build', function(cb) {
     runSequence(
         'clean-build',
-        ['jade', 'html-build', 'images-build', 'sass-build',
-         'jspm:copyRuntime', 'javascript-build', 'styleguide'],
+        ['html-build', 'sass-build', 'styleguide'],
         cb
     );
 });

@@ -2,4 +2,4 @@
 
 var gulp = require('gulp');
 
-gulp.task('test', ['karma']);
+gulp.task('test', ['jshint', 'jscs', 'scsslint', 'karma']);

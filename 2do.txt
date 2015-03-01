@@ -1,3 +1,3 @@
-- add uglify / beautify
-- add dist (production) task (include minify, etc., no sourcemaps, ...)
+- refactor build task to just copy source files
+-
 - add jsdoc

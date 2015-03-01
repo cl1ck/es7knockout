@@ -26,7 +26,9 @@ module.exports = function(config) {
         jspm: {
             // Edit this to your needs
             loadFiles: ['src/test/**/*.spec.js'],
-            serveFiles: ['src/js/**/*.js']
+            serveFiles: ['src/js/**/*.js'],
+            config: 'src/config.js',
+            packages: 'src/jspm_packages/'
         },
 
         // test results reporter to use

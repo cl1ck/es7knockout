@@ -1,9 +1,11 @@
 'use strict';
 
-var gulp    = require('gulp');
-var config  = require('../config').images;
+var gulp       = require('gulp');
+var imagemin   = require('gulp-imagemin');
+var config     = require('../config').images;
 
 gulp.task('images-dist', function() {
-    return gulp.src(config.distSrc)
-        .pipe(gulp.dest(config.distDest));
+    return gulp.src(config.src)
+    .pipe(imagemin(config.settings))
+    .pipe(gulp.dest(config.dist));
 });
