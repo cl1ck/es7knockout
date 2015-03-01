@@ -94,3 +94,8 @@ If you are running on a system that does not support notifications by `gulp-noti
 ```
 export DISABLE_NOTIFIER=true;
 ```
+
+### Roadmap
+- [] switch from jshint to eslint
+- [] add jsdoc or some other kind of js source docs
+- [] add knockout support with module structure
