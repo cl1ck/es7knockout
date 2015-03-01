@@ -10,3 +10,5 @@ npm-debug.log
 jspm_packages
 sftp-config.json
 sublime-gulp.log
+buildit.sublime-project
+buildit.sublime-workspace
