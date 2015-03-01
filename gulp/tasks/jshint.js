@@ -1,17 +1,23 @@
 'use strict';
 
 var gulp            = require('gulp');
-var handleErrors    = require('../handleErrors');
 var config          = require('../config').javascript;
 var useNotifier     = require('../config').useNotifier;
 var jshint          = require('gulp-jshint');
 var stylish         = require('jshint-stylish');
+var jscs            = require('gulp-jscs');
+var combine         = require('gulp-jscs-stylish').combineWithHintResults;
 var notify          = require('gulp-notify');
 var gulpif          = require('gulp-if');
 
 gulp.task('jshint', function() {
     return gulp.src(config.src)
     .pipe(jshint())
+    .pipe(jscs({
+        configPath: './.jscsrc'
+    }))
+    .on('error', function() {})
+    .pipe(combine())
     .pipe(
         gulpif(useNotifier,
             notify(function(file) {
@@ -31,5 +37,5 @@ gulp.task('jshint', function() {
             jshint.reporter(stylish)
         )
     )
-    .on('error', handleErrors);
+    .pipe(jshint.reporter('fail'));
 });

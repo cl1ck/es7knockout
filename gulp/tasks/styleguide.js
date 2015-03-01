@@ -1,10 +1,11 @@
 'use strict';
 
-var gulp         = require('gulp');
-var styleguide   = require('sc5-styleguide');
-var config       = require('../config').styleguide;
-var sassconfig   = require('../config').sass;
-var sass         = require('gulp-sass');
+var gulp            = require('gulp');
+var styleguide      = require('sc5-styleguide');
+var config          = require('../config').styleguide;
+var sassconfig      = require('../config').sass;
+var sass            = require('gulp-sass');
+var handleErrors    = require('../handleErrors');
 
 gulp.task('styleguide:generate', function() {
     return gulp.src(sassconfig.watch)
@@ -15,6 +16,7 @@ gulp.task('styleguide:generate', function() {
         server: false,
         port: config.port
     }))
+    .on('error', handleErrors)
     .pipe(gulp.dest(config.dest));
 });
 
@@ -24,6 +26,7 @@ gulp.task('styleguide:applystyles', function() {
         errLogToConsole: true
     }))
     .pipe(styleguide.applyStyles())
+    .on('error', handleErrors)
     .pipe(gulp.dest(config.dest));
 });
 

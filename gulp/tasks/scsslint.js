@@ -1,11 +1,9 @@
 'use strict';
 
 var gulp            = require('gulp');
-var handleErrors    = require('../handleErrors');
 var config          = require('../config').sass;
 var useNotifier     = require('../config').useNotifier;
 var scsslint        = require('gulp-scss-lint');
-var cache           = require('gulp-cached');
 var path            = require('path');
 var gulpif          = require('gulp-if');
 var notify          = require('gulp-notify');
@@ -25,11 +23,10 @@ var errorReporter = function(file) {
 };
 
 gulp.task('scsslint', function() {
-    gulp.src(config.src)
-    .pipe(cache('scsslint'))
+    return gulp.src(config.watch)
     .pipe(gulpif(useNotifier,
         scsslint({config: './.scss-lint.yml', customReport: errorReporter}),
         scsslint({config: './.scss-lint.yml'})
     ))
-    .on('error', handleErrors);
+    .pipe(scsslint.failReporter())
 });

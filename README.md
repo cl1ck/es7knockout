@@ -12,7 +12,7 @@ Includes the following tools, tasks, and workflows:
 - [BrowserSync](http://browsersync.io) for live reloading and a static server
 - [SC5 Styleguide](http://styleguide.sc5.io/) for generating nice styleguides using KSS notation
 - Testing with Karma, Mocha, Sinon & Chai
-- Linting for all source files
+- Linting and codestyle for all source files
 - Image optimization
 - Error notifications in Notification Center
 
@@ -81,13 +81,15 @@ This also will start watching your source folders and automatically compile and 
 gulp dist
 ```
 
-This will bundle your application for production by combining, minifying and optimizing all of your source files.
+This will
+1. lint and check codestyle on all sourcefiles
+2. run your unit tests
+3. on success: bundle your application for production by combining, minifying and optimizing all of your source files.
 
 ### Configuration
 
 All paths and plugin settings have been abstracted into a centralized config object in `gulp/config.js`. Adapt the paths and settings to the structure and needs of your project.
 
 ### Roadmap
-- [] switch from jshint to eslint
 - [] add jsdoc or some other kind of js source docs
 - [] add knockout support with module structure

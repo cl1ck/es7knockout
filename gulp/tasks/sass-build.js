@@ -7,14 +7,11 @@ var autoprefixer    = require('gulp-autoprefixer');
 var handleErrors    = require('../handleErrors');
 var config          = require('../config').sass;
 
-gulp.task('sass-build', ['scsslint'], function() {
+gulp.task('sass-build', function() {
     return gulp.src(config.src)
         .pipe(sourcemaps.init())
         .pipe(sass(config.settings))
-        .on('error', function() {
-            // ignore error (errors already thrown by scsslint)
-            this.emit('end');
-        })
+        .on('error', handleErrors)
         .pipe(sourcemaps.write({includeContent: false}))
         .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(autoprefixer(config.autoprefixer))

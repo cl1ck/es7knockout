@@ -10,10 +10,9 @@ module.exports = function() {
 
     // use notifier if enabled
     if (useNotifier) {
-        // Send error to notification center with gulp-notify
         notify.onError({
             title: 'Gulp Error',
-            message: '<%= error %>'
+            message: '<%= error.message %>'
         }).apply(this, args);
     }
 
@@ -25,4 +24,3 @@ module.exports = function() {
     // Keep gulp from hanging on this task
     this.emit('end');
 };
-
