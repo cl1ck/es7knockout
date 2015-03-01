@@ -9,7 +9,6 @@ Includes the following tools, tasks, and workflows:
 - [JSPM](https://jspm.io) (modern package manager for the frontend)
 - [ES6](http://kangax.github.io/compat-table/es6/) Harmony support using 6to5 transpiler
 - [SASS](http://sass-lang.com/) (super fast libsass with [source maps](https://github.com/sindresorhus/gulp-ruby-sass#sourcemap), and [autoprefixer](https://github.com/sindresorhus/gulp-autoprefixer))
-- [Jade](http://jade-lang.com) for templates
 - [BrowserSync](http://browsersync.io) for live reloading and a static server
 - [SC5 Styleguide](http://styleguide.sc5.io/) for generating nice styleguides using KSS notation
 - Testing with Karma, Mocha, Sinon & Chai
@@ -74,28 +73,15 @@ This will run the default build task which compiles all source files and start B
 Open [http://localhost:3000](http://localhost:3000) to open your index.html.
 The generated styleguide will be located at [http://localhost:3500](http://localhost:3500).
 
-This also will start watching your source folders and automatically compiling any changes you make to them. Then using the magic of BrowserSync it'll inject the changes or (in case of changes to your ES6 scripts) reload the pages for all connected clients.
+This also will start watching your source folders and automatically compile and serve any changes you make.
 
-### additional Gulp tasks
+### Production
 
 ```
-gulp TASKNAME
+gulp dist
 ```
 
-Run gulp with a TASKNAME appended to run the given additional task.
-
-Here is a list of the included tasks:
-- watch: the default task
-- build: build your project by compiling all source files (`/src/`) to the build directory (`/build/`)
-- javascript: lint, transpile and bundle your ES6 source files from `/src/js/`
-- jade: compile your jade templates from `/src/jade/`
-- sass: lint and compile your sass files from `/src/sass/`
-- styleguide: generate styleguide from SASS source files (`/src/sass/`)
-- images: minimize your source images (with no quality loss) from `/src/images/`
-
-There are some more subtasks which are used by these tasks, but it makes little sense to be called themselves. You can use them to build your own tasks though.
-
-
+This will bundle your application for production by combining, minifying and optimizing all of your source files.
 
 ### Configuration
 
