@@ -9,7 +9,7 @@ var jspmdir     = src + '/jspm_packages';
 
 module.exports = {
     // use gulp-notify to display system notifications (does not work on some DE-less systems)
-    useNotifier: false,
+    useNotifier: true,
     logErrors: false,
     builddir: builddir,
     distdir: distdir,

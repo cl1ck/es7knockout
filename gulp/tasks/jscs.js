@@ -3,7 +3,7 @@
 var gulp = require('gulp');
 var handleErrors = require('../handleErrors');
 var config = require('../config').javascript;
-var usenotifier = require('../config').usenotifier;
+var useNotifier = require('../config').useNotifier;
 var jscs = require('gulp-jscs');
 var stylish = require('gulp-jscs-stylish');
 var notify = require('gulp-notify');
@@ -16,7 +16,7 @@ gulp.task('jscs', function() {
     }))
     .on('error', function() {})
     .pipe(
-        gulpif(usenotifier,
+        gulpif(useNotifier,
             notify(function(file) {
                 if (file.jscs.success) {
                     // Don't show something if success

@@ -3,7 +3,7 @@
 var gulp            = require('gulp');
 var handleErrors    = require('../handleErrors');
 var config          = require('../config').javascript;
-var usenotifier     = require('../config').usenotifier;
+var useNotifier     = require('../config').useNotifier;
 var jshint          = require('gulp-jshint');
 var stylish         = require('jshint-stylish');
 var notify          = require('gulp-notify');
@@ -13,7 +13,7 @@ gulp.task('jshint', function() {
     return gulp.src(config.src)
     .pipe(jshint())
     .pipe(
-        gulpif(usenotifier,
+        gulpif(useNotifier,
             notify(function(file) {
                 if (file.jshint.success) {
                     // Don't show something if success

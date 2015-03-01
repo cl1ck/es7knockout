@@ -14,7 +14,7 @@ Includes the following tools, tasks, and workflows:
 - Testing with Karma, Mocha, Sinon & Chai
 - Linting for all source files
 - Image optimization
-- Error Notifications in Notification Center
+- Error notifications in Notification Center
 
 If you've never used Node or npm before, you'll need to install Node.
 If you use homebrew, do:
@@ -86,14 +86,6 @@ This will bundle your application for production by combining, minifying and opt
 ### Configuration
 
 All paths and plugin settings have been abstracted into a centralized config object in `gulp/config.js`. Adapt the paths and settings to the structure and needs of your project.
-
-### Disable 'gulp-notify'
-
-If you are running on a system that does not support notifications by `gulp-notify`, you can disable it by using enviroment variable `DISABLE_NOTIFIER`:
-
-```
-export DISABLE_NOTIFIER=true;
-```
 
 ### Roadmap
 - [] switch from jshint to eslint
