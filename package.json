@@ -46,6 +46,7 @@
   },
   "jspm": {
     "directories": {
+      "baseURL": "src",
       "lib": "src/js",
       "packages": "src/jspm_packages"
     }

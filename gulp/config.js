@@ -18,6 +18,7 @@ module.exports = {
             // serve src too (for sourcemaps)
             baseDir: [src, builddir],
             routes: {
+                'config.js': basedir + '/config.js'
             }
         },
         files: [
