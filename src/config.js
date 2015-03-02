@@ -8,4 +8,3 @@ System.config({
   }
 });
 
-document.

@@ -81,5 +81,5 @@ module.exports = {
     tests: {
         src: src + '/test/**/*.spec.js',
         karmaConfig: __dirname + '/../karma.conf.js'
-    },
+    }
 };
