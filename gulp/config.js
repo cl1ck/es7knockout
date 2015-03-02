@@ -68,12 +68,10 @@ module.exports = {
     javascript: {
         src: src + '/js/**/*.js',
         dist: distdir + '/js',
-        bundleMain: 'src/js/main',
-        bundleFile: distdir + '/js/app.js',
+        bundleMain: 'js/main',
         es6runtime: jspmdir + '/babel-polyfill.js',
         uglifySettings: {
-        },
-        uglifyFilename: 'main.min.js'
+        }
     },
     styleguide: {
         dest: docdir,

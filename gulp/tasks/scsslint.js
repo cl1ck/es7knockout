@@ -7,9 +7,9 @@ var scsslint        = require('gulp-scss-lint');
 var path            = require('path');
 var gulpif          = require('gulp-if');
 var notify          = require('gulp-notify');
-
+var gutil           = require('gulp-util');
 // Custom linting reporter
-var errorReporter = function(file) {
+var errorReporter = function(file, stream) {
     if (!file.scsslint.success) {
         file.scsslint.issues.forEach(function(err) {
             if (err) {
@@ -19,14 +19,20 @@ var errorReporter = function(file) {
                 );
             }
         });
+        stream.emit('error', new gutil.PluginError("scss-lint", "scss lint failed"));
+    }
+};
+
+var failReporter = function(file, stream) {
+    if (!file.scsslint.success) {
+        stream.emit('error', new gutil.PluginError("scss-lint", "scss lint failed"));
     }
 };
 
 gulp.task('scsslint', function() {
-    return gulp.src(config.watch)
+    gulp.src(config.watch)
     .pipe(gulpif(useNotifier,
         scsslint({config: './.scss-lint.yml', customReport: errorReporter}),
-        scsslint({config: './.scss-lint.yml'})
+        scsslint({config: './.scss-lint.yml', customReport: failReporter})
     ))
-    .pipe(scsslint.failReporter())
 });

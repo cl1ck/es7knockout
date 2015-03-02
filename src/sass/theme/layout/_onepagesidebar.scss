@@ -15,7 +15,9 @@ $content-padding: 8px;
 #l-wrapper {
     position: relative;
     height: auto !important;
+    // scss-lint:disable DuplicateProperty
     height: 100%;
+    // scss-lint:enable DuplicateProperty
     min-height: 100%;
     margin: 0 auto (-$footer-height);
 }

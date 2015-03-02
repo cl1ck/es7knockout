@@ -7,21 +7,18 @@ var shell           = require('gulp-shell');
 var runSequence     = require('run-sequence');
 var del             = require('del');
 
-gulp.task('jspm:compile', function() {
-    return gulp.src(config.bundleMain + '.js', {read: false})
-        .pipe(shell(
-            ['jspm bundle-sfx ' + config.bundleMain + ' ' + config.bundleFile]
-        ));
-});
+gulp.task('jspm:compile',  shell.task(
+    ['jspm bundle-sfx ' + config.bundleMain + ' ' + config.dist + '/main.js']
+));
 
 gulp.task('jspm:uglify', function() {
-    return gulp.src([config.bundleFile, config.es6runtime])
-        .pipe(uglify(config.uglifyFilename, config.uglifySettings))
+    return gulp.src([config.es6runtime, config.dist + '/main.js'])
+        .pipe(uglify('app.js', config.uglifySettings))
         .pipe(gulp.dest(config.dist));
 });
 
 gulp.task('jspm:cleanup', function(cb) {
-    del(config.dist + '/app.*', cb);
+    del(config.dist + '/main.*', cb);
 });
 
 gulp.task('javascript-dist', function(cb) {

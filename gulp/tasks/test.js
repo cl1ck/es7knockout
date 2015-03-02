@@ -10,5 +10,4 @@ gulp.task('test', function(cb) {
         'karma',
         cb
     )
-    .on('error', function() {});
 });
