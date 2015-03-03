@@ -7,6 +7,7 @@ var shell           = require('gulp-shell');
 var runSequence     = require('run-sequence');
 var del             = require('del');
 var concat          = require('gulp-concat');
+var sourcemaps      = require('gulp-sourcemaps');
 
 gulp.task('jspm:compile',  shell.task(
     ['jspm bundle-sfx ' + config.bundleMain + ' ' + config.dist + '/main.js']

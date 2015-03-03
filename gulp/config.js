@@ -13,6 +13,7 @@ module.exports = {
     logErrors: false,
     builddir: builddir,
     distdir: distdir,
+    runTestsOnDist: false,
     browsersync: {
         server: {
             // serve src too (for sourcemaps)
