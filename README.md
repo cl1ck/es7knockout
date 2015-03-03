@@ -91,5 +91,5 @@ This will
 All paths and plugin settings have been abstracted into a centralized config object in `gulp/config.js`. Adapt the paths and settings to the structure and needs of your project.
 
 ### Roadmap
-- [] add jsdoc or some other kind of js source docs
-- [] add knockout support with module structure
+- [ ] add jsdoc or some other kind of js source docs
+- [ ] add knockout support with module structure
