@@ -9,8 +9,8 @@ var jspmdir     = src + '/jspm_packages';
 
 module.exports = {
     // use gulp-notify to display system notifications (does not work on some DE-less systems)
-    useNotifier: true,
-    logErrors: false,
+    useNotifier: false,
+    logErrors: true,
     builddir: builddir,
     distdir: distdir,
     runTestsOnDist: false,
@@ -36,7 +36,8 @@ module.exports = {
         src: src + '/sass/*.{sass,scss}',
         dest: builddir + '/css',
         dist: distdir + '/css',
-        watch: src + '/sass/**/*.*',
+        srcPath: src + '/sass/',
+        allSrc: src + '/sass/**/*.{sass,scss}',
         settings: {
             sourceComments: 'map',
             style: 'expanded',

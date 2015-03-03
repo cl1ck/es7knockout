@@ -7,7 +7,7 @@ var handleErrors    = require('../handleErrors');
 var config          = require('../config').sass;
 var minify          = require('gulp-minify-css');
 
-gulp.task('sass-dist', ['scsslint'], function() {
+gulp.task('sass-dist', ['scsslint', 'sass-importall'], function() {
     return gulp.src(config.src)
         .pipe(sass(config.settings))
         .on('error', handleErrors)

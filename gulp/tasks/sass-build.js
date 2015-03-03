@@ -7,7 +7,7 @@ var autoprefixer    = require('gulp-autoprefixer');
 var handleErrors    = require('../handleErrors');
 var config          = require('../config').sass;
 
-gulp.task('sass-build', function() {
+gulp.task('sass-build', ['sass-importall'], function() {
     return gulp.src(config.src)
         .pipe(sourcemaps.init())
         .pipe(sass(config.settings))

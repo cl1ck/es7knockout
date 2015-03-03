@@ -8,7 +8,7 @@ var sass            = require('gulp-sass');
 var handleErrors    = require('../handleErrors');
 
 gulp.task('styleguide:generate', function() {
-    return gulp.src(sassconfig.watch)
+    return gulp.src(sassconfig.allSrc)
     .pipe(styleguide.generate({
         title: config.title,
         rootPath: config.dest,
