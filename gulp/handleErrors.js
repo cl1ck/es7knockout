@@ -2,14 +2,14 @@
 
 var notify      = require('gulp-notify');
 var gutil       = require('gulp-util');
-var useNotifier = require('./config').useNotifier;
+var config      = require('./config');
 var logErrors   = require('./config').logErrors;
 
 module.exports = function() {
     var args = Array.prototype.slice.call(arguments);
 
     // use notifier if enabled
-    if (useNotifier) {
+    if (config.useNotifier) {
         notify.onError({
             title: 'Gulp Error',
             message: '<%= error.message %>'

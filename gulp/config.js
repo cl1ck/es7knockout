@@ -1,87 +1,127 @@
+/**
+ * Gulp tasks configuration
+ */
 'use strict';
 
-var basedir     = __dirname.substring(0, __dirname.lastIndexOf('/'));
-var src         = basedir + '/src';
-var builddir    = basedir + '/build';
-var distdir     = basedir + '/dist';
-var docdir      = builddir + '/docs';
-var jspmdir     = src + '/jspm_packages';
+// TODO: set your own project title
+var projectTitle    = 'Build It';
+
+// project root
+var baseDir         = __dirname.substring(0, __dirname.lastIndexOf('/')) + '/';
+
+// source files
+var srcDir          = baseDir + 'src/';
+
+// temp directory used for serving compiled assets in development
+var devTempDir      = baseDir + 'temp/';
+
+// target directory for build
+var buildTargetDir  = baseDir + 'build/';
+
+// jspm subDirectory
+var jspmDir         = srcDir + 'jspm_packages/';
 
 module.exports = {
     // use gulp-notify to display system notifications (does not work on some DE-less systems)
     useNotifier: false,
+
+    // log errors to console
     logErrors: true,
-    builddir: builddir,
-    distdir: distdir,
-    runTestsOnDist: false,
-    browsersync: {
-        server: {
-            // serve src too (for sourcemaps)
-            baseDir: [src, builddir],
-            routes: {
-                'config.js': basedir + '/config.js'
-            }
-        },
-        files: [
-            builddir + '/*.html',
-            builddir + '/css/*.css',
-            src + '/images/**/*.*',
-            src + '/js/**/*.js'
-        ],
-        port: 3000,
-        browser: [],
-        tunnel: false
-    },
+
+    // require tests to pass in order to create build
+    runTestsOnBuild: true,
+
+    // default task when invoking gulp without arguments
+    // default:     'watch'
+    // alternative: 'build'
+    defaultTask: 'watch',
+
+    // sass settings
     sass: {
-        src: src + '/sass/*.{sass,scss}',
-        dest: builddir + '/css',
-        dist: distdir + '/css',
-        srcPath: src + '/sass/',
-        allSrc: src + '/sass/**/*.{sass,scss}',
+        subDir: 'sass/',
+        files: '*.scss',
+        watchFiles: '**/!(_all).scss',
         settings: {
             sourceComments: 'map',
             style: 'expanded',
             imagePath: '/images'
         },
+        scssLintConfig: '.scss-lint.yml',
         autoprefixer: {
             browsers: ['last 2 version']
         }
     },
+
+    // image optimization
     images: {
-        src: src + '/images/**/*.*',
-        dest: builddir + '/images',
-        dist: distdir + '/images/',
+        subDir: 'images/',
+        files: '**/*.*',
+        watchFiles: '**/*.*',
         settings: {
             optimizationLevel: 3,
             progressive: true,
             interlaced: true
         }
     },
-    jade: {
-        src: src + '/jade/**',
-        dest: builddir,
-        dist: distdir
-    },
+
+    // html and ejs
     html: {
-        src: src + '/*.{html,ejs}',
-        dest: builddir,
-        dist: distdir
+        subDir: '',
+        files: '*.{html,ejs}',
+        watchFiles: '*.{html,ejs}'
     },
+
+    // javascript bundle settings
     javascript: {
-        src: src + '/js/**/*.js',
-        dist: distdir + '/js',
+        subDir: 'js/',
+        files: '**/*.js',
+        watchFiles: '**/*.js',
+        // main bundle file to compile with jspm
         bundleMain: 'js/main',
-        es6runtime: jspmdir + '/babel-polyfill.js',
+        // es6 runtime polyfill
+        es6runtime: 'babel-polyfill.js',
         uglifySettings: {
-        }
+        },
+        jscsConfig: '.jscsrc'
     },
+
+    // styleguide
     styleguide: {
-        dest: docdir,
-        title: 'Build It',
+        subDir: 'doc/',
+        title: projectTitle,
         post: 3500
     },
+
+    // testrunner config
     tests: {
-        src: src + '/test/**/*.spec.js',
+        subDir: 'test/',
+        files: '/test/**/*.spec.js',
         karmaConfig: __dirname + '/../karma.conf.js'
-    }
+    },
+
+    // BrowserSync options (alter paths only if you know what you do)
+    browsersync: {
+        server: {
+            baseDir: [srcDir, devTempDir],
+            routes: {
+                'config.js': baseDir + 'config.js'
+            }
+        },
+        files: [
+            devTempDir + '*.html',
+            devTempDir + 'sass/*.css',
+            srcDir + 'images/**/*.*',
+            srcDir + 'js/**/*.js'
+        ],
+        port: 3000,
+        browser: [],
+        tunnel: false
+    },
+
+    // directories, do not change!
+    baseDir: baseDir,
+    srcDir: srcDir,
+    devTempDir: devTempDir,
+    buildTargetDir: buildTargetDir,
+    jspmDir: jspmDir
 };

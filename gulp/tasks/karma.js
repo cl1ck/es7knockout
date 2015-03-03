@@ -1,12 +1,15 @@
+/**
+ * Will run all tests using the karma testrunner.
+ */
 'use strict';
 
 var gulp        = require('gulp');
 var karma       = require('karma').server;
-var config      = require('../config').tests;
+var config      = require('../config');
 
 gulp.task('karma', function(cb) {
     karma.start({
-        configFile: config.karmaConfig,
+        configFile: config.tests.karmaConfig,
         singleRun: true
     }, cb);
 });

@@ -1,13 +1,15 @@
+/**
+ * Runs all configured linters and tests.
+ */
 'use strict';
 
-var gulp            = require('gulp');
-var runSequence     = require('run-sequence');
-var runTestsOnDist  = require('../config').runTestsOnDist;
+var gulp        = require('gulp');
+var runSequence = require('run-sequence');
+var config      = require('../config');
 
 gulp.task('test', function(cb) {
-    if (!runTestsOnDist) {
-        cb();
-        return;
+    if (!config.runTestsOnBuild) {
+        return cb();
     }
 
     runSequence(

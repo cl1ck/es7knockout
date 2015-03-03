@@ -1,13 +1,17 @@
+/**
+ * Lint sass with scss-lint.
+ * This task will fail on linter errors if building for production!
+ */
 'use strict';
 
 var gulp            = require('gulp');
-var config          = require('../config').sass;
-var useNotifier     = require('../config').useNotifier;
+var config          = require('../config');
 var scsslint        = require('gulp-scss-lint');
 var path            = require('path');
 var gulpif          = require('gulp-if');
 var notify          = require('gulp-notify');
 var gutil           = require('gulp-util');
+
 // Custom linting reporter
 var errorReporter = function(file, stream) {
     if (!file.scsslint.success) {
@@ -19,7 +23,7 @@ var errorReporter = function(file, stream) {
                 );
             }
         });
-        stream.emit('error', new gutil.PluginError("scss-lint", "scss lint failed"));
+        stream.emit('error', new gutil.PluginError('scss-lint', 'scss lint failed'));
     }
 };
 
@@ -34,14 +38,20 @@ var failReporter = function(file, stream) {
                 );
             }
         });
-        stream.emit('error', new gutil.PluginError("scss-lint", "scss lint failed"));
+        stream.emit('error', new gutil.PluginError('scss-lint', 'scss lint failed'));
     }
 };
 
 gulp.task('scsslint', ['sass-importall'], function() {
-    gulp.src(config.allSrc)
-    .pipe(gulpif(useNotifier,
-        scsslint({config: './.scss-lint.yml', customReport: errorReporter}),
-        scsslint({config: './.scss-lint.yml', customReport: failReporter})
+    gulp.src(config.srcDir + config.sass.subdir + config.sass.watchFiles)
+    .pipe(gulpif(config.useNotifier,
+        scsslint({
+            config: config.baseDir + config.sass.scssLintConfig,
+            customReport: errorReporter
+        }),
+        scsslint({
+            config: config.baseDir + config.sass.scssLintConfig,
+            customReport: failReporter
+        })
     ))
 });
