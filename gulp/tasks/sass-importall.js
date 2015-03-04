@@ -26,7 +26,7 @@ gulp.task('sass-importall', function (cb) {
                 return (
                     file !== '_all.scss' &&
                     path.basename(file).substring(0, 1) === '_' &&
-                    (path.extname(file) === '.scss' || path.extname(file) === '.sass')
+                    path.extname(file) === '.scss'
                 );
             });
 
