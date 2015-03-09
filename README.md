@@ -8,11 +8,11 @@ Includes the following tools, tasks, and workflows:
 
 - [JSPM](https://jspm.io) (modern package manager for the frontend)
 - [ES6](http://kangax.github.io/compat-table/es6/) Harmony support using 6to5 transpiler
-- [SASS](http://sass-lang.com/) (super fast libsass with [source maps](https://github.com/sindresorhus/gulp-ruby-sass#sourcemap), and [autoprefixer](https://github.com/sindresorhus/gulp-autoprefixer))
-- [BrowserSync](http://browsersync.io) for live reloading and a static server
-- [SC5 Styleguide](http://styleguide.sc5.io/) for generating nice styleguides using KSS notation
+- [SASS](http://sass-lang.com/) (using libsass with [source maps](https://github.com/sindresorhus/gulp-ruby-sass#sourcemap) and [autoprefixer](https://github.com/sindresorhus/gulp-autoprefixer))
+- [BrowserSync](http://browsersync.io) for live reloading
+- [SC5 Styleguide](http://styleguide.sc5.io/) for generating awesome styleguides using KSS notation
 - Testing with Karma, Mocha, Sinon & Chai
-- Linting and codestyle for all source files
+- Linting and codestyle check for all source files
 - Image optimization
 - Error notifications in Notification Center
 
@@ -60,7 +60,7 @@ You'll need to install [bundler](http://bundler.io) first. This will enable you 
 bundle install
 ```
 
-This will install all gems listed in `Gemfile`. *You may need to use `sudo`*
+This will install all required gems. *You may need to use `sudo`*
 
 ### Run gulp and be amazed.
 
@@ -68,23 +68,30 @@ This will install all gems listed in `Gemfile`. *You may need to use `sudo`*
 gulp
 ```
 
-This will run the default build task which compiles all source files and start BrowserSync on port 3000.
+This will run the default build task which compiles all source files and starts BrowserSync on port 3000.
 
 Open [http://localhost:3000](http://localhost:3000) to open your index.html.
 The generated styleguide will be located at [http://localhost:3500](http://localhost:3500).
 
-This also will start watching your source folders and automatically compile and serve any changes you make.
+This will also start watching your source folders and automatically compile and serve any changes you make.
+
+It will not lint your sourcefiles as I believe this functionality belongs to your editor.
+
+### Testing
+
+```
+gulp test
+```
+
+This will lint and check codestyle on all sourcefiles and then run your unit tests.
 
 ### Production
 
 ```
-gulp dist
+gulp build
 ```
 
-This will
-1. lint and check codestyle on all sourcefiles
-2. run your unit tests
-3. on success: bundle your application for production by combining, minifying and optimizing all of your source files.
+Bundle your application for production by combining, minifying and optimizing all of your source files.
 
 ### Configuration
 
