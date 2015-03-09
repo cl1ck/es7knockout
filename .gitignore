@@ -1,5 +1,6 @@
 .DS_Store
 .sass-cache
+.idea
 build
 temp
 Desktop.ini
@@ -11,3 +12,4 @@ sublime-gulp.log
 buildit.sublime-project
 buildit.sublime-workspace
 src/jspm_packages
+report

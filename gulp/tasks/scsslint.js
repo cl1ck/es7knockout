@@ -10,10 +10,10 @@ var scsslint        = require('gulp-scss-lint');
 var path            = require('path');
 var gulpif          = require('gulp-if');
 var notify          = require('gulp-notify');
-var gutil           = require('gulp-util');
+var handleErrors    = require('../handleErrors');
 
 // Custom linting reporter
-var errorReporter = function(file, stream) {
+var errorReporter = function(file) {
     if (!file.scsslint.success) {
         file.scsslint.issues.forEach(function(err) {
             if (err) {
@@ -23,11 +23,10 @@ var errorReporter = function(file, stream) {
                 );
             }
         });
-        stream.emit('error', new gutil.PluginError('scss-lint', 'scss lint failed'));
     }
 };
 
-var failReporter = function(file, stream) {
+var failReporter = function(file) {
     if (!file.scsslint.success) {
         file.scsslint.issues.forEach(function(err) {
             if (err) {
@@ -38,12 +37,11 @@ var failReporter = function(file, stream) {
                 );
             }
         });
-        stream.emit('error', new gutil.PluginError('scss-lint', 'scss lint failed'));
     }
 };
 
 gulp.task('scsslint', ['sass-importall'], function() {
-    gulp.src(config.srcDir + config.sass.subdir + config.sass.watchFiles)
+    return gulp.src(config.srcDir + config.sass.subdir + config.sass.watchFiles)
     .pipe(gulpif(config.useNotifier,
         scsslint({
             config: config.baseDir + config.sass.scssLintConfig,
@@ -54,4 +52,5 @@ gulp.task('scsslint', ['sass-importall'], function() {
             customReport: failReporter
         })
     ))
+    .on('error', handleErrors);
 });

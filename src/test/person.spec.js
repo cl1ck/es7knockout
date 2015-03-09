@@ -1,10 +1,9 @@
-import {Person} from 'src/js/person';
-var assert = chai.assert;
+import Person from '../js/person'
+let assert = chai.assert
 
 describe('Person', function() {
-    describe('add', function() {
-        it('should return his name', function() {
-            assert.equal(new Person('test').name, 'test');
-        });
-    });
-});
+    it('should return his name', function() {
+        var person = new Person('test')
+        assert.equal(person.name, 'test')
+    })
+})

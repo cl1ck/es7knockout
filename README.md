@@ -93,3 +93,4 @@ All paths and plugin settings have been abstracted into a centralized config obj
 ### Roadmap
 - [ ] add jsdoc or some other kind of js source docs
 - [ ] add knockout support with module structure
+- [ ] add code coverage as soon as the [problems with karma-jspm](https://github.com/Workiva/karma-jspm/issues/22) are solved

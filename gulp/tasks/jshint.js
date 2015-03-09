@@ -12,6 +12,7 @@ var jscs            = require('gulp-jscs');
 var combine         = require('gulp-jscs-stylish').combineWithHintResults;
 var notify          = require('gulp-notify');
 var gulpif          = require('gulp-if');
+var handleErrors    = require('../handleErrors');
 
 gulp.task('jshint', function() {
     return gulp.src(config.srcDir + config.javascript.subDir + config.javascript.watchFiles)
@@ -43,5 +44,6 @@ gulp.task('jshint', function() {
             jshint.reporter(stylish)
         )
     )
-    .pipe(jshint.reporter('fail'));
+    .on('error', handleErrors);
+    //.pipe(jshint.reporter('fail'));
 });

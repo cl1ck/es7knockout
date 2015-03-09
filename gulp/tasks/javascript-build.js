@@ -12,6 +12,7 @@ var runSequence     = require('run-sequence');
 var del             = require('del');
 var concat          = require('gulp-concat');
 var sourcemaps      = require('gulp-sourcemaps');
+var handleErrors    = require('../handleErrors');
 
 // creates self-executing bundle as main.js
 gulp.task('jspm:compile',  shell.task([
@@ -29,6 +30,7 @@ gulp.task('jspm:uglify', function() {
         ])
         .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(uglify(config.javascript.uglifySettings))
+        .on('error', handleErrors)
         .pipe(concat('app.js'))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(config.buildTargetDir + config.javascript.subDir));

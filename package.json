@@ -6,8 +6,23 @@
     "type": "git",
     "url": "git://github.com/cl1ck/buildit.git"
   },
+  "keywords": [
+    "jspm",
+    "ES6",
+    "JavaScript",
+    "bootstrap",
+    "skeleton",
+    "starter",
+    "gulp"
+  ],
+  "scripts": {
+    "dev": "./node_modules/gulp/bin/gulp.js",
+    "build": "./node_modules/gulp/bin/gulp.js build",
+    "test": "./node_modules/gulp/bin/gulp.js test"
+  },
   "devDependencies": {
     "browser-sync": "^2.0.0-rc10",
+    "chai": "^2.1.1",
     "del": "^1.1.1",
     "glob": "^4.4.1",
     "gulp": "^3.8.10",
@@ -36,22 +51,33 @@
     "jshint-stylish": "^1.0.0",
     "karma": "^0.12.31",
     "karma-babel-preprocessor": "^4.0.0",
+    "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^0.1.7",
+    "karma-coverage": "^0.2.7",
     "karma-jspm": "^1.1.4",
     "karma-mocha": "^0.1.10",
+    "karma-mocha-reporter": "^1.0.0",
     "karma-phantomjs-launcher": "^0.1.4",
+    "karma-sinon": "^1.0.4",
     "karma-sinon-chai": "^0.3.0",
     "mocha": "^2.1.0",
     "node-dir": "^0.1.6",
     "require-dir": "^0.1.0",
     "run-sequence": "^1.0.2",
-    "sc5-styleguide": "^0.3.5"
+    "sc5-styleguide": "^0.3.5",
+    "sinon": "^1.13.0"
   },
   "jspm": {
     "directories": {
       "baseURL": "src",
       "lib": "src/js",
       "packages": "src/jspm_packages"
+    },
+    "dependencies": {
+      "polyfill-function-prototype-bind": "0.0.1"
     }
+  },
+  "dependencies": {
+    "polyfill-function-prototype-bind": "0.0.1"
   }
 }
