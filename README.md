@@ -16,7 +16,24 @@ Includes the following tools, tasks, and workflows:
 - Image optimization
 - Error notifications in Notification Center
 
-If you've never used Node or npm before, you'll need to install Node.
+### Start new project
+
+To start a new project `app` create a new fork of `buildit`.
+
+```
+git clone -o upstream https://github.com/cl1ck/buildit.git app
+cd app
+```
+
+Then add the remote origin of your new project:
+
+```
+git remote origin git@github.com:username/app.git
+```
+
+### Install nodejs
+
+If you've never used Node or npm before, you'll need to install nodejs.
 If you use homebrew, do:
 
 ```
@@ -97,7 +114,16 @@ Bundle your application for production by combining, minifying and optimizing al
 
 All paths and plugin settings have been abstracted into a centralized config object in `gulp/config.js`. Adapt the paths and settings to the structure and needs of your project.
 
+### Update
+
+To update `buildit` merge the upstream changes into your branch:
+
+```
+git fetch upstream
+git checkout master
+git merge upstream/master
+```
+
 ### Roadmap
 - [ ] add jsdoc or some other kind of js source docs
-- [ ] add knockout support with module structure
 - [ ] add code coverage as soon as the [problems with karma-jspm](https://github.com/Workiva/karma-jspm/issues/22) are solved
