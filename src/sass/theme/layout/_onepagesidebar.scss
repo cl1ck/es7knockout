@@ -1,0 +1,65 @@
+html,
+body {
+    height: 100%;
+    min-height: 100%;
+}
+
+$header-height: 50px;
+$header-padding: 8px;
+$footer-height: 50px;
+$footer-padding: 8px;
+$sidebar-width: 200px;
+$sidebar-padding: 8px;
+$content-padding: 8px;
+
+#l-wrapper {
+    position: relative;
+    height: auto !important;
+    // scss-lint:disable DuplicateProperty
+    height: 100%;
+    // scss-lint:enable DuplicateProperty
+    min-height: 100%;
+    margin: 0 auto (-$footer-height);
+}
+
+#l-header {
+    height: $header-height;
+    background-color: $color-one;
+}
+
+#l-header-content {
+    height: $header-height - $header-padding;
+    padding: $header-padding;
+}
+
+#l-push {
+    height: $footer-height;
+    clear: both;
+}
+
+#l-main {
+    height: 100%;
+}
+
+#l-footer {
+    height: $footer-height;
+}
+
+#l-footer-content {
+    height: $footer-height - $footer-padding;
+    padding: $footer-padding;
+}
+
+#l-sidebar {
+    position: absolute;
+    top: $header-height;
+    bottom: $footer-height;
+    left: 0;
+    width: $sidebar-width;
+    padding: $sidebar-padding;
+    background-color: $color-three;
+}
+
+#l-content {
+    margin-left: $sidebar-width;
+}

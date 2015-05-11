@@ -1,0 +1,15 @@
+.DS_Store
+.sass-cache
+.idea
+build
+temp
+Desktop.ini
+node_modules
+bower_components
+npm-debug.log
+sftp-config.json
+sublime-gulp.log
+buildit.sublime-project
+buildit.sublime-workspace
+src/jspm_packages
+report
