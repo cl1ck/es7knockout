@@ -28,7 +28,7 @@ cd app
 Then add the remote origin of your new project:
 
 ```
-git remote origin git@github.com:username/app.git
+git remote add origin git@github.com:username/app.git
 ```
 
 ### Install nodejs
