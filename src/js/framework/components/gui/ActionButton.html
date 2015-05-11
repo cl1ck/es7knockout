@@ -1,0 +1,12 @@
+<!-- ko if: !clicked -->
+<button>
+    <i class="fa" data-bind="css: 'fa-' + icon + ' ', click: click, attr: { title: title }"></i>
+    <span data-bind="text: title"></span>
+</button>
+<!-- /ko -->
+<!-- ko if: clicked -->
+<button>
+    <i class="fa fa-spinner fa-spin" data-bind="attr: { title: 'Loading: ' + title }"></i>
+    <span data-bind="text: title"></span>
+</button>
+<!-- /ko -->

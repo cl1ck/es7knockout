@@ -10,6 +10,7 @@ export default class Component extends ObservableClass {
      * @param requiredParameters list of all required parameters
      */
     constructor(parameters = {}, ...requiredParameters) {
+        super();
         if (!parameters.id) {
             throw 'each component must have an "id" param';
         }

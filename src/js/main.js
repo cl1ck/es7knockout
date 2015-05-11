@@ -1,8 +1,11 @@
-import Person from './person'
+import KnockoutApplication from './framework/app/KnockoutApplication';
 
-let person = new Person('test')
-let greeter = document.getElementById('greeter')
-let message = 'Hello ' + person.name
+// import required components
+import ActionButton from './framework/components/gui/ActionButton';
 
-console.log('success')
-greeter.innerHTML = message
+class Main extends KnockoutApplication {
+
+}
+
+var main = new Main('dev');
+main.run();

@@ -77,7 +77,8 @@
     },
     "configFile": "src/jspm_config.js",
     "dependencies": {
-      "knockout": "github:knockout/knockout@^3.3.0"
+      "knockout": "github:knockout/knockout@^3.3.0",
+      "systemjs/plugin-text": "github:systemjs/plugin-text@^0.0.2"
     },
     "devDependencies": {
       "babel": "npm:babel-core@^5.1.13",
