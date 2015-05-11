@@ -36,7 +36,7 @@ Bundles application for production.
 
 Example template:
 
-```
+```html
 <!-- ko if: !clicked -->
 <button><i class="fa" data-bind="css: 'fa-' + icon + ' ', click: click, attr: { title: title }"></i><span
 data-bind="text: title"></span></button>
@@ -48,7 +48,7 @@ data-bind="text: title"></span></button>
 
 Example class:
 
-```
+```javascript
 // import Component base class
 import Component from '../../ko/Component';
 
