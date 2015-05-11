@@ -1,6 +1,6 @@
-Framework for using KnockoutJS components with ES6/7
+# Framework for using KnockoutJS components with ES6/7
 
-### Installation
+## Installation
 
 ```
 npm install gulp jspm karma-cli -g
@@ -8,7 +8,7 @@ npm install
 jspm init
 ```
 
-### Development
+## Development
 
 ```
 gulp
@@ -16,7 +16,7 @@ gulp
 
 Runs development server (using BrowserSync) on http://localhost:3000
 
-### Testing
+## Testing
 
 ```
 gulp test
@@ -24,7 +24,7 @@ gulp test
 
 This will lint and check codestyle on all sourcefiles and then run your unit tests.
 
-### Production
+## Production
 
 ```
 gulp build
@@ -32,9 +32,9 @@ gulp build
 
 Bundles application for production.
 
-### Using ES6 classes for creating components
+## Using ES6 classes for creating components
 
-Example template:
+### Example template
 
 ```html
 <!-- ko if: !clicked -->
@@ -51,7 +51,7 @@ Example template:
 <!-- /ko -->
 ```
 
-Example class:
+### Example class
 
 ```javascript
 // import Component base class
@@ -71,10 +71,6 @@ export default class ActionButton extends Component {
          * Always call 'super' first!
          * The additional parameters define required parameters from knockout.
          * It'll throw an exception if one of them is missing from the component definition.
-         *
-         * Notice the two special parameters 'id' and 'parent' which are used for event routing:
-         * 'id' defines a name for the component
-         * 'parent' has to point to the current component ($root on toplevel, $component within a parent component)
          */
         super(params, 'icon', 'title', 'event', 'data');
 
@@ -108,7 +104,7 @@ export default class ActionButton extends Component {
 Component.registerComponent('action-button', ActionButton, template);
 ```
 
-Usage of components:
+### Usage of components
 Simply include your custom element in a template and pass the required parameters:
 
 ```
