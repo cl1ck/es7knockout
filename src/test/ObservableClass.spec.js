@@ -18,7 +18,6 @@ class ImportTest extends ObservableClass {
     }
 }
 
-//noinspection JSUnresolvedFunction
 describe('ObservableClass', function() {
     it('should import all properties as observable', function() {
         let importTest = new ImportTest();

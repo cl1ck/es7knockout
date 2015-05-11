@@ -38,11 +38,16 @@ Example template:
 
 ```html
 <!-- ko if: !clicked -->
-<button><i class="fa" data-bind="css: 'fa-' + icon + ' ', click: click, attr: { title: title }"></i><span
-data-bind="text: title"></span></button>
+<button data-bind="click: click, attr: { title: title }">
+    <i data-bind="css: 'fa fa-' + icon"></i>
+    <span data-bind="text: title"></span>
+</button>
 <!-- /ko -->
 <!-- ko if: clicked -->
-<button><i class="fa fa-spinner fa-spin" data-bind="attr: { title: 'Loading: ' + title }"></i><span data-bind="text: title"></span></button>
+<button disabled data-bind="attr: { title: 'Loading: ' + title }">
+    <i class="fa fa-spinner fa-spin"></i>
+    <span data-bind="text: title"></span>
+</button>
 <!-- /ko -->
 ```
 
@@ -66,11 +71,8 @@ export default class ActionButton extends Component {
          * Always call 'super' first!
          * The additional parameters define required parameters from knockout.
          * It'll throw an exception if one of them is missing from the component definition.
-         * A valid implementation could look like this:
-         * <action-button params="icon: 'user', title: 'user', event: 'clicked', data: userID, id:
-         * 'testbutton', parent: $root"></action-button>
          *
-         * Notice the two special parameters 'id' and 'parent' which are used for event routing.
+         * Notice the two special parameters 'id' and 'parent' which are used for event routing:
          * 'id' defines a name for the component
          * 'parent' has to point to the current component ($root on toplevel, $component within a parent component)
          */
@@ -96,6 +98,8 @@ export default class ActionButton extends Component {
     // simple class method (callable from within the component
     click() {
         this.clicked = true;
+
+        // emit event
         this.emit(this.event, this.data);
     }
 }
@@ -103,3 +107,14 @@ export default class ActionButton extends Component {
 // finally register your custom element for the component
 Component.registerComponent('action-button', ActionButton, template);
 ```
+
+Usage of components:
+Simply include your custom element in a template and pass the required parameters:
+
+```
+<action-button params="icon: 'user', title: 'user', event: 'test-clicked', data: 'test', id: 'testbutton', parent: $root"></action-button>
+```
+
+Notice the two special parameters 'id' and 'parent' which are used for event routing:
+- `id` defines a name for the component
+- `parent` has to point to the current component ($root on top level, $component within a parent component)

@@ -60,7 +60,6 @@ export default class Component extends ObservableClass {
                         get: subscribable,
                         set: obj.descriptor.set ? subscribable : undefined
                     });
-
                 } else {
                     // import common values
                     let value = obj.descriptor.value;
@@ -151,10 +150,9 @@ export default class Component extends ObservableClass {
      * @param registerGlobal true to register callback with the global event handler, false otherwise
      */
     on(eventName, callback, registerGlobal = true) {
+        this._eventSubscriptions.set(eventName, callback);
         if (registerGlobal) {
             EventBus.registerListener(this._ID, eventName, callback);
-        } else {
-            this._eventSubscriptions.set(eventName, callback);
         }
     }
 
