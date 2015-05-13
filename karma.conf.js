@@ -42,11 +42,13 @@ module.exports = function(config) {
             'karma-coverage',
             'karma-jspm',
             'karma-phantomjs-launcher',
-            'karma-phantomjs-shim'
+            'karma-phantomjs-shim',
+            'karma-mocha-reporter'
         ],
 
         // test results reporter to use
         reporters: [
+            'mocha',
             'junit',
             'coverage'
         ],

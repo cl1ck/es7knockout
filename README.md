@@ -128,6 +128,8 @@ To update `buildit` merge all changes into your fork:
 
 ```
 git pull upstream master
+npm install
+jspm install
 ```
 
 ## Roadmap
