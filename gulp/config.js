@@ -21,6 +21,9 @@ var buildTargetDir  = baseDir + 'build/';
 // jspm subDirectory
 var jspmDir         = srcDir + 'jspm_packages/';
 
+// report dir
+var reportDir       = baseDir + 'reports/';
+
 module.exports = {
     // use gulp-notify to display system notifications (does not work on some DE-less systems)
     useNotifier: false,
@@ -96,6 +99,7 @@ module.exports = {
     tests: {
         subDir: 'test/',
         files: '/test/**/*.spec.js',
+        reportDir: reportDir,
         karmaConfig: baseDir + '/karma.conf.js'
     },
 
