@@ -34,12 +34,27 @@ module.exports = function(config) {
             '/base/jspm_packages/': '/base/src/jspm_packages/'
         },
 
+        plugins: [
+            'karma-junit-reporter',
+            'karma-coverage',
+            'karma-mocha',
+            'karma-sinon-chai',
+            'karma-coverage',
+            'karma-jspm',
+            'karma-phantomjs-launcher',
+            'karma-phantomjs-shim'
+        ],
+
         // test results reporter to use
         reporters: [
-            'mocha',
-            'progress',
+            'junit',
             'coverage'
         ],
+
+        junitReporter: {
+            outputFile: 'reports/test-units.xml',
+            suite: ''
+        },
 
          coverageReporter: {
              type : 'lcov',
@@ -60,6 +75,6 @@ module.exports = function(config) {
 
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits
-        singleRun: false
+        singleRun: true
     });
 };

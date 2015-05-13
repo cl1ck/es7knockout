@@ -96,7 +96,7 @@ module.exports = {
     tests: {
         subDir: 'test/',
         files: '/test/**/*.spec.js',
-        karmaConfig: __dirname + '/../karma.conf.js'
+        karmaConfig: baseDir + '/karma.conf.js'
     },
 
     // BrowserSync options (alter paths only if you know what you do)
