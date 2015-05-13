@@ -15,7 +15,7 @@ var gulpif          = require('gulp-if');
 var checkstyle      = require('jshint-checkstyle-file-reporter');
 var handleErrors    = require('../handleErrors');
 
-process.env.JSHINT_CHECKSTYLE_FILE = 'reports/jshint.xml';
+process.env.JSHINT_CHECKSTYLE_FILE = config.tests.reportDir + 'jshint.xml';
 
 gulp.task('jshint', function() {
     return gulp.src(config.srcDir + config.javascript.subDir + config.javascript.watchFiles)
