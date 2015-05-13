@@ -43,7 +43,8 @@ module.exports = function(config) {
             'karma-jspm',
             'karma-phantomjs-launcher',
             'karma-phantomjs-shim',
-            'karma-mocha-reporter'
+            'karma-mocha-reporter',
+            'karma-babel-preprocessor'
         ],
 
         // test results reporter to use
