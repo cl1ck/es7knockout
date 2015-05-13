@@ -128,10 +128,7 @@ All paths and plugin settings have been abstracted into a centralized config obj
 To update `buildit` merge all changes into your fork:
 
 ```
-git fetch upstream
-git checkout master
-git merge upstream/master
-git fetch origin
+git pull upstream master
 ```
 
 ## Roadmap
