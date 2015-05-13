@@ -14,7 +14,13 @@ module.exports = function(config) {
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
-            //'build/js/**/*.js': 'coverage'
+            'build/js/**/*.js': ['babel', 'coverage']
+        },
+
+        babelPreprocessor: {
+            options: {
+                modules: 'system'
+            }
         },
 
         jspm: {
@@ -30,16 +36,15 @@ module.exports = function(config) {
 
         // test results reporter to use
         reporters: [
-            'mocha'
-            //, 'coverage'
+            'mocha',
+            'progress',
+            'coverage'
         ],
 
-        /*
          coverageReporter: {
          type : 'lcov',
          dir : 'reports/coverage/'
          },
-         */
 
         // web server port
         port: 9876,
