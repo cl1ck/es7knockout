@@ -59,8 +59,11 @@ module.exports = function(config) {
         },
 
          coverageReporter: {
-             type : 'lcov',
-             dir : 'reports/coverage/'
+            dir : 'reports/',
+            reporters: [
+                { type: 'html', subdir: 'report-html' },
+                { type: 'cobertura', subdir: '.', file: 'cobertura.txt' }
+            ]
          },
 
         // web server port
