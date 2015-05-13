@@ -33,8 +33,7 @@ Then add the remote origin of your new project:
 
 ```
 git remote add origin git@github.com:username/app.git
-git add -A
-git commit -am 'initial commit'
+git push origin master
 git branch --set-upstream-to origin/master
 ```
 
