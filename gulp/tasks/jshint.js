@@ -12,11 +12,15 @@ var jscs            = require('gulp-jscs');
 var combine         = require('gulp-jscs-stylish').combineWithHintResults;
 var notify          = require('gulp-notify');
 var gulpif          = require('gulp-if');
+var checkstyle      = require('jshint-checkstyle-file-reporter');
 var handleErrors    = require('../handleErrors');
+
+process.env.JSHINT_CHECKSTYLE_FILE = 'reports/jshint.xml';
 
 gulp.task('jshint', function() {
     return gulp.src(config.srcDir + config.javascript.subDir + config.javascript.watchFiles)
     .pipe(jshint())
+    .pipe(jshint.reporter(checkstyle))
     .pipe(jscs({
         configPath: config.baseDir + config.javascript.jscsConfig
     }))
