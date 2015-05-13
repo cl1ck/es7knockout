@@ -42,8 +42,8 @@ module.exports = function(config) {
         ],
 
          coverageReporter: {
-         type : 'lcov',
-         dir : 'reports/coverage/'
+             type : 'lcov',
+             dir : 'reports/coverage/'
          },
 
         // web server port

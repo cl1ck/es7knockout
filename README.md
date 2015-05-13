@@ -33,6 +33,9 @@ Then add the remote origin of your new project:
 
 ```
 git remote add origin git@github.com:username/app.git
+git add -A
+git commit -am 'initial commit'
+git fetch origin
 ```
 
 ## Installation: Quick guide (experienced user)
@@ -122,12 +125,13 @@ All paths and plugin settings have been abstracted into a centralized config obj
 
 ## Update
 
-To update `buildit` merge the upstream changes into your branch:
+To update `buildit` merge all changes into your fork:
 
 ```
 git fetch upstream
 git checkout master
 git merge upstream/master
+git fetch origin
 ```
 
 ## Roadmap
