@@ -19,16 +19,16 @@ process.env.JSHINT_CHECKSTYLE_FILE = config.tests.reportDir + 'jshint.xml';
 
 gulp.task('jshint', function() {
     return gulp.src(config.srcDir + config.javascript.subDir + config.javascript.watchFiles)
-    .pipe(jshint())
-    .pipe(jshint.reporter(checkstyle))
-    .pipe(jscs({
-        configPath: config.baseDir + config.javascript.jscsConfig
-    }))
-    // jscs will throw an error on linter errors
-    // ignore them as they will be reported together with the jshint errors
-    .on('error', function() {})
-    .pipe(combine())
-    .pipe(
+        .pipe(jshint())
+        .pipe(jscs({
+            configPath: config.baseDir + config.javascript.jscsConfig
+        }))
+        // jscs will throw an error on linter errors
+        // ignore them as they will be reported together with the jshint errors
+        .on('error', function() {})
+        .pipe(combine())
+        .pipe(jshint.reporter(checkstyle))
+        .pipe(
         gulpif(config.useNotifier,
             notify(function(file) {
                 if (file.jshint.success) {
@@ -48,6 +48,6 @@ gulp.task('jshint', function() {
             jshint.reporter(stylish)
         )
     )
-    .on('error', handleErrors);
+        .on('error', handleErrors);
     //.pipe(jshint.reporter('fail'));
 });
