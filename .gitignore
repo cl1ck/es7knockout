@@ -14,3 +14,4 @@ buildit.sublime-workspace
 src/jspm_packages
 reports
 checkstyle.xml
+Gemfile.lock

@@ -41,15 +41,21 @@ var failReporter = function(file) {
 };
 
 gulp.task('scsslint', ['sass-importall'], function() {
-    return gulp.src(config.srcDir + config.sass.subdir + config.sass.watchFiles)
+    return gulp.src(config.srcDir + config.sass.subDir + config.sass.watchFiles)
     .pipe(gulpif(config.useNotifier,
         scsslint({
             config: config.baseDir + config.sass.scssLintConfig,
-            customReport: errorReporter
+            customReport: errorReporter,
+            bundleExec: true,
+            reporterOutput: config.tests.reportDir + 'scsslint-checkstyle.xml',
+            reporterOutputFormat: 'Checkstyle'
         }),
         scsslint({
             config: config.baseDir + config.sass.scssLintConfig,
-            customReport: failReporter
+            customReport: failReporter,
+            bundleExec: true,
+            reporterOutput: config.tests.reportDir + 'scsslint-checkstyle.xml',
+            reporterOutputFormat: 'Checkstyle'
         })
     ))
     .on('error', handleErrors);
