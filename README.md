@@ -1,5 +1,4 @@
 # Framework for using KnockoutJS components with ES6/7
-
 [![Build Status](http://jenkins.cl1ck0ne.net/buildStatus/icon?job=es7knockout)](http://jenkins.cl1ck0ne.net/job/es7knockout/)
 
 ## Installation
