@@ -10,7 +10,6 @@ gulp.task('test', function(cb) {
     runSequence(
         'scsslint',
         'jshint',
-        'build',
         'karma',
         cb
     )

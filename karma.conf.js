@@ -14,7 +14,13 @@ module.exports = function(config) {
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
-            //'build/js/**/*.js': 'coverage'
+            'src/js/**/*.js': ['babel', 'coverage']
+        },
+
+        babelPreprocessor: {
+            options: {
+                modules: 'system'
+            }
         },
 
         jspm: {
@@ -28,18 +34,41 @@ module.exports = function(config) {
             '/base/jspm_packages/': '/base/src/jspm_packages/'
         },
 
-        // test results reporter to use
-        reporters: [
-            'mocha'
-            //, 'coverage'
+<<<<<<< HEAD
+=======
+        plugins: [
+            'karma-junit-reporter',
+            'karma-coverage',
+            'karma-mocha',
+            'karma-sinon-chai',
+            'karma-coverage',
+            'karma-jspm',
+            'karma-phantomjs-launcher',
+            'karma-phantomjs-shim',
+            'karma-mocha-reporter',
+            'karma-babel-preprocessor'
         ],
 
-        /*
-        coverageReporter: {
-            type : 'lcov',
-            dir : 'reports/coverage/'
+>>>>>>> 9c46d0ecf655a9394e99240bbec6a68824bff59e
+        // test results reporter to use
+        reporters: [
+            'mocha',
+            'junit',
+            'coverage'
+        ],
+
+        junitReporter: {
+            outputFile: 'reports/test-units.xml',
+            suite: ''
         },
-        */
+
+         coverageReporter: {
+            dir : 'reports/',
+            reporters: [
+                { type: 'html', subdir: 'report-html' },
+                { type: 'cobertura', subdir: '.', file: 'cobertura.xml' }
+            ]
+         },
 
         // web server port
         port: 9876,
@@ -55,6 +84,6 @@ module.exports = function(config) {
 
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits
-        singleRun: false
+        singleRun: true
     });
 };

@@ -12,19 +12,21 @@ var jscs            = require('gulp-jscs');
 var combine         = require('gulp-jscs-stylish').combineWithHintResults;
 var notify          = require('gulp-notify');
 var gulpif          = require('gulp-if');
+var checkstyle      = require('jshint-checkstyle-file-reporter');
 var handleErrors    = require('../handleErrors');
 
 gulp.task('jshint', function() {
     return gulp.src(config.srcDir + config.javascript.subDir + config.javascript.watchFiles)
-    .pipe(jshint())
-    .pipe(jscs({
-        configPath: config.baseDir + config.javascript.jscsConfig
-    }))
-    // jscs will throw an error on linter errors
-    // ignore them as they will be reported together with the jshint errors
-    .on('error', function() {})
-    .pipe(combine())
-    .pipe(
+        .pipe(jshint())
+        .pipe(jscs({
+            configPath: config.baseDir + config.javascript.jscsConfig
+        }))
+        // jscs will throw an error on linter errors
+        // ignore them as they will be reported together with the jshint errors
+        .on('error', function() {})
+        .pipe(combine())
+        .pipe(jshint.reporter(checkstyle))
+        .pipe(
         gulpif(config.useNotifier,
             notify(function(file) {
                 if (file.jshint.success) {
@@ -44,6 +46,6 @@ gulp.task('jshint', function() {
             jshint.reporter(stylish)
         )
     )
-    .on('error', handleErrors);
+        .on('error', handleErrors);
     //.pipe(jshint.reporter('fail'));
 });

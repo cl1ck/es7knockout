@@ -12,4 +12,5 @@ sublime-gulp.log
 buildit.sublime-project
 buildit.sublime-workspace
 src/jspm_packages
-report
+reports
+checkstyle.xml
