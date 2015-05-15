@@ -25,7 +25,7 @@ check out [buildit-example](https://github.com/cl1ck/buildit-example).
 To start a new project `app` simply fork `buildit`:
 
 ```
-git clone -o upstream https://github.com/cl1ck/buildit.git app
+git clone -o buildit https://github.com/cl1ck/buildit.git app
 cd app
 ```
 
@@ -127,7 +127,7 @@ All paths and plugin settings have been abstracted into a centralized config obj
 To update `buildit` merge all changes into your fork:
 
 ```
-git pull upstream master
+git pull buildit master
 npm install
 jspm install
 ```
