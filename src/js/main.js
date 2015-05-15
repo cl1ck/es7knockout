@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import KnockoutApplication from './framework/app/KnockoutApplication';
 
 // import required components
@@ -28,5 +27,3 @@ class Main extends KnockoutApplication {
 
 var main = new Main('dev');
 main.run();
-=======
->>>>>>> 9c46d0ecf655a9394e99240bbec6a68824bff59e
