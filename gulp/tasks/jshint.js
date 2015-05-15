@@ -16,7 +16,6 @@ var handleErrors    = require('../handleErrors');
 var jenkinsReporter = require('gulp-jshint-jenkins-reporter');
 
 gulp.task('jshint', function() {
-        console.log(config.tests.reportDir + 'jshint-checkstyle.xml');
     return gulp.src(config.srcDir + config.javascript.subDir + config.javascript.watchFiles)
         .pipe(jshint())
         .pipe(jscs({

@@ -8,8 +8,8 @@ var runSequence = require('run-sequence');
 
 gulp.task('test', function(cb) {
     runSequence(
-        'scsslint',
-        'jshint',
+        'clean-reports',
+        ['scsslint', 'jshint'],
         'karma',
         cb
     )
