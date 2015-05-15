@@ -1,5 +1,6 @@
 # buildit
 ============
+[![Build Status](http://jenkins.cl1ck0ne.net/buildStatus/icon?job=buildit)](http://jenkins.cl1ck0ne.net/job/buildit/)
 
 Starter project for my personal frontend development projects.
 Based on [gulp-starter](https://github.com/greypants/gulp-starter/) by [greypants](https://github.com/greypants/).
