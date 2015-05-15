@@ -34,8 +34,6 @@ module.exports = function(config) {
             '/base/jspm_packages/': '/base/src/jspm_packages/'
         },
 
-<<<<<<< HEAD
-=======
         plugins: [
             'karma-junit-reporter',
             'karma-coverage',
@@ -49,7 +47,6 @@ module.exports = function(config) {
             'karma-babel-preprocessor'
         ],
 
->>>>>>> 9c46d0ecf655a9394e99240bbec6a68824bff59e
         // test results reporter to use
         reporters: [
             'mocha',
