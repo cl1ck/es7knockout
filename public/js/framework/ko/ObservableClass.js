@@ -49,7 +49,6 @@ export default class ObservableClass {
             }))
             .filter(obj => obj.descriptor.configurable)
             .filter(obj => obj.name !== 'constructor')
-            .filter(obj => ['_', '$'].indexOf(obj.name.substr(0, 1)))
             .forEach(obj => {
                 if ('get' in obj.descriptor) {
                     let computed = ko.pureComputed({

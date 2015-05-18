@@ -13,8 +13,14 @@ class ImportTest extends ObservableClass {
         this.objectProperty = { test: 'test '};
         this.trueProperty = true;
         this.falseProperty = false;
+        this._ignoredProperty = 'test';
+        this.$ignoredProperty = 'test';
         this.importObservables();
         this.noObservable = '';
+    }
+
+    get computedProperty() {
+        return this.stringProperty + this.stringProperty;
     }
 }
 
@@ -52,4 +58,20 @@ describe('ObservableClass', function() {
         importTest.stringProperty = 'newValue';
         assert.equal(importTest.$stringProperty(), 'newValue');
     });
+
+    it('should ignore variables with prefix $ or _', () => {
+        let importTest = new ImportTest();
+        assert.equal(importTest.$ignoredProperty, 'test');
+        assert.equal(importTest._ignoredProperty, 'test');
+        assert.isFalse(ko.isObservable(importTest.$ignoredProperty));
+        assert.isFalse(ko.isObservable(importTest._ignoredProperty));
+    });
+
+    it('should import getters as pureComputed', () => {
+        let importTest = new ImportTest();
+        assert.equal(importTest.computedProperty, 'valuevalue');
+        assert.isTrue(ko.isComputed(importTest.$computedProperty));
+        importTest.stringProperty = 'test';
+        assert.equal(importTest.computedProperty, 'testtest');
+    })
 });
