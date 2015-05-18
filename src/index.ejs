@@ -9,35 +9,10 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="sass/theme.css"></head>
 <body id="app">
-    <!--[if lt IE 8]>
-    <p class="browsehappy">
-        You are using an <strong>outdated</strong>
-        browser.
-Please
-        <a href="http://browsehappy.com/">upgrade your browser</a>
-        to improve your experience.
-    </p>
-    <![endif]-->
-    <div id="l-wrapper">
-        <div id="l-header">
-            <div id="l-header-content">Header</div>
-        </div>
-        <div id="l-main">
-            <div id="l-sidebar">
-                <ul class="menu"></ul>
-            </div>
-            <div id="l-content">
-                <action-button params="icon: 'user', title: 'user', event: 'test-clicked', data: 'test',
-                id: 'testbutton', parent: $root"></action-button>
-                <action-button params="icon: 'globe', title: 'globe', event: 'globe-clicked', data: 'test',
-                id: 'globebutton', parent: $root"></action-button>
-            </div>
-            <div id="l-push"></div>
-        </div>
-    </div>
-    <div id="l-footer">
-        <div id="l-footer-content">Footer</div>
-    </div>
+    <action-button params="icon: 'user', title: 'user', event: 'test-clicked', data: 'test',
+    id: 'testbutton', parent: $root"></action-button>
+    <action-button params="icon: 'globe', title: 'globe', event: 'globe-clicked', data: 'test',
+    id: 'globebutton', parent: $root"></action-button>
     <% if(production) { %>
         <script src="js/app.js"></script>
     <% } else { %>

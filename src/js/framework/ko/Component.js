@@ -190,14 +190,14 @@ export default class Component extends ObservableClass {
      */
     notify(childIdentifier, eventName, data = {}) {
         if (!this._childNodes.has(childIdentifier)) {
-            return
+            return;
         }
 
-        let childNodes = this._childNodes.get(childIdentifier)
+        let childNodes = this._childNodes.get(childIdentifier);
 
         for (let childNode of childNodes) {
-            let event = new Event(eventName, data, false)
-            EventBus.notify(childNode, event)
+            let event = new Event(eventName, data, false);
+            EventBus.notify(childNode, event);
         }
     }
 }
