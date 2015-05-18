@@ -10,7 +10,7 @@ var projectTitle    = 'Build It';
 var baseDir         = __dirname.substring(0, __dirname.lastIndexOf('/')) + '/';
 
 // source files
-var srcDir          = baseDir + 'src/';
+var srcDir          = baseDir + 'public/';
 
 // temp directory used for serving compiled assets in development
 var devTempDir      = baseDir + 'temp/';
@@ -19,7 +19,7 @@ var devTempDir      = baseDir + 'temp/';
 var buildTargetDir  = baseDir + 'build/';
 
 // jspm subDirectory
-var jspmDir         = srcDir + 'jspm_packages/';
+var jspmDir         = baseDir + 'jspm_packages/';
 
 // report dir
 var reportDir       = baseDir + 'reports/';
@@ -80,7 +80,7 @@ module.exports = {
         files: '**/*.js',
         watchFiles: '**/*.js',
         // main bundle file to compile with jspm
-        bundleMain: 'js/main',
+        bundleMain: 'public/js/main',
         // es6 runtime polyfill
         es6runtime: 'babel-polyfill.js',
         uglifySettings: {
@@ -108,7 +108,8 @@ module.exports = {
         server: {
             baseDir: [srcDir, devTempDir],
             routes: {
-                'config.js': baseDir + 'config.js'
+                '/jspm_config.js': baseDir + 'jspm_config.js',
+                '/jspm_packages': jspmDir
             }
         },
         files: [

@@ -21,8 +21,11 @@
     "test": "./node_modules/gulp/bin/gulp.js test"
   },
   "devDependencies": {
+    "babel": "^5.4.3",
+    "babel-runtime": "^5.4.3",
     "browser-sync": "^2.7.1",
     "chai": "^2.3.0",
+    "core-js": "^0.9.10",
     "del": "^1.1.1",
     "glob": "^5.0.6",
     "gulp": "^3.8.11",
@@ -73,13 +76,12 @@
     "sinon-chai": "^2.7.0"
   },
   "jspm": {
-    "directories": {
-      "baseURL": "src",
-      "lib": "src/js"
-    },
-    "configFile": "src/jspm_config.js",
+    "directories": {},
+    "configFile": "jspm_config.js",
     "dependencies": {
+      "chai": "npm:chai@^2.3.0",
       "knockout": "github:knockout/knockout@^3.3.0",
+      "sinon-chai": "npm:sinon-chai@^2.7.0",
       "systemjs/plugin-text": "github:systemjs/plugin-text@^0.0.2"
     },
     "devDependencies": {

@@ -19,14 +19,14 @@ gulp.task('jspm:compile',  shell.task([
     'jspm bundle-sfx ' +
     config.javascript.bundleMain + ' ' +
     config.buildTargetDir + config.javascript.subDir +
-    '/main.js'
+    'main.js'
 ]));
 
 // bundle and minify es6 runtime and main.js as app.js
 gulp.task('jspm:uglify', function() {
     return gulp.src([
             config.javascript.es6runtime,
-            config.buildTargetDir + config.javascript.subDir + '/main.js'
+            config.buildTargetDir + config.javascript.subDir + 'main.js'
         ])
         .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(uglify(config.javascript.uglifySettings))
@@ -38,7 +38,7 @@ gulp.task('jspm:uglify', function() {
 
 // delete main.js and main.js.map
 gulp.task('jspm:cleanup', function(cb) {
-    del(config.buildTargetDir + config.javascript.subDir + '/main.*', cb);
+    del(config.buildTargetDir + config.javascript.subDir + 'main.*', cb);
 });
 
 // bundle, uglify and cleanup your javascript main module
