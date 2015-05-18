@@ -113,7 +113,7 @@ module.exports = {
             devTempDir + '*.html',
             devTempDir + 'css/*.css',
             srcDir + 'images/**/*.*',
-            srcDir + 'js/**/*(!.spec).js'
+            srcDir + 'js/**/*.js'
         ],
         port: 3000,
         browser: [],
