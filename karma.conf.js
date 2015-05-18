@@ -15,8 +15,8 @@ module.exports = function(config) {
 
         // preprocess matching files before serving them to the browser
         preprocessors: {
-            'public/js/**/*.js': ['babel', 'coverage'],
-            'public/test/**/*.js': ['babel']
+            'public/js/**/*(!spec).js': ['babel', 'coverage'],
+            'public/js/**/*.spec.js': ['babel']
         },
 
         babelPreprocessor: {
@@ -27,8 +27,8 @@ module.exports = function(config) {
         },
 
         jspm: {
-            loadFiles: ['public/test/**/*.spec.js'],
-            serveFiles: [
+            loadFiles: ['public/js/**/*.spec.js'],
+            serveFiles: ['public/js/**/*.js'],
                 'public/test/**/*.spec.js',
                 'public/js/**/*.js'
             ],

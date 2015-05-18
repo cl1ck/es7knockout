@@ -41,7 +41,7 @@ module.exports = {
 
     // sass settings
     sass: {
-        subDir: 'sass/',
+        subDir: 'css/',
         files: '*.scss',
         watchFiles: '**/!(_all).scss',
         settings: {
@@ -59,7 +59,6 @@ module.exports = {
     images: {
         subDir: 'images/',
         files: '**/*.*',
-        watchFiles: '**/*.*',
         settings: {
             optimizationLevel: 3,
             progressive: true,
@@ -71,14 +70,12 @@ module.exports = {
     html: {
         subDir: '',
         files: '*.{html,ejs}',
-        watchFiles: '*.{html,ejs}'
     },
 
     // javascript bundle settings
     javascript: {
         subDir: 'js/',
         files: '**/*.js',
-        watchFiles: '**/*.js',
         // main bundle file to compile with jspm
         bundleMain: 'public/js/main',
         // es6 runtime polyfill
@@ -97,8 +94,8 @@ module.exports = {
 
     // testrunner config
     tests: {
-        subDir: 'test/',
-        files: '/test/**/*.spec.js',
+        subDir: 'js/',
+        files: '/js/**/*.spec.js',
         reportDir: reportDir,
         karmaConfig: baseDir + '/karma.conf.js'
     },
@@ -114,7 +111,7 @@ module.exports = {
         },
         files: [
             devTempDir + '*.html',
-            devTempDir + 'sass/*.css',
+            devTempDir + 'css/*.css',
             srcDir + 'images/**/*.*',
             srcDir + 'js/**/*.js'
         ],
