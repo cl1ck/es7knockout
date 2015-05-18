@@ -29,9 +29,6 @@ module.exports = function(config) {
         jspm: {
             loadFiles: ['public/js/**/*.spec.js'],
             serveFiles: ['public/js/**/*.js'],
-                'public/test/**/*.spec.js',
-                'public/js/**/*.js'
-            ],
             config: 'jspm_config.js',
             packages: 'jspm_packages'
         },
