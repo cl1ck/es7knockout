@@ -5,14 +5,15 @@ module.exports = function(config) {
 
         frameworks: ['jspm', 'mocha', 'sinon-chai', 'phantomjs-shim'],
 
-        // do not add files here, they will be served by karma-jspm
-        files: [],
+        // only load polyfill, the remaining files will be loaded by jspm
+        files: [
+            'node_modules/karma-babel-preprocessor/node_modules/babel-core/browser-polyfill.js'
+        ],
 
         // list of files to exclude
         exclude: [],
 
         // preprocess matching files before serving them to the browser
-        // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
             'public/js/**/*(!spec).js': ['babel', 'coverage'],
             'public/js/**/*.spec.js': ['babel']
@@ -20,13 +21,17 @@ module.exports = function(config) {
 
         babelPreprocessor: {
             options: {
-                modules: 'system'
+                modules: 'system',
+                sourceMap: 'inline'
             }
         },
 
         jspm: {
             loadFiles: ['public/js/**/*.spec.js'],
             serveFiles: ['public/js/**/*.js'],
+                'public/test/**/*.spec.js',
+                'public/js/**/*.js'
+            ],
             config: 'jspm_config.js',
             packages: 'jspm_packages'
         },
@@ -59,13 +64,13 @@ module.exports = function(config) {
             suite: ''
         },
 
-         coverageReporter: {
+        coverageReporter: {
             dir : 'reports/',
             reporters: [
                 { type: 'html', subdir: 'report-html' },
                 { type: 'cobertura', subdir: '.', file: 'cobertura.xml' }
             ]
-         },
+        },
 
         // web server port
         port: 9876,
