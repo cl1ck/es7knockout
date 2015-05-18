@@ -13,7 +13,7 @@ var combine         = require('gulp-jscs-stylish').combineWithHintResults;
 var notify          = require('gulp-notify');
 var gulpif          = require('gulp-if');
 var handleErrors    = require('../handleErrors');
-var jenkinsReporter = require('gulp-jshint-jenkins-reporter');
+var jenkinsReporter = require('gulp-checkstyle-jenkins-reporter');
 
 gulp.task('jshint', function() {
     return gulp.src(config.srcDir + config.javascript.subDir + config.javascript.watchFiles)
