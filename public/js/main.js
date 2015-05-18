@@ -1,2 +1,2 @@
-let testerror = 1;
+var testerror = 1;
 console.log('init done');
