@@ -22,6 +22,7 @@ System.config({
     "knockout": "github:knockout/knockout@3.3.0",
     "sinon-chai": "npm:sinon-chai@2.7.0",
     "systemjs/plugin-text": "github:systemjs/plugin-text@0.0.2",
+    "text": "github:systemjs/plugin-text@0.0.2",
     "github:jspm/nodelibs-buffer@0.1.0": {
       "buffer": "npm:buffer@3.2.2"
     },

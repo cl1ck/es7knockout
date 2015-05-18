@@ -1,6 +1,5 @@
 import Component from '../js/framework/ko/Component';
 import ko from 'knockout';
-let assert = chai.assert;
 
 class ComponentTest extends Component {
     constructor(params) {
