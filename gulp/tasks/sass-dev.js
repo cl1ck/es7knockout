@@ -20,5 +20,5 @@ gulp.task('sass-dev', ['sass-importall'], function() {
         .pipe(autoprefixer(config.sass.autoprefixer))
         .on('error', handleErrors)
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(config.devTempDir + config.sass.subDir));
+        .pipe(gulp.dest(config.devTempDir + config.sass.targetDir));
 });
