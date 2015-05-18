@@ -1,13 +1,16 @@
 module.exports = function () {
     var babelPreprocessor = file => require('babel').transform(file.content, {sourceMap: true});
+
     return {
         testFramework: 'mocha@2.2.4',
+
         files: [
             {pattern: 'node_modules/chai/chai.js', instrument: false},
             {pattern: 'jspm_packages/system.js', instrument: false},
             {pattern: 'jspm_config.js', instrument: false},
             {pattern: 'public/js/*.js', load: false}
         ],
+
         tests: [
             {pattern: 'public/test/*.spec.js', load: false}
         ],
