@@ -1,4 +1,4 @@
-import Component from '../js/framework/ko/Component';
+import Component from './Component';
 import ko from 'knockout';
 
 class ComponentTest extends Component {

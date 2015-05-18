@@ -1,4 +1,4 @@
-import ObservableClass from '../js/framework/ko/ObservableClass';
+import ObservableClass from './ObservableClass';
 import ko from 'knockout';
 let assert = chai.assert;
 
