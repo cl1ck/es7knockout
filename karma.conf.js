@@ -14,8 +14,8 @@ module.exports = function(config) {
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
-            'public/js/**/*.js': ['babel', 'coverage'],
-            'public/test/**/*.js': ['babel']
+            'public/js/**/*(!spec).js': ['babel', 'coverage'],
+            'public/js/**/*.spec.js': ['babel']
         },
 
         babelPreprocessor: {
@@ -25,8 +25,8 @@ module.exports = function(config) {
         },
 
         jspm: {
-            loadFiles: ['public/test/**/*.spec.js'],
-            serveFiles: ['public/test/**/*.spec.js', 'public/js/**/*.js'],
+            loadFiles: ['public/js/**/*.spec.js'],
+            serveFiles: ['public/js/**/*.js'],
             config: 'jspm_config.js',
             packages: 'jspm_packages'
         },
