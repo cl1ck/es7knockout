@@ -20,5 +20,5 @@ gulp.task('sass-build', ['scsslint', 'sass-importall'], function() {
         .pipe(autoprefixer(config.sass.autoprefixer))
         .pipe(minify())
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(config.buildTargetDir + config.sass.targetDir));
+        .pipe(gulp.dest(config.buildTargetDir + config.sass.subDir));
 });

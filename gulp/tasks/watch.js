@@ -7,7 +7,7 @@ var config  = require('../config');
 gulp.task('watch', ['precompile-dev', 'browsersync'], function() {
     // on ejs/html change:
     gulp.watch(
-        config.srcDir + config.html.subDir + config.html.watchFiles,
+        config.srcDir + config.html.subDir + config.html.files,
         ['html-dev']
     );
 

@@ -41,8 +41,7 @@ module.exports = {
 
     // sass settings
     sass: {
-        subDir: 'sass/',
-        targetDir: 'css/',
+        subDir: 'css/',
         files: '*.scss',
         watchFiles: '**/!(_all).scss',
         settings: {
@@ -60,7 +59,6 @@ module.exports = {
     images: {
         subDir: 'images/',
         files: '**/*.*',
-        watchFiles: '**/*.*',
         settings: {
             optimizationLevel: 3,
             progressive: true,
@@ -72,14 +70,12 @@ module.exports = {
     html: {
         subDir: '',
         files: '*.{html,ejs}',
-        watchFiles: '*.{html,ejs}'
     },
 
     // javascript bundle settings
     javascript: {
         subDir: 'js/',
-        files: ['**/*.js', '!**/*.spec.js'],
-        watchFiles: ['**/*.js', '!**/*.spec.js'],
+        files: '**/*.js',
         // main bundle file to compile with jspm
         bundleMain: 'public/js/main',
         // es6 runtime polyfill
