@@ -3,7 +3,7 @@ module.exports = function(config) {
     config.set({
         basePath: '',
 
-        frameworks: ['jspm', 'mocha', 'sinon-chai', 'phantomjs-shim'],
+        frameworks: ['jspm', 'mocha', 'sinon-chai'],
 
         // only load polyfill, the remaining files will be loaded by jspm
         files: [
@@ -43,8 +43,7 @@ module.exports = function(config) {
             'karma-sinon-chai',
             'karma-coverage',
             'karma-jspm',
-            'karma-phantomjs-launcher',
-            'karma-phantomjs-shim',
+            'karma-phantomjs2-launcher',
             'karma-mocha-reporter',
             'karma-babel-preprocessor'
         ],
@@ -79,7 +78,7 @@ module.exports = function(config) {
         autoWatch: true,
 
         // start these browsers
-        browsers: ['PhantomJS'],
+        browsers: ['PhantomJS2'],
 
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits
