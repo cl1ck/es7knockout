@@ -50,7 +50,7 @@ export default class Component extends ObservableClass {
             .filter(obj => obj.name !== '$raw')
             .forEach(obj => {
                 if (ko.isComputed(obj.descriptor.value) || ko.isObservable(obj.descriptor.value)) {
-                    // import knockout computed
+                    // import knockout subscribables
                     let subscribable = this['$' + obj.name] = obj.descriptor.value;
 
                     // redefine function to use getter and setter of subscribable
@@ -58,13 +58,19 @@ export default class Component extends ObservableClass {
                         enumerable: true,
                         configurable: false,
                         get: subscribable,
-                        set: obj.descriptor.set ? subscribable : undefined
+                        set: function() {
+                            if (obj.descriptor.set)
+                                return subscribable;
+                            else
+                                return undefined;
+                        }()
                     });
                 } else {
                     // import common values
                     let value = obj.descriptor.value;
+                    delete this[obj.name];
 
-                    // redefine function to use getter and setter of computed observable
+                    // writing to imported common values is forbidden
                     Object.defineProperty(this, obj.name, {
                         enumerable: true,
                         configurable: false,
