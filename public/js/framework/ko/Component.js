@@ -99,6 +99,9 @@ export default class Component extends ObservableClass {
      * @param {Component} parentComponent
      */
     setParentComponent(parentComponent) {
+        if (!(parentComponent instanceof Component)) {
+            throw 'parent must be an instance of Component';
+        }
         this._parent = parentComponent;
         this._parentID = parentComponent._ID;
         parentComponent.registerChildComponent(this._identifier, this._ID);
@@ -195,7 +198,7 @@ export default class Component extends ObservableClass {
      * @param data event payload
      */
     notify(childIdentifier, eventName, data = {}) {
-        if (!this._childNodes.has(childIdentifier)) {
+        if (!this.hasChild(childIdentifier)) {
             return;
         }
 
@@ -205,5 +208,14 @@ export default class Component extends ObservableClass {
             let event = new Event(eventName, data, false);
             EventBus.notify(childNode, event);
         }
+    }
+
+    /**
+     * Test if component has at least one child with given identifier
+     * @param childIdentifier
+     * @returns {boolean}
+     */
+    hasChild(childIdentifier) {
+        return this._childNodes.has(childIdentifier);
     }
 }

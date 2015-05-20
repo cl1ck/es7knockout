@@ -1,10 +1,30 @@
 import Component from './Component';
-import ObservableClass from './ObservableClass';
 import ko from 'knockout';
 
 class ComponentTest extends Component {
     constructor(params) {
         super(params, 'test', 'observable');
+    }
+}
+
+class EventTestParent extends Component {
+    constructor(params) {
+        super(params);
+        this.test = 'test';
+        this.importObservables();
+        this.on('testEvent', () => {
+            this.test = 'testEvent';
+        });
+    }
+}
+
+class EventTestChild extends Component {
+    constructor(params) {
+        super(params);
+    }
+
+    sendTestEvent() {
+        this.emit('testEvent');
     }
 }
 
@@ -51,5 +71,43 @@ describe('Component', function () {
         assert.equal(comp.computed, 'test');
         assert.throws(function () { comp.computed = 1});
         assert.throws(function () { comp.test = 'newvalue'});
+    });
+
+    it('imports and registers with parent components', function() {
+        let child;
+        let childError;
+        let parent = new ComponentTest({
+            id: 'parent',
+            test: 'test',
+            observable: 'observable'
+        });
+        assert.doesNotThrow(() => {
+            child = new ComponentTest({
+                id: 'child',
+                parent: parent,
+                test: 'test',
+                observable: 'observable'
+            });
+        });
+        assert.throws(() => {
+            childError = new ComponentTest({
+                id: 'childError',
+                parent: 'test',
+                test: 'test',
+                observable: 'observable'
+            });
+        }, 'parent must be an instance of Component');
+        assert.isTrue(parent.hasChild('child'));
+    });
+
+    it('sends events to childs', function() {
+        let parent = new EventTestParent({
+            id: 'parent'
+        });
+        let child = new EventTestChild({
+            id: 'child',
+            parent: parent
+        });
+        assert.equals(parent.test, 'test');
     });
 });
