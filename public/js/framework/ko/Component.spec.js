@@ -108,6 +108,8 @@ describe('Component', function () {
             id: 'child',
             parent: parent
         });
-        assert.equals(parent.test, 'test');
+        assert.equal(parent.test, 'test');
+        child.sendTestEvent();
+        assert.equal(parent.test, 'testEvent');
     });
 });
