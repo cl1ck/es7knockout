@@ -23,6 +23,7 @@ class EventBus {
     registerNode(eventNode, className) {
         let nodeID = Symbol(className);
         this.nodes.set(nodeID, eventNode);
+        //console.log('registered',nodeID.toString());
         return nodeID;
     }
 
@@ -35,6 +36,15 @@ class EventBus {
     }
 
     /**
+     * Check if a node is registered
+     * @param nodeID the unique ID of the node to check
+     * @returns {boolean} true if it has the node
+     */
+    hasNode(nodeID) {
+        return this.nodes.has(nodeID);
+    }
+
+    /**
      * Send event to a given node.
      * @param nodeID ID of the node to send the event to
      * @param event the event to send
@@ -43,6 +53,7 @@ class EventBus {
         if (!this.nodes.has(nodeID)) {
             return;
         }
+        console.log('notifying',nodeID.toString());
         this.nodes.get(nodeID).handleEvent(event);
     }
 

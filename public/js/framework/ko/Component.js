@@ -58,12 +58,7 @@ export default class Component extends ObservableClass {
                         enumerable: true,
                         configurable: false,
                         get: subscribable,
-                        set: function() {
-                            if (obj.descriptor.set)
-                                return subscribable;
-                            else
-                                return undefined;
-                        }()
+                        set: obj.descriptor.writable || obj.descriptor.set ? subscribable : undefined
                     });
                 } else {
                     // import common values
@@ -119,12 +114,16 @@ export default class Component extends ObservableClass {
         }
 
         // route to parent if necessary
+        console.log('handling event' + event.name + ' in ' + this._identifier);
+        console.log('event stopped: ', event.stopped);
+        console.log('bubble event: ', event.bubble);
         if (event.bubble && !event.stopped) {
             this.bubbleEvent(event);
         }
     }
 
     bubbleEvent(event) {
+        console.log('bubbling event ' + event.name + ' in ' + this._identifier);
         if (this._parentID !== null) {
             EventBus.notify(this._parentID, event);
         } else {
@@ -136,7 +135,7 @@ export default class Component extends ObservableClass {
      * Dispose Component (called by knockoutjs)
      */
     dispose() {
-        EventBus.unregisterNode(this._ID)
+        EventBus.unregisterNode(this._ID);
         if (this._parent) {
             this._parent.unregisterChildComponent(this._identifier, this._ID);
         }
@@ -146,9 +145,11 @@ export default class Component extends ObservableClass {
      * Emit an event
      * @param eventName name of the event
      * @param data event payload
+     * @param bubble true if event should bubble up to grandparents
      */
-    emit(eventName, data = {}) {
-        let event = new Event(eventName, this._ID, data);
+    emit(eventName, data = {}, bubble = true) {
+        console.log('emitting event ' + eventName);
+        let event = new Event(eventName, this._ID, data, bubble);
         this.bubbleEvent(event);
     }
 
@@ -198,14 +199,14 @@ export default class Component extends ObservableClass {
      * @param data event payload
      */
     notify(childIdentifier, eventName, data = {}) {
-        if (!this.hasChild(childIdentifier)) {
+        if (!this.hasChildsWithId(childIdentifier)) {
             return;
         }
 
         let childNodes = this._childNodes.get(childIdentifier);
 
         for (let childNode of childNodes) {
-            let event = new Event(eventName, data, false);
+            let event = new Event(eventName, this._ID, data, false);
             EventBus.notify(childNode, event);
         }
     }
@@ -215,7 +216,22 @@ export default class Component extends ObservableClass {
      * @param childIdentifier
      * @returns {boolean}
      */
-    hasChild(childIdentifier) {
+    hasChildsWithId(childIdentifier) {
         return this._childNodes.has(childIdentifier);
+    }
+
+    /**
+     * Test if child with unique ID is registered
+     * @param childID
+     */
+    hasChild(childID) {
+        for (let childNodes of this._childNodes.values()) {
+            for (let childNodeID of childNodes) {
+                if (childNodeID === childID) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

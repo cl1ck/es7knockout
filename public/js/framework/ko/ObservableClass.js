@@ -58,7 +58,7 @@ export default class ObservableClass {
 
                     Object.defineProperty(this, obj.name, {
                         enumerable: true,
-                        configurable: true,
+                        configurable: false,
                         get: computed,
                         set: obj.descriptor.set ? computed : undefined
                     });
@@ -66,11 +66,12 @@ export default class ObservableClass {
                     // attach raw computed
                     Object.defineProperty(this, '$' + obj.name, {
                         enumerable: true,
-                        configurable: true,
+                        configurable: false,
                         writable: obj.descriptor.set ? true : false,
                         value: computed
                     });
                 } else {
+                    console.log('binding ' + obj.name);
                     let func = obj.descriptor.value;
                     this[obj.name] = func.bind(this);
                 }
