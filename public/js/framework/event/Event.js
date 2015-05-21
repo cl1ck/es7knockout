@@ -28,16 +28,6 @@ export default class Event {
     }
 
     /**
-     * Get ID of the origin component.
-     * @returns {String}
-     */
-    getOriginID() {
-        let regExp = /\(([^)]+)\)/;
-        let matches = regExp.exec(this.origin.toString());
-        return matches[1];
-    }
-
-    /**
      * Send event to the origin of this event
      * @param eventName name of the event to send
      * @param data event payload
