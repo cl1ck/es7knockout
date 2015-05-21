@@ -11,10 +11,12 @@ module.exports = function(config) {
         ],
 
         // list of files to exclude
-        exclude: [],
+        exclude: [
+        ],
 
         // preprocess matching files before serving them to the browser
         preprocessors: {
+            'public/js/**/*.spec.js': ['babel'],
             'public/js/**/*.js': ['babel', 'coverage']
         },
 
