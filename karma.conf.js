@@ -16,7 +16,6 @@ module.exports = function(config) {
 
         // preprocess matching files before serving them to the browser
         preprocessors: {
-            'public/js/**/*.spec.js': ['babel'],
             'public/js/**/*.js': ['babel', 'coverage']
         },
 
