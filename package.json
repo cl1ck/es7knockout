@@ -66,6 +66,7 @@
     "karma-phantomjs2-launcher": "^0.1.6",
     "karma-sinon": "^1.0.4",
     "karma-sinon-chai": "^0.3.0",
+    "karma-sourcemap-loader": "^0.3.4",
     "mocha": "^2.2.5",
     "node-dir": "^0.1.8",
     "require-dir": "^0.3.0",
