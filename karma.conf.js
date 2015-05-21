@@ -16,7 +16,7 @@ module.exports = function(config) {
 
         // preprocess matching files before serving them to the browser
         preprocessors: {
-            'public/js/**/*.js': ['babel', 'coverage']
+            'public/js/**/*.js': ['babel', 'sourcemap', 'coverage']
         },
 
         babelPreprocessor: {
@@ -46,7 +46,8 @@ module.exports = function(config) {
             'karma-jspm',
             'karma-phantomjs2-launcher',
             'karma-mocha-reporter',
-            'karma-babel-preprocessor'
+            'karma-babel-preprocessor',
+            'karma-sourcemap-loader'
         ],
 
         // test results reporter to use
