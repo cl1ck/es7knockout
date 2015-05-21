@@ -1,20 +1,24 @@
 module.exports = function () {
     var babelPreprocessor = file => require('babel').transform(file.content, {sourceMap: true});
+
     return {
         testFramework: 'mocha@2.2.4',
+
         files: [
             {pattern: 'node_modules/chai/chai.js', instrument: false},
+            {pattern: 'node_modules/karma-babel-preprocessor/node_modules/babel-core/browser-polyfill.js', instrument: false},
             {pattern: 'jspm_packages/system.js', instrument: false},
             {pattern: 'jspm_config.js', instrument: false},
-            {pattern: 'public/js/*.js', load: false}
+            {pattern: 'public/js/**/*.js', load: false},
+            {pattern: 'public/js/**/*.spec.js', ignore: true}
         ],
+
         tests: [
-            {pattern: 'public/test/*.spec.js', load: false}
+            {pattern: 'public/js/**/*.spec.js', load: false}
         ],
 
         preprocessors: {
-            'public/test/*.js': babelPreprocessor,
-            'public/js/*.js': babelPreprocessor
+            'public/js/**/*.js': babelPreprocessor
         },
 
         middleware: (app, express) => {

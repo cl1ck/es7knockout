@@ -2,6 +2,7 @@
 .sass-cache
 .idea
 *.log
+*.orig
 build
 temp
 Desktop.ini
