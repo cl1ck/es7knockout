@@ -82,7 +82,8 @@ module.exports = {
         es6runtime: 'babel-polyfill.js',
         uglifySettings: {
         },
-        jscsConfig: '.jscsrc'
+        jscsConfig: '.jscsrc',
+        esLintOutput: reportDir + '/eslint-checkstyle.xml'
     },
 
     // styleguide
