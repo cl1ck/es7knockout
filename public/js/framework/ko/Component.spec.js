@@ -71,22 +71,22 @@ class EventTestChild extends Component {
     }
 }
 
-describe('Component', function () {
-    it('requires an id', function () {
-        let fn = function () {
+describe('Component', function() {
+    it('requires an id', function() {
+        let fn = function() {
             return new Component();
         };
         assert.throws(fn, 'each component must have an "id" param');
     });
 
-    it('requires given parameters', function () {
-        let fn = function () {
+    it('requires given parameters', function() {
+        let fn = function() {
             return new ParamTest({
                 id: 'myid'
             });
         };
         assert.throws(fn, 'required parameter "test1" is missing');
-        fn = function () {
+        fn = function() {
             return new ParamTest({
                 id: 'myid',
                 test1: 'test1'
@@ -95,14 +95,14 @@ describe('Component', function () {
         assert.throws(fn, 'required parameter "test2" is missing');
     });
 
-    it('reads id from observables', function () {
+    it('reads id from observables', function() {
         let comp = new Component({
             id: ko.observable('id')
         });
         assert.equal(comp._identifier, 'id');
     });
 
-    it('imports common values', function () {
+    it('imports common values', function() {
         let ext = new ComponentTest({
             id: 'ext'
         });
@@ -115,17 +115,17 @@ describe('Component', function () {
 
         assert.equal(comp.testvalue, 'value');
         assert.equal(comp.$testvalue, undefined);
-        assert.throws(function () {
+        assert.throws(function() {
             comp.testvalue = 'newvalue'
         });
         assert.equal(comp.importedValue, 'value');
         assert.equal(comp.$importedValue, undefined);
-        assert.throws(function () {
+        assert.throws(function() {
             comp.importedValue = 'newvalue'
         });
     });
 
-    it('imports observables', function () {
+    it('imports observables', function() {
         let ext = new ComponentTest({
             id: 'ext'
         });
@@ -141,14 +141,14 @@ describe('Component', function () {
         assert.equal(comp.observable, 'obsvalue');
         assert.isTrue(ko.isObservable(comp.$observable));
         assert.equal(comp.$observable(), 'obsvalue');
-        assert.doesNotThrow(function () {
+        assert.doesNotThrow(function() {
             comp.observable = 'newValue'
         });
 
         // observable as value
         assert.equal(comp.observableAsValue, 'testComp');
         assert.equal(comp.$observableAsValue, undefined);
-        assert.throws(function () {
+        assert.throws(function() {
             comp.observableAsValue = 1
         });
 
@@ -157,7 +157,7 @@ describe('Component', function () {
         assert.equal(comp.importedObservable, 'testComp');
         assert.isTrue(ko.isObservable(comp.$importedObservable));
         assert.equal(comp.$importedObservable(), 'testComp');
-        assert.doesNotThrow(function () {
+        assert.doesNotThrow(function() {
             comp.importedObservable = 'newValue'
         });
         assert.equal(comp.importedObservable, 'newValue');
@@ -165,14 +165,14 @@ describe('Component', function () {
         assert.equal(ext.testCompBaseValue, 'newValue');
     });
 
-    it('imports pureComputed', function () {
+    it('imports pureComputed', function() {
         let ext = new ComponentTest({
             id: 'ext'
         });
 
         let comp = new ComponentTest({
             id: 'myid',
-            computed: ko.pureComputed(function () {
+            computed: ko.pureComputed(function() {
                 return 'test';
             }),
             computedAsValue: ext.testComp,
@@ -185,7 +185,7 @@ describe('Component', function () {
         assert.equal(comp.computed, 'test');
         assert.equal(comp.computedAsValue, 'testComp');
         assert.equal(comp.importedComputed, 'testComp');
-        assert.throws(function () { comp.computed = 1});
+        assert.throws(function() { comp.computed = 1});
         assert.throws(function() { comp.computedAsValue = 1});
         assert.doesNotThrow(function() { comp.importedComputed = 'newValue'});
         assert.equal(comp.importedComputed, 'newValue');
