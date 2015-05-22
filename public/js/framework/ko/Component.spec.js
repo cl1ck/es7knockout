@@ -118,12 +118,12 @@ describe('Component', function() {
         assert.equal(comp.testvalue, 'value');
         assert.equal(comp.$testvalue, undefined);
         assert.throws(function() {
-            comp.testvalue = 'newvalue'
+            comp.testvalue = 'newvalue';
         });
         assert.equal(comp.importedValue, 'value');
         assert.equal(comp.$importedValue, undefined);
         assert.throws(function() {
-            comp.importedValue = 'newvalue'
+            comp.importedValue = 'newvalue';
         });
     });
 
@@ -143,14 +143,14 @@ describe('Component', function() {
         assert.isTrue(ko.isObservable(comp.$observable));
         assert.equal(comp.$observable(), 'obsvalue');
         assert.doesNotThrow(function() {
-            comp.observable = 'newValue'
+            comp.observable = 'newValue';
         });
 
         // observable as value
         assert.equal(comp.observableAsValue, 'testComp');
         assert.equal(comp.$observableAsValue, undefined);
         assert.throws(function() {
-            comp.observableAsValue = 1
+            comp.observableAsValue = 1;
         });
 
         // imported observable
@@ -159,7 +159,7 @@ describe('Component', function() {
         assert.isTrue(ko.isObservable(comp.$importedObservable));
         assert.equal(comp.$importedObservable(), 'testComp');
         assert.doesNotThrow(function() {
-            comp.importedObservable = 'newValue'
+            comp.importedObservable = 'newValue';
         });
         assert.equal(comp.importedObservable, 'newValue');
         assert.equal(comp.$importedObservable(), 'newValue');
@@ -185,16 +185,20 @@ describe('Component', function() {
         assert.equal(comp.computed, 'test');
         assert.equal(comp.computedAsValue, 'testComp');
         assert.equal(comp.importedComputed, 'testComp');
-        assert.throws(function() { comp.computed = 1});
-        assert.throws(function() { comp.computedAsValue = 1});
+        assert.throws(function() {
+            comp.computed = 1;
+        });
+        assert.throws(function() {
+            $comp.computedAsValue = 1;
+        });
         assert.doesNotThrow(function() { comp.importedComputed = 'newValue'});
         assert.equal(comp.importedComputed, 'newValue');
         assert.equal(ext.testComp, 'newValue');
     });
 
     it('imports and registers with parent components', function() {
-        let child;
-        let childError;
+        var child;
+        var childError;
         let parent = new ComponentTest({
             id: 'parent',
             test: 'test',
