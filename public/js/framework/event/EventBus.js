@@ -23,7 +23,6 @@ class EventBus {
     registerNode(eventNode, className) {
         let nodeID = Symbol(className);
         this.nodes.set(nodeID, eventNode);
-        //console.log('registered',nodeID.toString());
         return nodeID;
     }
 
@@ -53,7 +52,6 @@ class EventBus {
         if (!this.nodes.has(nodeID)) {
             return;
         }
-        console.log('notifying',nodeID.toString());
         this.nodes.get(nodeID).handleEvent(event);
     }
 

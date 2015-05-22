@@ -114,16 +114,12 @@ export default class Component extends ObservableClass {
         }
 
         // route to parent if necessary
-        console.log('handling event' + event.name + ' in ' + this._identifier);
-        console.log('event stopped: ', event.stopped);
-        console.log('bubble event: ', event.bubble);
         if (event.bubble && !event.stopped) {
             this.bubbleEvent(event);
         }
     }
 
     bubbleEvent(event) {
-        console.log('bubbling event ' + event.name + ' in ' + this._identifier);
         if (this._parentID !== null) {
             EventBus.notify(this._parentID, event);
         } else {
@@ -148,7 +144,6 @@ export default class Component extends ObservableClass {
      * @param bubble true if event should bubble up to grandparents
      */
     emit(eventName, data = {}, bubble = true) {
-        console.log('emitting event ' + eventName);
         let event = new Event(eventName, this._ID, data, bubble);
         this.bubbleEvent(event);
     }

@@ -1,6 +1,5 @@
 import Component from './Component';
 import ko from 'knockout';
-import EventBus from '../event/EventBus';
 
 class ParamTest extends Component {
     constructor(params) {
@@ -314,7 +313,7 @@ describe('Component', function () {
         assert.equal(grandparent.bubble, true);
     });
 
-    it('unregisters childs from parent and EventBus on disposal', function() {
+    it('unregisters childs from parent on disposal', function() {
         let parent = new EventTestParent({
             id: 'parent'
         });
@@ -326,7 +325,6 @@ describe('Component', function () {
         assert.isTrue(parent.hasChild(child._ID));
         child.dispose();
         assert.isFalse(parent.hasChild(child._ID));
-        assert.isFalse(EventBus.hasNode(child._ID));
     });
 
     it('allows to register a component with knockoutjs', () => {
