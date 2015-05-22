@@ -76,6 +76,7 @@ describe('Component', function() {
         let fn = function() {
             return new Component();
         };
+
         assert.throws(fn, 'each component must have an "id" param');
     });
 
@@ -85,6 +86,7 @@ describe('Component', function() {
                 id: 'myid'
             });
         };
+
         assert.throws(fn, 'required parameter "test1" is missing');
         fn = function() {
             return new ParamTest({
@@ -99,6 +101,7 @@ describe('Component', function() {
         let comp = new Component({
             id: ko.observable('id')
         });
+
         assert.equal(comp._identifier, 'id');
     });
 
@@ -106,7 +109,6 @@ describe('Component', function() {
         let ext = new ComponentTest({
             id: 'ext'
         });
-
         let comp = new ComponentTest({
             id: 'myid',
             testvalue: 'value',
@@ -129,7 +131,6 @@ describe('Component', function() {
         let ext = new ComponentTest({
             id: 'ext'
         });
-
         let comp = new ComponentTest({
             id: 'myid',
             observable: ko.observable('obsvalue'),
@@ -169,7 +170,6 @@ describe('Component', function() {
         let ext = new ComponentTest({
             id: 'ext'
         });
-
         let comp = new ComponentTest({
             id: 'myid',
             computed: ko.pureComputed(function() {
@@ -200,6 +200,7 @@ describe('Component', function() {
             test: 'test',
             observable: 'observable'
         });
+
         assert.doesNotThrow(() => {
             child = new ComponentTest({
                 id: 'child',
@@ -229,6 +230,7 @@ describe('Component', function() {
             parent: parent
         });
         assert.equal(parent.test, 'value');
+
         child.sendTestEvent();
         assert.equal(parent.test, 'changed');
     });
@@ -245,6 +247,7 @@ describe('Component', function() {
             id: 'child2',
             parent: parent
         });
+
         assert.equal(child.childvalue, 'child');
         assert.equal(child2.childvalue, 'child');
         parent.sendEventToChild();
@@ -264,6 +267,7 @@ describe('Component', function() {
             id: 'child',
             parent: parent
         });
+
         // bubbling
         assert.equal(parent.test, 'value');
         assert.equal(grandparent.test, 'value');
@@ -331,6 +335,7 @@ describe('Component', function() {
         let comp = new Component({
             id: 'test'
         });
+
         assert.isFalse(ko.components.isRegistered('test'));
         Component.registerComponent('test', comp, `test`);
         assert.isTrue(ko.components.isRegistered('test'));
