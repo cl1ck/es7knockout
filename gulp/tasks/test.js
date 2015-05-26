@@ -9,7 +9,7 @@ var runSequence = require('run-sequence');
 gulp.task('test', function(cb) {
     runSequence(
         'clean-reports',
-        ['scsslint', 'jshint'],
+        ['scsslint', 'eslint'],
         'karma',
         cb
     )
