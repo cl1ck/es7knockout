@@ -1,5 +1,6 @@
 import Component from './Component';
 import ko from 'knockout';
+import EventBus from '../event/EventBus';
 
 class ParamTest extends Component {
     constructor(params) {
