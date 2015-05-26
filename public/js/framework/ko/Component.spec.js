@@ -1,6 +1,5 @@
 import Component from './Component';
 import ko from 'knockout';
-import EventBus from '../event/EventBus';
 
 class ParamTest extends Component {
     constructor(params) {
@@ -72,22 +71,24 @@ class EventTestChild extends Component {
     }
 }
 
-describe('Component', function () {
-    it('requires an id', function () {
-        let fn = function () {
+describe('Component', function() {
+    it('requires an id', function() {
+        let fn = function() {
             return new Component();
         };
+
         assert.throws(fn, 'each component must have an "id" param');
     });
 
-    it('requires given parameters', function () {
-        let fn = function () {
+    it('requires given parameters', function() {
+        let fn = function() {
             return new ParamTest({
                 id: 'myid'
             });
         };
+
         assert.throws(fn, 'required parameter "test1" is missing');
-        fn = function () {
+        fn = function() {
             return new ParamTest({
                 id: 'myid',
                 test1: 'test1'
@@ -96,18 +97,18 @@ describe('Component', function () {
         assert.throws(fn, 'required parameter "test2" is missing');
     });
 
-    it('reads id from observables', function () {
+    it('reads id from observables', function() {
         let comp = new Component({
             id: ko.observable('id')
         });
+
         assert.equal(comp._identifier, 'id');
     });
 
-    it('imports common values', function () {
+    it('imports common values', function() {
         let ext = new ComponentTest({
             id: 'ext'
         });
-
         let comp = new ComponentTest({
             id: 'myid',
             testvalue: 'value',
@@ -116,21 +117,20 @@ describe('Component', function () {
 
         assert.equal(comp.testvalue, 'value');
         assert.equal(comp.$testvalue, undefined);
-        assert.throws(function () {
-            comp.testvalue = 'newvalue'
+        assert.throws(function() {
+            comp.testvalue = 'newvalue';
         });
         assert.equal(comp.importedValue, 'value');
         assert.equal(comp.$importedValue, undefined);
-        assert.throws(function () {
-            comp.importedValue = 'newvalue'
+        assert.throws(function() {
+            comp.importedValue = 'newvalue';
         });
     });
 
-    it('imports observables', function () {
+    it('imports observables', function() {
         let ext = new ComponentTest({
             id: 'ext'
         });
-
         let comp = new ComponentTest({
             id: 'myid',
             observable: ko.observable('obsvalue'),
@@ -142,15 +142,15 @@ describe('Component', function () {
         assert.equal(comp.observable, 'obsvalue');
         assert.isTrue(ko.isObservable(comp.$observable));
         assert.equal(comp.$observable(), 'obsvalue');
-        assert.doesNotThrow(function () {
-            comp.observable = 'newValue'
+        assert.doesNotThrow(function() {
+            comp.observable = 'newValue';
         });
 
         // observable as value
         assert.equal(comp.observableAsValue, 'testComp');
         assert.equal(comp.$observableAsValue, undefined);
-        assert.throws(function () {
-            comp.observableAsValue = 1
+        assert.throws(function() {
+            comp.observableAsValue = 1;
         });
 
         // imported observable
@@ -158,22 +158,21 @@ describe('Component', function () {
         assert.equal(comp.importedObservable, 'testComp');
         assert.isTrue(ko.isObservable(comp.$importedObservable));
         assert.equal(comp.$importedObservable(), 'testComp');
-        assert.doesNotThrow(function () {
-            comp.importedObservable = 'newValue'
+        assert.doesNotThrow(function() {
+            comp.importedObservable = 'newValue';
         });
         assert.equal(comp.importedObservable, 'newValue');
         assert.equal(comp.$importedObservable(), 'newValue');
         assert.equal(ext.testCompBaseValue, 'newValue');
     });
 
-    it('imports pureComputed', function () {
+    it('imports pureComputed', function() {
         let ext = new ComponentTest({
             id: 'ext'
         });
-
         let comp = new ComponentTest({
             id: 'myid',
-            computed: ko.pureComputed(function () {
+            computed: ko.pureComputed(function() {
                 return 'test';
             }),
             computedAsValue: ext.testComp,
@@ -186,21 +185,26 @@ describe('Component', function () {
         assert.equal(comp.computed, 'test');
         assert.equal(comp.computedAsValue, 'testComp');
         assert.equal(comp.importedComputed, 'testComp');
-        assert.throws(function () { comp.computed = 1});
-        assert.throws(function() { comp.computedAsValue = 1});
+        assert.throws(function() {
+            comp.computed = 1;
+        });
+        assert.throws(function() {
+            $comp.computedAsValue = 1;
+        });
         assert.doesNotThrow(function() { comp.importedComputed = 'newValue'});
         assert.equal(comp.importedComputed, 'newValue');
         assert.equal(ext.testComp, 'newValue');
     });
 
     it('imports and registers with parent components', function() {
-        let child;
-        let childError;
+        var child;
+        var childError;
         let parent = new ComponentTest({
             id: 'parent',
             test: 'test',
             observable: 'observable'
         });
+
         assert.doesNotThrow(() => {
             child = new ComponentTest({
                 id: 'child',
@@ -230,6 +234,7 @@ describe('Component', function () {
             parent: parent
         });
         assert.equal(parent.test, 'value');
+
         child.sendTestEvent();
         assert.equal(parent.test, 'changed');
     });
@@ -246,6 +251,7 @@ describe('Component', function () {
             id: 'child2',
             parent: parent
         });
+
         assert.equal(child.childvalue, 'child');
         assert.equal(child2.childvalue, 'child');
         parent.sendEventToChild();
@@ -269,6 +275,7 @@ describe('Component', function () {
             id: 'child',
             parent: parent
         });
+
         // bubbling
         assert.equal(parent.test, 'value');
         assert.equal(grandparent.test, 'value');
@@ -318,7 +325,7 @@ describe('Component', function () {
         assert.equal(grandparent.bubble, true);
     });
 
-    it('unregisters childs from parent and EventBus on disposal', function() {
+    it('unregisters childs from parent on disposal', function() {
         let parent = new EventTestParent({
             id: 'parent'
         });
@@ -340,6 +347,7 @@ describe('Component', function () {
         let comp = new Component({
             id: 'test'
         });
+
         assert.isFalse(ko.components.isRegistered('test'));
         Component.registerComponent('test', comp, `test`);
         assert.isTrue(ko.components.isRegistered('test'));

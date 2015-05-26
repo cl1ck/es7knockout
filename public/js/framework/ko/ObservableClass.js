@@ -71,7 +71,6 @@ export default class ObservableClass {
                         value: computed
                     });
                 } else {
-                    console.log('binding ' + obj.name);
                     let func = obj.descriptor.value;
                     this[obj.name] = func.bind(this);
                 }
