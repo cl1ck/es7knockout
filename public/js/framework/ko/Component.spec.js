@@ -251,6 +251,10 @@ describe('Component', function () {
         parent.sendEventToChild();
         assert.equal(child.childvalue, 'parent');
         assert.equal(child2.childvalue, 'child');
+        assert.doesNotThrow(() => {
+            parent.notify('nochild');
+        });
+
     });
 
     it('bubbles events to grandparents', function() {
@@ -327,6 +331,9 @@ describe('Component', function () {
         child.dispose();
         assert.isFalse(parent.hasChild(child._ID));
         assert.isFalse(EventBus.hasNode(child._ID));
+        assert.doesNotThrow(() => {
+            parent.unregisterChildComponent('nochild');
+        });
     });
 
     it('allows to register a component with knockoutjs', () => {

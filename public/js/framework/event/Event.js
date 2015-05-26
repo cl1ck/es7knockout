@@ -1,4 +1,4 @@
-import EventBus from './EventBus';
+    import EventBus from './EventBus';
 
 /**
  * An event for inter-component communication
@@ -25,16 +25,6 @@ export default class Event {
      */
     stop() {
         this.stopped = true;
-    }
-
-    /**
-     * Get ID of the origin component.
-     * @returns {String}
-     */
-    getOriginID() {
-        let regExp = /\(([^)]+)\)/;
-        let matches = regExp.exec(this.origin.toString());
-        return matches[1];
     }
 
     /**

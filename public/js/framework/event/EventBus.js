@@ -53,7 +53,6 @@ class EventBus {
         if (!this.nodes.has(nodeID)) {
             return;
         }
-        console.log('notifying',nodeID.toString());
         this.nodes.get(nodeID).handleEvent(event);
     }
 
@@ -82,12 +81,15 @@ class EventBus {
             return;
         }
 
+        /**
+         * @type {Map}
+         */
         let listeners = this.listeners.get(eventName);
 
         if (!listeners.has(listenerID)) {
             return;
         }
-        listeners.remove(listenerID);
+        listeners.delete(listenerID);
     }
 
     /**

@@ -22,7 +22,8 @@ module.exports = function(config) {
         babelPreprocessor: {
             options: {
                 modules: 'system',
-                sourceMap: 'inline'
+                sourceMap: 'inline',
+                stage: 1
             }
         },
 
