@@ -5,6 +5,7 @@
 *.orig
 build
 temp
+doc
 Desktop.ini
 node_modules
 bower_components
