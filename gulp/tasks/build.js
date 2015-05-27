@@ -9,8 +9,8 @@ var runSequence = require('run-sequence');
 
 gulp.task('build', function(cb) {
     runSequence(
-        'clean-build',
-        ['javascript-build', 'sass-build', 'images-build', 'html-build'],
+        ['clean-build', 'clean-docs'],
+        ['javascript-build', 'jsdoc', 'styleguide', 'sass-build', 'images-build', 'html-build'],
         cb
     );
 });
