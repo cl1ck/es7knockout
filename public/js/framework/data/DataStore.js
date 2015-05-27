@@ -8,7 +8,9 @@ import ObservableClass from '../ko/ObservableClass';
 export default class DataStore extends ObservableClass {
     /**
      * Constructor
-     * @param name name of the data store
+     * @constructor
+     * @param {String} name of the data store
+     * @returns {DataStore} new DataStore
      */
     constructor(name = 'datastore') {
         super();
@@ -28,11 +30,12 @@ export default class DataStore extends ObservableClass {
      *
      * Usually used to update data store from JSON data obtained from an API.
      *
-     * @param data object used to update data store
+     * @param {object} data used to update data store
+     * @returns {undefined}
      */
     update(data) {
         if (!(data instanceof Object)) {
-            throw 'update data must be an instance of Object';
+            throw new Error('update data must be an instance of Object');
         }
 
         Object.getOwnPropertyNames(data)
@@ -44,8 +47,9 @@ export default class DataStore extends ObservableClass {
 
     /**
      * Update a data store value
-     * @param key name of the value to update
-     * @param value new value
+     * @param {string} key name of the value to update
+     * @param {*} value new value
+     * @returns {undefined}
      */
     set(key, value) {
         if (!this[key]) {
@@ -56,8 +60,8 @@ export default class DataStore extends ObservableClass {
 
     /**
      * Register callback for global event
-     * @param event name of the event to register
-     * @param callback the callback function
+     * @param {string} event name of the event to register
+     * @param {function} callback the callback function
      */
     on(event, callback) {
         EventBus.registerListener(this._ID, event, callback);

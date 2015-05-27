@@ -16,6 +16,7 @@ class EventNode {
 describe('EventBus', () => {
     it('allows to register and unregister nodes', () => {
         let id = EventBus.registerNode('test', 'node');
+
         assert.isTrue(EventBus.hasNode(id));
         EventBus.unregisterNode(id);
         assert.isFalse(EventBus.hasNode(id));
@@ -46,6 +47,7 @@ describe('EventBus', () => {
 
     it('does not route events to removed listeners', () => {
         let changed = false;
+
         EventBus.registerListener('listener', 'event2', (event) => {
             changed = true;
         });
@@ -57,6 +59,7 @@ describe('EventBus', () => {
     it('allows to notify nodes directly', () => {
         let node = new EventNode();
         let id = EventBus.registerNode(node, 'node');
+
         EventBus.notify(id, new Event('event', 'nowhere', 'data'));
         assert.equal(node.data, 'data');
         assert.equal(node.name, 'event');

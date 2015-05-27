@@ -1,8 +1,8 @@
 export default {
-    'global': {
+    global: {
         debug: false
     },
-    'dev': {
+    dev: {
         debug: true
     }
-}
+};
