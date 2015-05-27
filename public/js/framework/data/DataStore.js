@@ -1,84 +1,22 @@
-import ko from 'knockout';
 import EventBus from '../event/EventBus';
 import {isArray} from '../util/Utilities';
+import ObservableClass from '../ko/ObservableClass';
 
 /**
- * Used to securely update data store values.
+ * A data store.
  */
-class Update {
-    constructor(value) {
-        this.value = value;
-    }
-}
-
-/**
- * A 'somehow' protected data store.
- */
-export default class DataStore {
+export default class DataStore extends ObservableClass {
     /**
      * Constructor
      * @param name name of the data store
      */
     constructor(name = 'datastore') {
-        this._setters = new Map();
+        super();
         this._ID = EventBus.registerNode(this, name);
-    }
-
-    /**
-     * Converts object properties to secured knockout observables.
-     */
-    importData() {
-        Object.getOwnPropertyNames(this)
-            .map(name => ({
-                name,
-                descriptor: Object.getOwnPropertyDescriptor(this, name)
-            }))
-            .filter(obj => obj.descriptor.configurable)
-            .filter(obj => ['_', '$'].indexOf(obj.name.substr(0, 1)))
-            .forEach(obj => {
-                if (this[obj.name] instanceof DataStore) {
-                    throw 'importing DataStores into DataStores is not allowed';
-                }
-
-                let observable;
-                if (Object.prototype.toString.call(this[obj.name]) === '[object Array]') {
-                    observable = this['$' + obj.name] = ko.observableArray(this[obj.name]);
-                } else {
-                    observable = this['$' + obj.name] = ko.observable(this[obj.name]);
-                }
-
-                // secure setter
-                let setter = function (update) {
-                    if (!(update instanceof Update)) {
-                        throw 'only Updates may change values on a datastore';
-                    }
-                    observable(update.value);
-                };
-
-                // store all setters for easier access
-                this._setters.set(obj.name, setter);
-
-                Object.defineProperty(this, obj.name, {
-                    enumerable: true,
-                    configurable: false,
-                    get: observable,
-                    set: setter
-                })
-            });
-
-        // auto-bind data store methods to 'this'
-        let proto = Object.getPrototypeOf(this);
-        Object.getOwnPropertyNames(proto)
-            .map(name => ({
-                name,
-                descriptor: Object.getOwnPropertyDescriptor(proto, name)
-            }))
-            .filter(obj => obj.descriptor.configurable)
-            .filter(obj => obj.name !== 'constructor')
-            .forEach(obj => {
-                let func = obj.descriptor.value;
-                this[obj.name] = func.bind(this);
-            });
+        this.on('changed:' + name, (event) => {
+            this.update(event.data);
+            event.stop();
+        });
     }
 
     /**
@@ -101,7 +39,7 @@ export default class DataStore {
             .filter(name => this._setters.has(name))
             .forEach(name => {
                 this.set(name, data[name]);
-            })
+            });
     }
 
     /**
@@ -110,11 +48,10 @@ export default class DataStore {
      * @param value new value
      */
     set(key, value) {
-        if (!this._setters.has(key)) {
-            throw 'property ' + key + ' does not exist in DataStore';
+        if (!this[key]) {
+            throw 'value with key ' + key + ' does not exist!';
         }
-        let updater = new Update(value);
-        this._setters.get(key)(updater);
+        this[key] = value;
     }
 
     /**

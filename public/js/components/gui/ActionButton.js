@@ -1,8 +1,5 @@
 // import Component base class
-import Component from '../../ko/Component';
-
-// import template file
-import template from './ActionButton.html!text';
+import Component from '../../framework/ko/Component';
 
 // extend the Component base class
 export default class ActionButton extends Component {
@@ -14,7 +11,7 @@ export default class ActionButton extends Component {
         /**
          * Always call 'super' first!
          * The additional parameters define required parameters from knockout.
-         * When creating the component from within a template, an exception will be thrown if one of them is missing. .
+         * When creating the component from within a template, an exception will be thrown if one of them is missing.
          *
          * A valid implementation is shown below.
          */
@@ -62,6 +59,17 @@ export default class ActionButton extends Component {
         this.emit(this.event, this.data);
     }
 }
+
+let template = `<button data-bind="click: click, attr: { title: title }, enable: enabled">
+    <!-- ko if: !clicked -->
+    <i data-bind="css: 'fa fa-' + icon"></i>
+    <!-- /ko -->
+    <!-- ko if: clicked -->
+    <i class="fa fa-spinner fa-spin"></i>
+    <!-- /ko -->
+    <span data-bind="text: title"></span>
+</button>
+<!-- /ko -->`;
 
 // finally register your custom element for the component
 Component.registerComponent('action-button', ActionButton, template);

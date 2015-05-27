@@ -1,5 +1,4 @@
 import ko from 'knockout';
-import DataStore from '../data/DataStore';
 
 export default class ObservableClass {
     /**
@@ -13,8 +12,8 @@ export default class ObservableClass {
             }))
             .filter(obj => obj.descriptor.configurable)
             .filter(obj => {
-                // filter data stores
-                return !(this[obj.name] instanceof DataStore);
+                // filter other observable classes
+                return !(this[obj.name] instanceof ObservableClass);
             })
             .filter(obj => ['_', '$'].indexOf(obj.name.substr(0, 1)))
             .forEach(obj => {
@@ -74,6 +73,6 @@ export default class ObservableClass {
                     let func = obj.descriptor.value;
                     this[obj.name] = func.bind(this);
                 }
-            })
+            });
     }
 }

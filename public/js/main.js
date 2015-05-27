@@ -1,7 +1,7 @@
 import KnockoutApplication from './framework/app/KnockoutApplication';
 
 // import required components
-import ActionButton from './framework/components/gui/ActionButton';
+import ActionButton from './components/gui/ActionButton';
 
 class Main extends KnockoutApplication {
     constructor(context) {
