@@ -87,7 +87,8 @@ module.exports = {
     },
 
     documentation: {
-        subDir: 'doc'
+        subDir: 'doc',
+        configFile: 'jsdoc.conf'
     },
 
     // styleguide

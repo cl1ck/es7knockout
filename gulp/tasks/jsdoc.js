@@ -9,5 +9,5 @@ var shell = require('gulp-shell');
 var handleErrors = require('../handleErrors');
 
 gulp.task('jsdoc', shell.task([
-    './node_modules/jsdoc/jsdoc.js public/js -r -d ' + config.documentation.subDir
+    './node_modules/jsdoc/jsdoc.js public/js -r -c ' + config.baseDir + config.documentation.configFile + ' -d ' + config.documentation.subDir
 ]));
