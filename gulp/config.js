@@ -86,11 +86,14 @@ module.exports = {
         esLintOutput: reportDir + '/eslint-checkstyle.xml'
     },
 
+    documentation: {
+        subDir: 'doc'
+    },
+
     // styleguide
     styleguide: {
-        subDir: 'doc/',
         title: projectTitle,
-        post: 3500
+        port: 3500
     },
 
     // testrunner config
