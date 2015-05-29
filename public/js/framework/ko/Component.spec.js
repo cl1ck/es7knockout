@@ -1,5 +1,6 @@
 import Component from './Component';
 import ko from 'knockout';
+import EventBus from '../event/EventBus';
 
 class ParamTest extends Component {
     constructor(params) {
@@ -257,6 +258,10 @@ describe('Component', function() {
         parent.sendEventToChild();
         assert.equal(child.childvalue, 'parent');
         assert.equal(child2.childvalue, 'child');
+        assert.doesNotThrow(() => {
+            parent.notify('nochild');
+        });
+
     });
 
     it('bubbles events to grandparents', function() {
@@ -333,6 +338,10 @@ describe('Component', function() {
         assert.isTrue(parent.hasChild(child._ID));
         child.dispose();
         assert.isFalse(parent.hasChild(child._ID));
+        assert.isFalse(EventBus.hasNode(child._ID));
+        assert.doesNotThrow(() => {
+            parent.unregisterChildComponent('nochild');
+        });
     });
 
     it('allows to register a component with knockoutjs', () => {

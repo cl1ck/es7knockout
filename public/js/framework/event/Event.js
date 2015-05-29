@@ -1,4 +1,4 @@
-import EventBus from './EventBus';
+    import EventBus from './EventBus';
 
 /**
  * An event for inter-component communication

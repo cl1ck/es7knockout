@@ -80,12 +80,15 @@ class EventBus {
             return;
         }
 
+        /**
+         * @type {Map}
+         */
         let listeners = this.listeners.get(eventName);
 
         if (!listeners.has(listenerID)) {
             return;
         }
-        listeners.remove(listenerID);
+        listeners.delete(listenerID);
     }
 
     /**

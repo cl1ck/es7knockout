@@ -2,6 +2,7 @@ import ObservableClass from './ObservableClass';
 import ko from 'knockout';
 import EventBus from '../event/EventBus';
 import Event from '../event/Event';
+import DataStore from '../data/DataStore';
 
 export default class Component extends ObservableClass {
     /**
@@ -49,19 +50,31 @@ export default class Component extends ObservableClass {
             .filter(obj => obj.descriptor.configurable)
             .filter(obj => obj.name !== '$raw')
             .forEach(obj => {
-                if (ko.isComputed(obj.descriptor.value) || ko.isObservable(obj.descriptor.value)) {
-                    // import knockout subscribables
+                if (ko.isComputed(obj.descriptor.value)) {
+                    // import knockout computed
                     let subscribable = this['$' + obj.name] = obj.descriptor.value;
 
-                    // redefine function to use getter and setter of subscribable
+                    // redefine property to use getter and setter of subscribable
+                    console.log(obj.descriptor.value.hasWriteFunction);
                     Object.defineProperty(this, obj.name, {
                         enumerable: true,
                         configurable: false,
                         get: subscribable,
-                        set: obj.descriptor.writable || obj.descriptor.set ? subscribable : undefined
+                        set: obj.descriptor.value.hasWriteFunction ? subscribable : undefined
+                    });
+                } else if (ko.isObservable(obj.descriptor.value)) {
+                    // import knockout observables
+                    let subscribable = this['$' + obj.name] = obj.descriptor.value;
+
+                    // redefine property to use getter and setter of subscribable
+                    console.log(obj.descriptor);
+                    Object.defineProperty(this, obj.name, {
+                        enumerable: true,
+                        configurable: false,
+                        get: subscribable,
+                        set: subscribable
                     });
                 } else {
-                    // import common values
                     let value = obj.descriptor.value;
                     delete this[obj.name];
 

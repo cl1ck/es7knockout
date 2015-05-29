@@ -10,7 +10,7 @@ class ImportTest extends ObservableClass {
         this.intProperty = 3;
         this.undefinedProperty = undefined;
         this.nullProperty = null;
-        this.objectProperty = { test: 'test '};
+        this.objectProperty = {test: 'test '};
         this.trueProperty = true;
         this.falseProperty = false;
         this._ignoredProperty = 'test';
@@ -36,8 +36,8 @@ class ImportTest extends ObservableClass {
     }
 }
 
-describe('ObservableClass', function() {
-    it('should import all properties as observable', function() {
+describe('ObservableClass', function () {
+    it('should import all properties as observable', function () {
         let importTest = new ImportTest();
         assert.isTrue(ko.isObservable(importTest.$stringProperty));
         assert.isTrue(ko.isObservable(importTest.$arrayProperty));
@@ -49,23 +49,23 @@ describe('ObservableClass', function() {
         assert.isTrue(ko.isObservable(importTest.$falseProperty));
     });
 
-    it('should not import properties after importObservables', function() {
+    it('should not import properties after importObservables', function () {
         let importTest = new ImportTest();
         assert.equal(importTest.$noObservable, undefined);
     });
 
-    it('should import arrays as observableArray', function() {
+    it('should import arrays as observableArray', function () {
         let importTest = new ImportTest();
         assert.equal(typeof importTest.$arrayProperty.removeAll, 'function');
     });
 
-    it('should maintain read and write access to properties', function() {
+    it('should maintain read and write access to properties', function () {
         let importTest = new ImportTest();
         importTest.stringProperty = 'newValue';
         assert.equal(importTest.stringProperty, 'newValue');
     });
 
-    it('should update the underlying observable', function() {
+    it('should update the underlying observable', function () {
         let importTest = new ImportTest();
         importTest.stringProperty = 'newValue';
         assert.equal(importTest.$stringProperty(), 'newValue');

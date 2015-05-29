@@ -9,7 +9,7 @@ export default class KnockoutApplication extends Component {
      * Constructor
      * @param initialContext set initial app context (e.g. 'dev' or 'production')
      */
-    constructor(initialContext = 'production') {
+    constructor(initialContext = 'global') {
         context.setContext(initialContext);
         super({id: 'App'});
 
@@ -31,6 +31,7 @@ export default class KnockoutApplication extends Component {
         }
 
         ko.applyBindings(this, document.getElementById('app'));
+        this.running = true;
     }
 
     /**
