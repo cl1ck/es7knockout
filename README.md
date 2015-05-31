@@ -129,10 +129,10 @@ To update `buildit` merge all changes into your fork:
 
 ```
 git pull buildit master
+npm prune
 npm install
 jspm install
 ```
 
 ## Roadmap
 - [ ] add jsdoc or some other kind of js source docs
-- [ ] add code coverage as soon as the [problems with karma-jspm](https://github.com/Workiva/karma-jspm/issues/22) are solved
