@@ -4,7 +4,8 @@ System.config({
   "babelOptions": {
     "optional": [
       "runtime"
-    ]
+    ],
+    "stage": 1
   },
   "paths": {
     "*": "*.js",
@@ -19,8 +20,11 @@ System.config({
     "babel-runtime": "npm:babel-runtime@5.2.15",
     "chai": "npm:chai@2.3.0",
     "core-js": "npm:core-js@0.9.6",
+    "jquery": "github:components/jquery@2.1.4",
     "knockout": "github:knockout/knockout@3.3.0",
+    "sinon": "npm:sinon@1.14.1",
     "sinon-chai": "npm:sinon-chai@2.7.0",
+    "socket.io-client": "github:Automattic/socket.io-client@1.3.5",
     "systemjs/plugin-text": "github:systemjs/plugin-text@0.0.2",
     "text": "github:systemjs/plugin-text@0.0.2",
     "github:jspm/nodelibs-buffer@0.1.0": {

@@ -1,9 +1,5 @@
-module.exports = function () {
-    var babelPreprocessor = file => require('babel').transform(file.content, {
-        modules: 'system',
-        sourceMap: 'inline',
-        stage: 1
-    });
+module.exports = function (wallaby) {
+    var babel = require('babel');
 
     return {
         testFramework: 'mocha@2.2.4',
@@ -24,8 +20,12 @@ module.exports = function () {
             {pattern: 'public/js/**/*.spec.js', load: false}
         ],
 
-        preprocessors: {
-            'public/js/**/*.js': babelPreprocessor
+        compilers: {
+            'public/js/**/*.js': wallaby.compilers.babel({
+                babel: babel,
+                modules: 'system',
+                stage: 1
+            })
         },
 
         middleware: (app, express) => {
@@ -40,6 +40,7 @@ module.exports = function () {
 
             var promises = [];
             promises.push(System.import('chai'));
+            promises.push(System.import('sinon'));
             for (var i = 0, len = wallaby.tests.length; i < len; i++) {
                 promises.push(System.import(wallaby.tests[i].replace(/\.js$/, '')));
             }

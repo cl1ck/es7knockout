@@ -32,13 +32,17 @@ export default class Component extends ObservableClass {
             this.setParentComponent(parameters.parent);
         }
 
+        this.importParameters(parameters, requiredParameters);
+    }
+
+    importParameters(parameters, requiredParameters) {
         // ensure all required parameters exist
         if (requiredParameters) {
             requiredParameters.forEach(parameter => {
                 if (parameters[parameter] === undefined) {
                     throw 'required parameter "' + parameter + '" is missing';
                 }
-            })
+            });
         }
 
         // import parameters
@@ -55,7 +59,6 @@ export default class Component extends ObservableClass {
                     let subscribable = this['$' + obj.name] = obj.descriptor.value;
 
                     // redefine property to use getter and setter of subscribable
-                    console.log(obj.descriptor.value.hasWriteFunction);
                     Object.defineProperty(this, obj.name, {
                         enumerable: true,
                         configurable: false,
@@ -67,7 +70,6 @@ export default class Component extends ObservableClass {
                     let subscribable = this['$' + obj.name] = obj.descriptor.value;
 
                     // redefine property to use getter and setter of subscribable
-                    console.log(obj.descriptor);
                     Object.defineProperty(this, obj.name, {
                         enumerable: true,
                         configurable: false,
@@ -76,6 +78,7 @@ export default class Component extends ObservableClass {
                     });
                 } else {
                     let value = obj.descriptor.value;
+
                     delete this[obj.name];
 
                     // writing to imported common values is forbidden
@@ -87,6 +90,10 @@ export default class Component extends ObservableClass {
                     });
                 }
             });
+    }
+
+    importDataStore(dataStore) {
+
     }
 
     static registerComponent(customElementName, viewModel, template) {
@@ -104,11 +111,12 @@ export default class Component extends ObservableClass {
 
     /**
      * Set parent node
-     * @param {Component} parentComponent
+     * @param {Component} parentComponent the component's parent node
+     * @returns {undefined} -
      */
     setParentComponent(parentComponent) {
         if (!(parentComponent instanceof Component)) {
-            throw 'parent must be an instance of Component';
+            throw new Error('parent must be an instance of Component');
         }
         this._parent = parentComponent;
         this._parentID = parentComponent._ID;
@@ -117,7 +125,8 @@ export default class Component extends ObservableClass {
 
     /**
      * Receives and handles an event
-     * @param {Event} event
+     * @param {Event} event the event to handle
+     * @returns {undefined} -
      */
     handleEvent(event) {
         // handle event
@@ -132,6 +141,10 @@ export default class Component extends ObservableClass {
         }
     }
 
+    /**
+     *
+     * @param event
+     */
     bubbleEvent(event) {
         if (this._parentID !== null) {
             EventBus.notify(this._parentID, event);

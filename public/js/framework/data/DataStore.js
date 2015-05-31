@@ -15,10 +15,27 @@ export default class DataStore extends ObservableClass {
     constructor(name = 'datastore') {
         super();
         this._ID = EventBus.registerNode(this, name);
-        this.on('changed:' + name, (event) => {
+        this.on(name + ':update', (event) => {
             this.update(event.data);
             event.stop();
         });
+    }
+
+    /**
+     * Get a list of all properties the data store provides.
+     * @returns {string[]} array containing all available properties
+     */
+    provides() {
+        return Object.getOwnPropertyNames(this)
+            .map(name => ({
+                name,
+                descriptor: Object.getOwnPropertyDescriptor(this, name)
+            }))
+            .filter(obj => obj.descriptor.configurable && obj.descriptor.enumerable)
+            .filter(obj =>
+                ko.isComputed(obj.descriptor.value) || ko.isObservable(obj.descriptor.value)
+            )
+            .map(obj => obj.name.substr(1));
     }
 
     /**
@@ -31,7 +48,7 @@ export default class DataStore extends ObservableClass {
      * Usually used to update data store from JSON data obtained from an API.
      *
      * @param {object} data used to update data store
-     * @returns {undefined}
+     * @returns {undefined} -
      */
     update(data) {
         if (!(data instanceof Object)) {
@@ -49,7 +66,7 @@ export default class DataStore extends ObservableClass {
      * Update a data store value
      * @param {string} key name of the value to update
      * @param {*} value new value
-     * @returns {undefined}
+     * @returns {undefined} -
      */
     set(key, value) {
         if (!this[key]) {
@@ -62,6 +79,7 @@ export default class DataStore extends ObservableClass {
      * Register callback for global event
      * @param {string} event name of the event to register
      * @param {function} callback the callback function
+     * @returns {undefined} -
      */
     on(event, callback) {
         EventBus.registerListener(this._ID, event, callback);

@@ -1,6 +1,5 @@
 describe('Main', () => {
-  it('should be true', () => {
-    assert.isTrue(true);
-  });
+    it('should be true', () => {
+        assert.isTrue(true);
+    });
 });
-
