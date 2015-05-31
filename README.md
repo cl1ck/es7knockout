@@ -135,4 +135,3 @@ jspm install
 ```
 
 ## Roadmap
-- [ ] add jsdoc or some other kind of js source docs
