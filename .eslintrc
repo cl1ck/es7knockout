@@ -32,7 +32,7 @@
 
     // best practices:
     "block-scoped-var": 2,
-    "complexity": [1, 2],
+    "complexity": [1, 4],
     "consistent-return": 1,
     "curly": 2,
     "default-case": 1,
