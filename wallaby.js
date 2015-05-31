@@ -1,4 +1,4 @@
-module.exports = function (wallaby) {
+module.exports = function(wallaby) {
     var babel = require('babel');
 
     return {
@@ -32,7 +32,7 @@ module.exports = function (wallaby) {
             app.use('/jspm_packages', express.static(require('path').join(__dirname, 'jspm_packages')));
         },
 
-        bootstrap: function (wallaby) {
+        bootstrap: function(wallaby) {
             wallaby.delayStart();
 
             var mocha = wallaby.testFramework;
@@ -45,7 +45,7 @@ module.exports = function (wallaby) {
                 promises.push(System.import(wallaby.tests[i].replace(/\.js$/, '')));
             }
 
-            Promise.all(promises).then(function () {
+            Promise.all(promises).then(function() {
                 window.assert = chai.assert;
                 window.expect = chai.expect;
                 wallaby.start();
