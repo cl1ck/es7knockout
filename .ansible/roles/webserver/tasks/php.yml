@@ -1,3 +1,8 @@
 ---
+- name: php56 ppa
+  apt_repository: repo='ppa:ondrej/php5-5.6' update_cache=yes
 - name: install php
-  apt: name=php5 state=present
+  apt: pkg={{item}} state=present
+  with_items:
+    - php5
+    - php5-xdebug
