@@ -1,6 +1,8 @@
 import AJAX from './AJAX';
 import Config from '../app/AppConfig';
 
+let xhr = sinon.useFakeXMLHttpRequest();
+
 Config.setContext('dev');
 
 describe('AJAX', () => {
