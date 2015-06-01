@@ -1,0 +1,5 @@
+---
+- name: get dotfiles
+  git: repo=https://github.com/cl1ck/dotfiles
+       dest=/home/vagrant/.dotfiles
+       force=yes

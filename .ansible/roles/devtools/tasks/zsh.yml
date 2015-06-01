@@ -1,0 +1,23 @@
+- name: install zsh
+  apt: name=zsh state=present
+  sudo: yes
+
+- name: Changing the default shell to zsh
+  user: shell=/bin/zsh user=vagrant
+  sudo: yes
+
+- name: load zprezto
+  git: repo=https://github.com/sorin-ionescu/prezto.git
+       dest=/home/vagrant/.zprezto
+
+- name: install zprezto
+  command: /home/vagrant/.dotfiles/zsh/install
+  args:
+    chdir: /home/vagrant
+
+- name: symlink zpreztorc
+  file: src=/home/vagrant/.dotfiles/zsh/.zpreztorc
+        dest=/home/vagrant/.zpreztorc
+        owner=vagrant
+        group=vagrant
+        state=link

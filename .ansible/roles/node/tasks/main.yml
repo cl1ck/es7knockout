@@ -1,0 +1,5 @@
+---
+- include: node.yml
+  sudo: yes
+- include: global_packages.yml
+- include: dependencies.yml

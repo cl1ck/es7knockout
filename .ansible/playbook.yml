@@ -1,0 +1,13 @@
+---
+- hosts: all
+  vars:
+    document_root: /vagrant
+  pre_tasks:
+    - name: update apt cache
+      apt: update_cache=yes
+      sudo: yes
+  roles:
+    - webserver
+    - database
+    - devtools
+    - node

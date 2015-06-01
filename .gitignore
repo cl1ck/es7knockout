@@ -15,3 +15,6 @@ buildit.sublime-workspace
 jspm_packages
 reports
 Gemfile.lock
+.vagrant
+tmp
+cookbooks
