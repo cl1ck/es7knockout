@@ -73,7 +73,8 @@
     "run-sequence": "^1.1.0",
     "sc5-styleguide": "^0.3.16",
     "sinon": "^1.14.1",
-    "sinon-chai": "^2.7.0"
+    "sinon-chai": "^2.7.0",
+    "try-thread-sleep": "^1.0.0"
   },
   "jspm": {
     "directories": {},
