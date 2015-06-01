@@ -1,36 +1,31 @@
 # buildit
 [![Build Status](http://jenkins.cl1ck0ne.net/buildStatus/icon?job=buildit)](http://jenkins.cl1ck0ne.net/job/buildit/)
 
-
 Starter project for my personal frontend development projects.
-Based on [gulp-starter](https://github.com/greypants/gulp-starter/) by [greypants](https://github.com/greypants/).
 
-Includes the following tools, tasks, and workflows:
-
-- [JSPM](https://jspm.io) (modern package manager for the frontend)
-- [ES6](http://kangax.github.io/compat-table/es6/) Harmony support using the babel transpiler
+- [Vagrant](https://www.vagrantup.com/) and [Ansible](http://www.ansible.com) for provisioning a development VM
+- [JSPM](https://jspm.io) as frontend [ES6](http://kangax.github.io/compat-table/es6/) package manager
 - [SASS](http://sass-lang.com/) (using libsass with [source maps](https://github.com/sindresorhus/gulp-ruby-sass#sourcemap) and [autoprefixer](https://github.com/sindresorhus/gulp-autoprefixer))
 - [BrowserSync](http://browsersync.io) for live reloading
 - [SC5 Styleguide](http://styleguide.sc5.io/) for generating awesome styleguides using KSS notation
 - Testing with Karma, Mocha, Sinon & Chai
-- Linting and codestyle check for all source files
+- Linting for all source files
 - Image optimization
 - Error notifications in Notification Center
 
 *NOTE:* This project does not contain any example code! If you want a more complete example of how to use `buildit`
 check out [buildit-example](https://github.com/cl1ck/buildit-example).
 
-
 ## Start new project
 
-To start a new project `app` simply fork `buildit`:
+To start a new project `app` clone `buildit`:
 
 ```
 git clone -o buildit https://github.com/cl1ck/buildit.git app
 cd app
 ```
 
-Then add the remote origin of your new project:
+Then add your remote:
 
 ```
 git remote add origin git@github.com:username/app.git
@@ -38,69 +33,34 @@ git push origin master
 git branch --set-upstream-to origin/master
 ```
 
-## Installation: Quick guide (experienced user)
+## Installation
 
-Make sure the sass and scss-lint ruby gems are installed. Then do:
+`buildit` uses Ansible + Vagrant to provision a development VM.
 
-```
-npm install
-npm install gulp jspm karma-cli -g
-jspm install
-```
+### 1. Install Ansible
 
-## Installation: Detailed (new to nodejs / gulp)
-
-`buildit` requires several dependencies. In order to install them, follow the instructions below. *You may need to use `sudo` for some commands*
-
-### 1. Install nodejs
-
-If you've never used Node or npm before, you'll need to install nodejs.
-If you use homebrew on OS X, do:
-
-```
-brew install node
-```
-
-Otherwise, you can download and install from [here](http://nodejs.org/download/).
-
-### 2. Install jspm, gulp and the karma-cli globally
-
-jspm, gulp and karma-cli should be installed globally in order to use the command line tools.
-
-```
-npm install gulp jspm karma-cli -g
-```
-
-### 3. Install npm & jspm dependencies
-
-```
-npm install
-jspm install
-```
-
-Install all npm and jspm dependencies.
-
-### 4. Install ruby dependencies
-
-Make sure ruby is installed. Then use the following commands to install the gems:
-
-```
-gem install bundler
-bundle install
-```
-
-## Installation: Ansible + Vagrant
-
-### 1. install Ansible
+On OS X make sure XCode is installed. Then do:
 
 ```
 easy_install pip
 pip install ansible
 ```
 
+### 2. Install Vagrant
+
+Download and install Vagrant from the [official download page](https://www.vagrantup.com/downloads.html).
+
+### 3. Provision the development box
+
+```
+vagrant up
+```
+
 ## Development
 
 ```
+vagrant ssh
+cd /vagrant
 gulp
 ```
 
@@ -143,5 +103,11 @@ npm install
 jspm install
 ```
 
+If your using Vagrant installation do:
+
+```
+git pull buildit master
+vagrant provision
+```
+
 ## Roadmap
-[ ] rework docs for Vagrant

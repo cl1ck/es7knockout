@@ -1,0 +1,23 @@
+- name: install vim
+  apt: name=vim state=present
+  sudo: yes
+
+- name: symlink vimrc
+  file: src=/home/vagrant/.dotfiles/vim/.vimrc
+        dest=/home/vagrant/.vimrc
+        owner=vagrant
+        group=vagrant
+        state=link
+
+- name: prepare Neobundle
+  file: dest=/home/vagrant/.vim/bundle
+        state=directory
+
+- name: install Neobundle
+  git: repo=https://github.com/Shougo/neobundle.vim
+       dest=/home/vagrant/.vim/bundle/neobundle.vim
+
+- name: install Bundles
+  command: /home/vagrant/.vim/bundle/neobundle.vim/bin/neoinstall
+  args:
+    chdir: /home/vagrant

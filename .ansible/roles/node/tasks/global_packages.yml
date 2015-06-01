@@ -1,0 +1,9 @@
+---
+- name: Install gulp
+  npm: name=gulp global=yes
+
+- name: Install karma-cli
+  npm: name=karma-cli global=yes
+
+- name: Install jspm
+  npm: name=jspm global=yes

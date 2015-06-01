@@ -1,0 +1,9 @@
+---
+- name: install nodejs
+  apt: name=nodejs state=present
+
+- name: install npm
+  apt: name=npm state=present
+
+- name: symlink node
+  command: update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10

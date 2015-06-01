@@ -1,0 +1,14 @@
+- name: npm prune
+  command: npm prune
+  args:
+    chdir: /vagrant
+
+- name: npm install
+  command: npm install
+  args:
+    chdir: /vagrant
+
+- name: jspm install
+  command: jspm install
+  args:
+    chdir: /vagrant
