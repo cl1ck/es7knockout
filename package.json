@@ -81,7 +81,6 @@
     "configFile": "jspm_config.js",
     "dependencies": {
       "chai": "npm:chai@^2.3.0",
-      "knockout": "github:knockout/knockout@^3.3.0",
       "sinon-chai": "npm:sinon-chai@^2.7.0",
       "systemjs/plugin-text": "github:systemjs/plugin-text@^0.0.2"
     },

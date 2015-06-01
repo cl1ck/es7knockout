@@ -19,7 +19,6 @@ System.config({
     "babel-runtime": "npm:babel-runtime@5.2.15",
     "chai": "npm:chai@2.3.0",
     "core-js": "npm:core-js@0.9.6",
-    "knockout": "github:knockout/knockout@3.3.0",
     "sinon-chai": "npm:sinon-chai@2.7.0",
     "systemjs/plugin-text": "github:systemjs/plugin-text@0.0.2",
     "github:jspm/nodelibs-buffer@0.1.0": {
