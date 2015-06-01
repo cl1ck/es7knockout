@@ -1,6 +1,8 @@
 ---
 - include: node.yml
   sudo: yes
+- include: phantomjs.yml
+  sudo: yes
 - include: global_packages.yml
   sudo: yes
 - include: dependencies.yml
