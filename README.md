@@ -56,11 +56,18 @@ Download and install Vagrant from the [official download page](https://www.vagra
 vagrant up
 ```
 
-## Development
+## Working with `buildit`
+
+To use the following tasks you need to SSH into the Vagrant VM:
 
 ```
 vagrant ssh
 cd /vagrant
+```
+
+### Development task
+
+```
 gulp
 ```
 
@@ -71,16 +78,16 @@ The generated styleguide will be located at [http://localhost:3500](http://local
 
 This will also start watching your source folders and automatically compile and serve any changes you make.
 
-## Testing
+### Test task
 
 ```
 gulp test
 ```
 
 This will lint and check codestyle for all sourcefiles and run your tests.
-Tests reside in the `src/test` directory and end with `spec.js`.
+Tests are in the same folder as the sourcefiles and have to end with `.spec.js`.
 
-## Production
+### Production
 
 ```
 gulp build
@@ -90,24 +97,14 @@ Bundle your application for production by combining, minifying and optimizing al
 
 ## Configuration
 
-All paths and plugin settings have been abstracted into a centralized config object in `gulp/config.js`. Adapt the paths and settings to the structure and needs of your project.
+All paths and plugin settings have been abstracted into a centralized config object in `gulp/config.js`.
+Adapt the paths and settings to the structure and needs of your project.
 
 ## Update
 
-To update `buildit` merge all changes into your fork:
-
-```
-git pull buildit master
-npm prune
-npm install
-jspm install
-```
-
-If your using Vagrant installation do:
+To update `buildit` merge all changes into your fork, then re-provision vagrant:
 
 ```
 git pull buildit master
 vagrant provision
 ```
-
-## Roadmap
