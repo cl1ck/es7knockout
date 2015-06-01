@@ -327,7 +327,6 @@
     },
     "globals": {
         "chai": true,
-        "assert": true,
-        "define": true
+        "assert": true
     }
 }
