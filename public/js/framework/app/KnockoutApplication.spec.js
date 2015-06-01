@@ -1,20 +1,10 @@
 import KnockoutApplication from './KnockoutApplication';
+import Config from './AppConfig';
 
 describe('KnockoutApplication', () => {
-    it('allows to set and get valid configuration contexts', () => {
+    it('will bind app to DOM once', () => {
         let app = new KnockoutApplication();
-        assert.equal(KnockoutApplication.getContext(), 'global');
-        assert.doesNotThrow(() => {
-            KnockoutApplication.setContext('dev');
-        });
-        assert.equal(KnockoutApplication.getContext(), 'dev');
-        assert.throws(() => {
-            KnockoutApplication.setContext('nocontext');
-        });
-    });
 
-    it('will bind app to DOM', () => {
-        let app = new KnockoutApplication();
         assert.doesNotThrow(() => {
             app.run();
         });

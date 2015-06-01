@@ -1,22 +1,22 @@
 import ko from 'knockout';
-import context from './AppContext';
-import config from './ContextConfig';
+import Config from './AppConfig';
 import Component from '../ko/Component';
 import EventBus from '../event/EventBus';
 
 export default class KnockoutApplication extends Component {
     /**
      * Constructor
-     * @param initialContext set initial app context (e.g. 'dev' or 'production')
+     * @param {string} initialContext set initial app context (e.g. 'dev' or 'production')
+     * @returns {KnockoutApplication} -
      */
     constructor(initialContext = 'global') {
-        context.setContext(initialContext);
+        Config.setContext(initialContext);
         super({id: 'App'});
 
         this.running = false;
 
         // attach app to window for easier debugging
-        if (config.get('debug')) {
+        if (Config.get('debug')) {
             window.app = this;
             window.ko = ko;
         }
@@ -24,6 +24,7 @@ export default class KnockoutApplication extends Component {
 
     /**
      * Bootstrap application by binding to the DOM element with ID 'app'
+     * @returns {void} -
      */
     run() {
         if (this.running) {
@@ -32,21 +33,5 @@ export default class KnockoutApplication extends Component {
 
         ko.applyBindings(this, document.getElementById('app'));
         this.running = true;
-    }
-
-    /**
-     * Set app context
-     * @param newContext name of the new context
-     */
-    static setContext(newContext) {
-        context.setContext(newContext);
-    }
-
-    /**
-     * Get current app context
-     * @returns {String}
-     */
-    static getContext() {
-        return context.getContext();
     }
 }

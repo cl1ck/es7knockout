@@ -1,10 +1,9 @@
 import $ from 'jquery';
-import config from '../app/ContextConfig';
+import Config from '../app/AppConfig';
 
 class AJAX {
     constructor() {
         $.support.cors = true;
-        this.token = null;
         this.allowAjaxRequests = true;
     }
 
@@ -13,8 +12,10 @@ class AJAX {
         let processData;
         let requestData;
         let ajaxConfig;
+        let apiEndpoint = Config.get('apiEndpoint');
+        let ajaxTimeout = Config.get('AJAXTimeout');
 
-        if (!this.allowAjaxRequests && auth) {
+        if (!this.allowAjaxRequests) {
             throw new Error('authenticated AJAX requests are only allowed when logged in');
         }
 
@@ -33,6 +34,8 @@ class AJAX {
             // todo: create form data
             requestData = payload;
         }
+
+
 
         ajaxConfig = {
             context: this,
@@ -65,7 +68,7 @@ class AJAX {
             cache: false,
 
             // set request endpoint from config
-            url: config.get('apiEndpoint'),
+            url: apiEndpoint,
 
             // append request data
             data: requestData,
@@ -74,7 +77,7 @@ class AJAX {
             dataType: 'json',
 
             // set timeout from config
-            timeout: config.get('ajaxTimeout'),
+            timeout: ajaxTimeout,
 
             // process data depending on request type
             contentType: contentType,
@@ -84,7 +87,11 @@ class AJAX {
             crossDomain: true
         };
 
-        let response = await $.ajax(ajaxConfig);
+        try {
+            let response = await $.ajax(ajaxConfig);
+        } catch(e) {
+            throw new Error('AJAX ERROR');
+        }
 
         // if response did not get parsed correctly by jQuery, parse it manually
         if (typeof response !== 'object') {

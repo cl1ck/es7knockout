@@ -39,6 +39,7 @@ class ImportTest extends ObservableClass {
 describe('ObservableClass', function () {
     it('should import all properties as observable', function () {
         let importTest = new ImportTest();
+
         assert.isTrue(ko.isObservable(importTest.$stringProperty));
         assert.isTrue(ko.isObservable(importTest.$arrayProperty));
         assert.isTrue(ko.isObservable(importTest.$intProperty));
@@ -51,28 +52,33 @@ describe('ObservableClass', function () {
 
     it('should not import properties after importObservables', function () {
         let importTest = new ImportTest();
+
         assert.equal(importTest.$noObservable, undefined);
     });
 
     it('should import arrays as observableArray', function () {
         let importTest = new ImportTest();
+
         assert.equal(typeof importTest.$arrayProperty.removeAll, 'function');
     });
 
     it('should maintain read and write access to properties', function () {
         let importTest = new ImportTest();
+
         importTest.stringProperty = 'newValue';
         assert.equal(importTest.stringProperty, 'newValue');
     });
 
     it('should update the underlying observable', function () {
         let importTest = new ImportTest();
+
         importTest.stringProperty = 'newValue';
         assert.equal(importTest.$stringProperty(), 'newValue');
     });
 
     it('should ignore variables with prefix $ or _', () => {
         let importTest = new ImportTest();
+
         assert.equal(importTest.$ignoredProperty, 'test');
         assert.equal(importTest._ignoredProperty, 'test');
         assert.isFalse(ko.isObservable(importTest.$ignoredProperty));
@@ -81,12 +87,14 @@ describe('ObservableClass', function () {
 
     it('should import getters as pureComputed', () => {
         let importTest = new ImportTest();
+
         assert.isTrue(ko.isComputed(importTest.$computedProperty));
         assert.isTrue(ko.isComputed(importTest.$computedNoSetter));
     });
 
     it('should update pureComputed when depending observables change', () => {
         let importTest = new ImportTest();
+
         assert.equal(importTest.computedProperty, 'valuevalue');
         importTest.stringProperty = 'test';
         assert.equal(importTest.computedProperty, 'testtest');
@@ -103,11 +111,13 @@ describe('ObservableClass', function () {
 
     it('should throw an exception when assigning a value to readonly pureComputed', () => {
         let importTest = new ImportTest();
+
         assert.throws(() => importTest.computedNoSetter = 'test');
     });
 
     it('should auto-bind functions to the Component', () => {
         let importTest = new ImportTest();
+
         assert.equal(importTest.testFunc.apply(window), importTest);
     });
 });
