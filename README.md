@@ -108,3 +108,11 @@ To update `buildit` merge all changes into your fork, then re-provision vagrant:
 git pull buildit master
 vagrant provision
 ```
+
+## Common problems
+
+```
+Error: `libsass` bindings not found in /vagrant/node_modules/gulp-sass/node_modules/node-sass/vendor/linux-x64-11/binding.node. Try reinstalling `node-sass`?
+```
+
+This is a common known error of node-sass. Try `npm rebuild node-sass` to fix.
