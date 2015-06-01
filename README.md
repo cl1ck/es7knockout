@@ -55,7 +55,7 @@ jspm install
 ### 1. Install nodejs
 
 If you've never used Node or npm before, you'll need to install nodejs.
-If you use homebrew, do:
+If you use homebrew on OS X, do:
 
 ```
 brew install node
@@ -80,13 +80,22 @@ jspm install
 
 Install all npm and jspm dependencies.
 
-### 4. Install sass and scss-lint
+### 4. Install ruby dependencies
 
 Make sure ruby is installed. Then use the following commands to install the gems:
 
 ```
 gem install bundler
 bundle install
+```
+
+## Installation: Ansible + Vagrant
+
+### 1. install Ansible
+
+```
+easy_install pip
+pip install ansible
 ```
 
 ## Development
@@ -135,3 +144,4 @@ jspm install
 ```
 
 ## Roadmap
+[ ] rework docs for Vagrant
