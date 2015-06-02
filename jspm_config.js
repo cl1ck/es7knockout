@@ -24,6 +24,7 @@ System.config({
     "jquery": "github:components/jquery@2.1.4",
     "knockout": "github:knockout/knockout@3.3.0",
     "sinon": "npm:sinon@1.14.1",
+    "sinon-chai": "npm:sinon-chai@2.7.0",
     "socket.io-client": "github:Automattic/socket.io-client@1.3.5",
     "systemjs/plugin-text": "github:systemjs/plugin-text@0.0.2",
     "text": "github:systemjs/plugin-text@0.0.2",
@@ -64,6 +65,10 @@ System.config({
     },
     "npm:inherits@2.0.1": {
       "util": "github:jspm/nodelibs-util@0.1.0"
+    },
+    "npm:sinon-chai@2.7.0": {
+      "chai": "npm:chai@2.3.0",
+      "sinon": "npm:sinon@1.14.1"
     },
     "npm:sinon@1.14.1": {
       "formatio": "npm:formatio@1.1.1",

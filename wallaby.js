@@ -42,6 +42,7 @@ module.exports = function(wallaby) {
             promises.push(System.import('sinon'));
             promises.push(System.import('chai'));
             promises.push(System.import('chai-as-promised'));
+            promises.push(System.import('sinon-chai'));
             for (var i = 0, len = wallaby.tests.length; i < len; i++) {
                 promises.push(System.import(wallaby.tests[i].replace(/\.js$/, '')));
             }
@@ -50,9 +51,11 @@ module.exports = function(wallaby) {
                 var sinon = modules[0];
                 var chai = modules[1];
                 var chaiAsPromised = modules[2];
+                var sinonChai = modules[3];
 
                 // chai plugins
                 chai.use(chaiAsPromised);
+                chai.use(sinonChai);
 
                 // set as globals
                 window.assert = chai.assert;
