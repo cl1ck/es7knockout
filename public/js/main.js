@@ -2,7 +2,6 @@ import KnockoutApplication from './framework/app/KnockoutApplication';
 
 // import required components
 import ActionButton from './components/gui/ActionButton';
-import AJAX from './framework/com/AJAX';
 
 class Main extends KnockoutApplication {
     constructor(context) {
