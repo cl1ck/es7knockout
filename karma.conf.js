@@ -3,7 +3,7 @@ module.exports = function(config) {
     config.set({
         basePath: '',
 
-        frameworks: ['jspm', 'mocha', 'sinon-chai'],
+        frameworks: ['jspm', 'mocha', 'sinon', 'chai-as-promised', 'chai'],
 
         // only load polyfill, the remaining files will be loaded by jspm
         files: [
@@ -41,13 +41,15 @@ module.exports = function(config) {
             'karma-junit-reporter',
             'karma-coverage',
             'karma-mocha',
-            'karma-sinon-chai',
             'karma-coverage',
             'karma-jspm',
+            'karma-chai',
             'karma-phantomjs2-launcher',
             'karma-mocha-reporter',
             'karma-babel-preprocessor',
-            'karma-sourcemap-loader'
+            'karma-sourcemap-loader',
+            'karma-chai-as-promised',
+            'karma-sinon'
         ],
 
         // test results reporter to use

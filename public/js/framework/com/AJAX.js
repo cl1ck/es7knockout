@@ -2,103 +2,68 @@ import $ from 'jquery';
 import Config from '../app/AppConfig';
 
 class AJAX {
-    constructor() {
-        $.support.cors = true;
-        this.allowAjaxRequests = true;
+    ajax(config, callback, errorCallback) {
+        let xhr = new XMLHttpRequest();
+        let timeout = setTimeout(() => {
+            xhr.abort();
+            errorCallback('AJAX Timeout');
+            // todo: retry logic here
+        }, config.timeout);
+
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState !== 4) {
+                return;
+            }
+            clearTimeout(timeout);
+
+            if (xhr.status !== 200) {
+                errorCallback(`AJAX Error: ${xhr.status} ${xhr.statusText}`);
+                return;
+            }
+
+            if (xhr.readyState === 4) {
+                let response = config.responseType === 'json' ?
+                               response = JSON.parse(xhr.responseText) :
+                               response = xhr.responseText;
+
+                callback(response);
+            }
+        };
+
+        xhr.open('POST', config.url, true);
+        xhr.setRequestHeader("Content-Type", config.contentType);
+        xhr.send(config.data);
     }
 
-    async request(payload = {}, type = 'json') {
+    request(payload = {}, type = 'json') {
         let contentType;
-        let processData;
         let requestData;
-        let ajaxConfig;
         let apiEndpoint = Config.get('apiEndpoint');
-        let ajaxTimeout = Config.get('AJAXTimeout');
-
-        if (!this.allowAjaxRequests) {
-            throw new Error('authenticated AJAX requests are only allowed when logged in');
-        }
+        let timeout = Config.get('AJAXTimeout');
 
         // pre-process request data
         if (type === 'json') {
             contentType = 'application/json charset=UTF-8';
-            processData = true;
             requestData = JSON.stringify(payload);
         } else if (type === 'form') {
             contentType = 'application/x-www-form-urlencoded charset=UTF-8';
-            processData = true;
             requestData = payload;
         } else if (type === 'file') {
             contentType = false;
-            processData = false;
-            // todo: create form data
             requestData = payload;
         }
 
-
-
-        ajaxConfig = {
-            context: this,
-
-            // current retry count:
-            retryCounter: 0,
-
-            // max retries:
-            retryLimit: 10,
-
-            // timeout for first retry:
-            retryTimeout: 1,
-
-            // increase waiting time for next retry:
-            increaseTimeoutOnRetry: 100,
-
-            // current manual retry:
-            manualRetryCounter: 0,
-
-            // limit manual retries:
-            manualRetryLimit: 5,
-
-            // number of automatic retries for each manual retry:
-            manualAdditionalRetries: 5,
-
-            // always use post to prevent caching
-            type: 'POST',
-
-            // never cache
-            cache: false,
-
-            // set request endpoint from config
+        let ajaxConfig = {
             url: apiEndpoint,
-
-            // append request data
-            data: requestData,
-
-            // response should always be json
-            dataType: 'json',
-
-            // set timeout from config
-            timeout: ajaxTimeout,
-
-            // process data depending on request type
             contentType: contentType,
-            processData: processData,
-
-            // always allow CORS
-            crossDomain: true
+            data: requestData,
+            responseType: 'json',
+            timeout: timeout
         };
 
-        try {
-            let response = await $.ajax(ajaxConfig);
-        } catch(e) {
-            throw new Error('AJAX ERROR');
-        }
-
-        // if response did not get parsed correctly by jQuery, parse it manually
-        if (typeof response !== 'object') {
-            response = JSON.parse(response);
-        }
-
-        return response;
+        return new Promise((resolve, reject) => {
+            this.ajax(ajaxConfig, resolve, reject);
+        });
     }
 }
 

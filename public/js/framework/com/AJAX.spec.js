@@ -1,20 +1,38 @@
 import AJAX from './AJAX';
 import Config from '../app/AppConfig';
-
-let xhr = sinon.useFakeXMLHttpRequest();
+//import sinon from 'sinon';
 
 Config.setContext('dev');
 
 describe('AJAX', () => {
-    it('allows ajax requests', () => {
-        /*
-        assert.doesNotThrow(() => {
-            AJAX.request();
+    beforeEach(function () {
+        this.xhr = sinon.useFakeXMLHttpRequest();
+        var requests = this.requests = [];
+        this.xhr.onCreate = function (xhr) {
+            requests.push(xhr);
+        };
+    });
+
+    afterEach(function () {
+        this.xhr.restore();
+    });
+
+    it('allows ajax requests', function() {
+        let callback = sinon.spy();
+        let errorCb = sinon.spy();
+        let data = { 'request': true };
+        let p = AJAX.request(data).then((response) => {
+            callback(response);
+            assert(callback.calledWith([ { test: 'test '}]));
+        }).catch((error) => {
+            errorCb(error);
         });
-        AJAX.allowAjaxRequests = false;
-        assert.throws(() => {
-            AJAX.request();
-        }, 'authenticated AJAX requests are only allowed when logged in');
-        */
+
+        let request = this.requests[0];
+
+        assert.equal(this.requests.length, 1);
+        assert.equal(request.requestBody, JSON.stringify(data));
+        request.respond(200, {'Content-Type': 'application/json'},
+            '[{ "test": "test" }]');
     });
 });

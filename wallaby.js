@@ -39,16 +39,29 @@ module.exports = function(wallaby) {
             mocha.ui('bdd');
 
             var promises = [];
-            promises.push(System.import('chai'));
             promises.push(System.import('sinon'));
+            promises.push(System.import('chai'));
+            promises.push(System.import('chai-as-promised'));
             for (var i = 0, len = wallaby.tests.length; i < len; i++) {
                 promises.push(System.import(wallaby.tests[i].replace(/\.js$/, '')));
             }
 
-            Promise.all(promises).then(function() {
+            Promise.all(promises).then(function(modules) {
+                var sinon = modules[0];
+                var chai = modules[1];
+                var chaiAsPromised = modules[2];
+
+                // chai plugins
+                chai.use(chaiAsPromised);
+
+                // set as globals
                 window.assert = chai.assert;
                 window.expect = chai.expect;
+                window.sinon = sinon;
+
                 wallaby.start();
+            }).catch(function(error) {
+                console.log(error);
             });
         }
     };
