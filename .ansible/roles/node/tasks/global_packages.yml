@@ -1,9 +1,7 @@
 ---
-- name: Install gulp
-  npm: name=gulp global=yes
-
-- name: Install karma-cli
-  npm: name=karma-cli global=yes
-
-- name: Install jspm
-  npm: name=jspm global=yes
+- name: Install global npm packages
+  npm: name={{item}} global=yes
+  with_items:
+    - gulp
+    - karma-cli
+    - jspm

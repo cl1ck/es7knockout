@@ -1,0 +1,8 @@
+---
+- name: Install Bundler
+  command: gem install bundle
+  sudo: yes
+
+- name: Install Dependencies
+  command:  bundle install
+            chdir=/vagrant
