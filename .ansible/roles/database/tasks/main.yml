@@ -1,4 +1,10 @@
 ---
+- name: Check for existing MySQL installation
+  shell: "[ -f /usr/sbin/mysqld ]"
+  ignore_errors: True
+  register: mysqld_exists
+
 - name: install mysql
   apt: name=mysql-server state=present
   sudo: yes
+  when: mysqld_exists|failed

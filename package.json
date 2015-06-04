@@ -57,6 +57,7 @@
     "karma": "^0.12.35",
     "karma-babel-preprocessor": "^5.2.1",
     "karma-chai": "^0.1.0",
+    "karma-chai-as-promised": "~0.1.2",
     "karma-coverage": "^0.3.1",
     "karma-jspm": "^1.1.5",
     "karma-junit-reporter": "^0.2.2",
@@ -73,8 +74,7 @@
     "sc5-styleguide": "^0.3.16",
     "sinon": "^1.14.1",
     "sinon-chai": "^2.7.0",
-    "try-thread-sleep": "^1.0.0",
-    "karma-chai-as-promised": "~0.1.2"
+    "try-thread-sleep": "^1.0.0"
   },
   "jspm": {
     "directories": {},
